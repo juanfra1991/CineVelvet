@@ -16,6 +16,24 @@ INSERT INTO sala (nombre, filas, columnas, capacidad) VALUES
 ('Sala E', 5, 8, 40),
 ('Sala F', 9, 10, 90);
 
+-- Asumiendo que tienes películas con IDs del 1 al 6 y salas con IDs del 1 al 3
+INSERT INTO sesion (fecha, pelicula_id, sala_id) VALUES
+-- Día 1
+('2025-04-20 16:00:00', 1, 1),
+('2025-04-20 18:30:00', 2, 2),
+('2025-04-20 20:00:00', 3, 3),
+-- Día 2
+('2025-04-21 17:00:00', 4, 4),
+('2025-04-21 19:30:00', 5, 5),
+('2025-04-21 22:00:00', 6, 6),
+-- Día 3
+('2025-04-22 15:45:00', 1, 2),
+('2025-04-22 18:00:00', 2, 3),
+('2025-04-22 20:15:00', 3, 4),
+-- Día 4
+('2025-04-23 17:30:00', 4, 5),
+('2025-04-23 19:45:00', 5, 6),
+('2025-04-23 21:00:00', 6, 1);
 
 -- Inserción de butacas para cada sala
 -- Sala A (ID 1), 8 filas x 10 columnas
