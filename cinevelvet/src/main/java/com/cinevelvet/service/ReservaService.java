@@ -37,7 +37,6 @@ public class ReservaService {
             Entrada entrada = Entrada.builder()
                     .reserva(reserva)
                     .butaca(butaca)
-                    .cliente(clienteGuardado)
                     .build();
 
             entradaRepository.save(entrada);

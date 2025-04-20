@@ -24,8 +24,4 @@ public class Entrada {
     @OneToOne
     @JoinColumn(name = "butaca_id")
     private Butaca butaca;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
 }
