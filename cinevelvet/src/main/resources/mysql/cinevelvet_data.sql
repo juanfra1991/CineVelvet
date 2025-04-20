@@ -1,11 +1,11 @@
 -- Inserción de 6 películas
-INSERT INTO pelicula (titulo, descripcion, duracion, genero, edades) VALUES
-('Matrix', 'Un hacker descubre una realidad alternativa.', 136, 'Ciencia Ficción', '+16'),
-('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, 'Romance', 'Todos'),
-('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, 'Animación', 'Todos'),
-('Avatar', 'Una aventura en el mundo de Pandora.', 162, 'Fantasía', '+13'),
-('Parásitos', 'Una crítica social en forma de thriller.', 132, 'Drama', '+16'),
-('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, 'Ciencia Ficción', '+13');
+INSERT INTO pelicula (titulo, descripcion, duracion, genero, edades, portada) VALUES
+('Matrix', 'Un hacker descubre una realidad alternativa.', 136, 'Ciencia Ficción', '+16', ''),
+('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, 'Romance', 'Todos', ''),
+('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, 'Animación', 'Todos', ''),
+('Avatar', 'Una aventura en el mundo de Pandora.', 162, 'Fantasía', '+13', ''),
+('Parásitos', 'Una crítica social en forma de thriller.', 132, 'Drama', '+16', ''),
+('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, 'Ciencia Ficción', '+13', '');
 
 -- Inserción de 6 salas
 INSERT INTO sala (nombre, filas, columnas, capacidad) VALUES

@@ -40,10 +40,10 @@ public class PeliculaController {
         return peliculaRepository.findById(id).map(p -> {
             p.setTitulo(updated.getTitulo());
             p.setDescripcion(updated.getDescripcion());
-            p.setUrlCartel(updated.getUrlCartel());
-            p.setDuracionMinutos(updated.getDuracionMinutos());
+            p.setDuracion(updated.getDuracion());
             p.setGenero(updated.getGenero());
             p.setEdades(updated.getEdades());
+            p.setPortada(updated.getPortada());
             return ResponseEntity.ok(peliculaRepository.save(p));
         }).orElse(ResponseEntity.notFound().build());
     }

@@ -20,11 +20,9 @@ public class Pelicula {
 
     private String titulo;
     private String descripcion;
-    private String urlCartel;
-    private int duracionMinutos;
+    private int duracion;
     private String genero;
     private String edades;
-
-
+    private String portada;
 
 }

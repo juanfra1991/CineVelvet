@@ -20,7 +20,6 @@ public class ReservaController {
         this.reservaService = reservaService;
     }
 
-    // DTO para recibir los datos de reserva
     @PostMapping
     public ResponseEntity<Reserva> crearReserva(@RequestBody ReservaRequest request) {
         Reserva reserva = reservaService.realizarReserva(
@@ -44,6 +43,18 @@ public class ReservaController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<Reserva>> getReservasPorCliente(@PathVariable Long clienteId) {
+        List<Reserva> reservas = reservaService.buscarPorClienteId(clienteId);
+        return ResponseEntity.ok(reservas);
+    }
+
+    @GetMapping("/sesion/{sesionId}")
+    public ResponseEntity<List<Reserva>> getReservasPorSesion(@PathVariable Long sesionId) {
+        List<Reserva> reservas = reservaService.buscarPorSesionId(sesionId);
+        return ResponseEntity.ok(reservas);
     }
 
     @Data

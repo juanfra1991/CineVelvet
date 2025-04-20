@@ -1,26 +1,35 @@
 package com.cinevelvet.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Sesion {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "pelicula_id")
     private Pelicula pelicula;
 
     @ManyToOne
+    @JoinColumn(name = "sala_id")
     private Sala sala;
 
-    private LocalDateTime fechaHora;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_sesion")
+    private Date fecha;
 
-    // Getters, Setters, Constructor vacío
+    public Sesion(Pelicula pelicula, Sala sala, Date fecha) {
+        this.pelicula = pelicula;
+        this.sala = sala;
+        this.fecha = fecha;
+    }
 }
-

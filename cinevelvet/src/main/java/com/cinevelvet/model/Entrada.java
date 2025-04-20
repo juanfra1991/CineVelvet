@@ -1,12 +1,13 @@
 package com.cinevelvet.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "entrada")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -17,10 +18,14 @@ public class Entrada {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "reserva_id", nullable = false)
+    @JoinColumn(name = "reserva_id")
     private Reserva reserva;
 
-    @ManyToOne
-    @JoinColumn(name = "butaca_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "butaca_id")
     private Butaca butaca;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 }

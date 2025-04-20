@@ -8,7 +8,8 @@ CREATE TABLE pelicula (
     descripcion TEXT,
     duracion INT,
     genero VARCHAR(50),
-    edades VARCHAR(20)
+    edades VARCHAR(20),
+    portada VARCHAR(1000)
 );
 
 -- Tabla: Sala

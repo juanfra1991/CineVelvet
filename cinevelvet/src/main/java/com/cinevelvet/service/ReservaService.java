@@ -37,9 +37,11 @@ public class ReservaService {
             Entrada entrada = Entrada.builder()
                     .reserva(reserva)
                     .butaca(butaca)
+                    .cliente(clienteGuardado)
                     .build();
 
             entradaRepository.save(entrada);
+
         }
 
         return reserva;
@@ -52,4 +54,17 @@ public class ReservaService {
     public Reserva buscarPorId(Long id) {
         return reservaRepository.findById(id).orElse(null);
     }
+
+    public List<Reserva> buscarPorClienteId(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + clienteId));
+        return reservaRepository.findByCliente(cliente);
+    }
+
+    public List<Reserva> buscarPorSesionId(Long sesionId) {
+        Sesion sesion = sesionRepository.findById(sesionId)
+                .orElseThrow(() -> new RuntimeException("Sesión no encontrada con ID: " + sesionId));
+        return reservaRepository.findBySesion(sesion);
+    }
+
 }
