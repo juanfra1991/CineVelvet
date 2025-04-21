@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SesionDTO {
+public class ButacaDTO {
     private Long id;
+    private int fila;
+    private int columna;
     private SalaDTO sala;
-    private String fecha;
-    private String hora;
 }

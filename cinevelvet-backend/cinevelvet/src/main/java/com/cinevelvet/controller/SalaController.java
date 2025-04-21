@@ -21,9 +21,4 @@ public class SalaController {
     public List<Sala> getAllSalas() {
         return salaRepository.findAll();
     }
-
-    @PostMapping
-    public Sala createSala(@RequestBody Sala sala) {
-        return salaRepository.save(sala);
-    }
 }

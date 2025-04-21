@@ -1,13 +1,14 @@
 package com.cinevelvet.controller;
 
+import com.cinevelvet.dto.SalaDTO;
 import com.cinevelvet.dto.SesionDTO;
+import com.cinevelvet.model.Sala;
 import com.cinevelvet.model.Sesion;
-import com.cinevelvet.repository.PeliculaRepository;
-import com.cinevelvet.repository.SalaRepository;
 import com.cinevelvet.repository.SesionRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,13 +18,9 @@ import java.util.Locale;
 public class SesionController {
 
     private final SesionRepository sesionRepository;
-    private final PeliculaRepository peliculaRepository;
-    private final SalaRepository salaRepository;
 
-    public SesionController(SesionRepository sesionRepository, PeliculaRepository peliculaRepository, SalaRepository salaRepository) {
+    public SesionController(SesionRepository sesionRepository) {
         this.sesionRepository = sesionRepository;
-        this.peliculaRepository = peliculaRepository;
-        this.salaRepository = salaRepository;
     }
 
     @GetMapping
@@ -33,18 +30,29 @@ public class SesionController {
 
     @GetMapping("/pelicula/{peliculaId}")
     public List<SesionDTO> getSesionesPorPelicula(@PathVariable Long peliculaId) {
-        Locale locale = Locale.forLanguageTag("es-ES");
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEE, dd/MM", locale);
-        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-
         return sesionRepository.findAll().stream()
                 .filter(s -> s.getPelicula().getId().equals(peliculaId))
-                .map(s -> new SesionDTO(
-                        s.getId(),
-                        s.getSala().getNombre(),
-                        formatoFecha.format(s.getFecha()),
-                        formatoHora.format(s.getFecha())
-                ))
+                .map(this::convertToDTO)
                 .toList();
+    }
+    private SesionDTO convertToDTO(Sesion s) {
+        Sala sala = s.getSala();
+        SalaDTO salaDTO = new SalaDTO(
+                sala.getId(),
+                sala.getNombre(),
+                sala.getFilas(),
+                sala.getColumnas(),
+                sala.getCapacidad()
+        );
+
+        String fecha = s.getFecha().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("EEE, dd/MM", Locale.forLanguageTag("es")));
+
+        String hora = s.getFecha().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("HH:mm"));
+
+        return new SesionDTO(s.getId(), salaDTO, fecha, hora);
     }
 }
