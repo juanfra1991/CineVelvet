@@ -18,14 +18,14 @@ public class Butaca {
     private Sala sala;
 
     private int fila;
-    private int columna;
+    private int butaca;
 
     @OneToOne(mappedBy = "butaca")
     private Entrada entrada;
 
-    public Butaca(Sala sala, int fila, int columna) {
+    public Butaca(Sala sala, int fila, int butaca) {
         this.sala = sala;
         this.fila = fila;
-        this.columna = columna;
+        this.butaca = butaca;
     }
 }

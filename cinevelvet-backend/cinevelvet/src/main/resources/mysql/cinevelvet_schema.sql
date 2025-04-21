@@ -25,7 +25,7 @@ CREATE TABLE sala (
 CREATE TABLE butaca (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     fila INT NOT NULL,
-    columna INT NOT NULL,
+    butaca INT NOT NULL,
     sala_id BIGINT,
     FOREIGN KEY (sala_id) REFERENCES sala(id)
 );

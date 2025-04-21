@@ -47,7 +47,7 @@ public class ButacaController {
         return new ButacaDTO(
                 butaca.getId(),
                 butaca.getFila(),
-                butaca.getColumna(),
+                butaca.getButaca(),
                 salaDTO
         );
     }

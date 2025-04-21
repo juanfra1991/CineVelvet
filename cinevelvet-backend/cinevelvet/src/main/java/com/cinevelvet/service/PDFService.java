@@ -66,7 +66,7 @@ public class PDFService {
             // Rellenamos la tabla con las entradas
             for (Entrada entrada : reserva.getEntradas()) {
                 table.addCell(String.valueOf(entrada.getButaca().getFila()));
-                table.addCell(String.valueOf(entrada.getButaca().getColumna()));
+                table.addCell(String.valueOf(entrada.getButaca().getButaca()));
             }
 
             doc.add(table);

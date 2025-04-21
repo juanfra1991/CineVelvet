@@ -8,6 +8,6 @@ import lombok.Data;
 public class ButacaDTO {
     private Long id;
     private int fila;
-    private int columna;
+    private int butaca;
     private SalaDTO sala;
 }
