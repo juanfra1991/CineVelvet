@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -21,21 +22,32 @@ public class ReservaService {
     private final SesionRepository sesionRepository;
     private final PDFService pdfService;
 
+    private static final Logger logger = Logger.getLogger(ReservaService.class.getName());
+
     @Transactional
     public Reserva realizarReserva(Cliente cliente, Long sesionId, List<Long> butacasId) {
-        Cliente clienteGuardado = clienteRepository.save(cliente);
+        logger.info("Iniciando proceso de reserva para cliente con ID: " + cliente.getId() + " y sesión con ID: " + sesionId);
 
+        // Guardar cliente
+        Cliente clienteGuardado = clienteRepository.save(cliente);
+        logger.info("Cliente guardado con ID: " + clienteGuardado.getId());
+
+        // Obtener sesión
         Sesion sesion = sesionRepository.findById(sesionId)
                 .orElseThrow(() -> new RuntimeException("Sesión no encontrada con ID: " + sesionId));
+        logger.info("Sesión encontrada: " + sesion.getId());
 
+        // Crear la reserva
         Reserva reserva = new Reserva();
         reserva.setCliente(clienteGuardado);
         reserva.setSesion(sesion);
         reserva.setFechaSesion(sesion.getFecha());
         reserva.setFechaReserva(new Date());
 
-        List<Entrada> entradas = new ArrayList<>();
+        logger.info("Reserva creada para cliente ID: " + clienteGuardado.getId() + " en sesión: " + sesion.getId());
 
+        // Crear las entradas
+        List<Entrada> entradas = new ArrayList<>();
         for (Long butacaId : butacasId) {
             Butaca butaca = butacaRepository.findById(butacaId)
                     .orElseThrow(() -> new RuntimeException("Butaca no encontrada con ID: " + butacaId));
@@ -46,17 +58,22 @@ public class ReservaService {
                     .build();
 
             entradas.add(entrada);
+            logger.info("Entrada creada para butaca ID: " + butacaId);
         }
 
         reserva.setEntradas(entradas);
         reserva = reservaRepository.save(reserva);
 
-        // Generar PDF tras la reserva
-        pdfService.guardarPDF(reserva, "tickets");
+        logger.info("Reserva guardada con ID: " + reserva.getId());
+
+        // Generar el PDF tras la reserva
+        logger.info("Generando PDF para la reserva con ID: " + reserva.getId());
+        pdfService.guardarPDF(reserva, "cinevelvet/tickets");
+
+        logger.info("Reserva procesada exitosamente con ID: " + reserva.getId());
 
         return reserva;
     }
-
 
     public List<Reserva> obtenerReservas() {
         return reservaRepository.findAll();
@@ -77,5 +94,4 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Sesión no encontrada con ID: " + sesionId));
         return reservaRepository.findBySesion(sesion);
     }
-
 }
