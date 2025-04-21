@@ -17,7 +17,7 @@ INSERT INTO sala (nombre, filas, columnas, capacidad) VALUES
 ('Sala F', 9, 10, 90);
 
 -- Asumiendo que tienes películas con IDs del 1 al 6 y salas con IDs del 1 al 3
-INSERT INTO sesion (fecha, pelicula_id, sala_id) VALUES
+INSERT INTO sesion (fecha_sesion, pelicula_id, sala_id) VALUES
 -- Día 1
 ('2025-04-20 16:00:00', 1, 1),
 ('2025-04-20 18:30:00', 2, 2),

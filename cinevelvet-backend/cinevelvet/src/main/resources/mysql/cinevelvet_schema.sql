@@ -33,7 +33,7 @@ CREATE TABLE butaca (
 -- Tabla: Sesión
 CREATE TABLE sesion (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    fecha DATETIME NOT NULL,
+    fecha_sesion DATETIME NOT NULL,
     pelicula_id BIGINT,
     sala_id BIGINT,
     FOREIGN KEY (pelicula_id) REFERENCES pelicula(id),

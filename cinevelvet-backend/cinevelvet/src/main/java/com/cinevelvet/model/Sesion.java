@@ -24,7 +24,7 @@ public class Sesion {
     private Sala sala;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha")
+    @Column(name = "fecha_sesion")
     private Date fecha;
 
     public Sesion(Pelicula pelicula, Sala sala, Date fecha) {
