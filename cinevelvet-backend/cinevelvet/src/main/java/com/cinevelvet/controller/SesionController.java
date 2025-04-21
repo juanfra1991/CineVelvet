@@ -1,13 +1,15 @@
 package com.cinevelvet.controller;
 
+import com.cinevelvet.dto.SesionDTO;
 import com.cinevelvet.model.Sesion;
 import com.cinevelvet.repository.PeliculaRepository;
 import com.cinevelvet.repository.SalaRepository;
 import com.cinevelvet.repository.SesionRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/sesiones")
@@ -29,23 +31,20 @@ public class SesionController {
         return sesionRepository.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Sesion> createSesion(@RequestBody Sesion sesion) {
-        // Validar película y sala si es necesario
-        return ResponseEntity.ok(sesionRepository.save(sesion));
-    }
-
     @GetMapping("/pelicula/{peliculaId}")
-    public List<Sesion> getSesionesPorPelicula(@PathVariable Long peliculaId) {
+    public List<SesionDTO> getSesionesPorPelicula(@PathVariable Long peliculaId) {
+        Locale locale = Locale.forLanguageTag("es-ES");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEE, dd/MM", locale);
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+
         return sesionRepository.findAll().stream()
                 .filter(s -> s.getPelicula().getId().equals(peliculaId))
+                .map(s -> new SesionDTO(
+                        s.getId(),
+                        s.getSala().getNombre(),
+                        formatoFecha.format(s.getFecha()),
+                        formatoHora.format(s.getFecha())
+                ))
                 .toList();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSesion(@PathVariable Long id) {
-        if (!sesionRepository.existsById(id)) return ResponseEntity.notFound().build();
-        sesionRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 }

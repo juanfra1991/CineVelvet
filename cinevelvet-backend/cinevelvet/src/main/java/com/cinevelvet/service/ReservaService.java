@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ public class ReservaService {
     private final ClienteRepository clienteRepository;
     private final ButacaRepository butacaRepository;
     private final SesionRepository sesionRepository;
+    private final PDFService pdfService;
 
     @Transactional
     public Reserva realizarReserva(Cliente cliente, Long sesionId, List<Long> butacasId) {
@@ -28,7 +31,10 @@ public class ReservaService {
         Reserva reserva = new Reserva();
         reserva.setCliente(clienteGuardado);
         reserva.setSesion(sesion);
-        reserva = reservaRepository.save(reserva);
+        reserva.setFechaSesion(sesion.getFecha());
+        reserva.setFechaReserva(new Date());
+
+        List<Entrada> entradas = new ArrayList<>();
 
         for (Long butacaId : butacasId) {
             Butaca butaca = butacaRepository.findById(butacaId)
@@ -39,12 +45,18 @@ public class ReservaService {
                     .butaca(butaca)
                     .build();
 
-            entradaRepository.save(entrada);
-
+            entradas.add(entrada);
         }
+
+        reserva.setEntradas(entradas);
+        reserva = reservaRepository.save(reserva);
+
+        // Generar PDF tras la reserva
+        pdfService.guardarPDF(reserva, "tickets");
 
         return reserva;
     }
+
 
     public List<Reserva> obtenerReservas() {
         return reservaRepository.findAll();

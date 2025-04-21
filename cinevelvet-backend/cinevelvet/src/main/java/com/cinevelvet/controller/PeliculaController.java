@@ -29,29 +29,4 @@ public class PeliculaController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    @PostMapping
-    public Pelicula createPelicula(@RequestBody Pelicula pelicula) {
-        return peliculaRepository.save(pelicula);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Pelicula> updatePelicula(@PathVariable Long id, @RequestBody Pelicula updated) {
-        return peliculaRepository.findById(id).map(p -> {
-            p.setTitulo(updated.getTitulo());
-            p.setDescripcion(updated.getDescripcion());
-            p.setDuracion(updated.getDuracion());
-            p.setGenero(updated.getGenero());
-            p.setEdades(updated.getEdades());
-            p.setPortada(updated.getPortada());
-            return ResponseEntity.ok(peliculaRepository.save(p));
-        }).orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePelicula(@PathVariable Long id) {
-        if (!peliculaRepository.existsById(id)) return ResponseEntity.notFound().build();
-        peliculaRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
 }

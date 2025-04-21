@@ -53,6 +53,7 @@ CREATE TABLE reserva (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     sesion_id BIGINT,
     cliente_id BIGINT,
+    fecha_sesion DATETIME NOT NULL,
     fecha_reserva DATETIME NOT NULL,
     FOREIGN KEY (sesion_id) REFERENCES sesion(id),
     FOREIGN KEY (cliente_id) REFERENCES cliente(id)
