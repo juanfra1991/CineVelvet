@@ -1,5 +1,6 @@
 package com.cinevelvet.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,11 +19,20 @@ public class Pelicula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 150)
     private String titulo;
-    private String descripcion;
-    private int duracion;
-    private String genero;
-    private String edades;
-    private String portada;
 
+    @Column(length = 1000)
+    private String descripcion;
+
+    private int duracion;
+
+    @Column(length = 50)
+    private String genero;
+
+    @Column(length = 150)
+    private String edades;
+
+    @Column(length = 1000)
+    private String portada;
 }

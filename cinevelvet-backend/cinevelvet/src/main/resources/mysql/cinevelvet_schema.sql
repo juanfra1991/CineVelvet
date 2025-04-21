@@ -4,11 +4,11 @@ DROP TABLE IF EXISTS entrada, reserva, cliente, sesion, butaca, sala, pelicula;
 -- Tabla: Película
 CREATE TABLE pelicula (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100) NOT NULL,
+    titulo VARCHAR(150) NOT NULL,
     descripcion TEXT,
     duracion INT,
     genero VARCHAR(50),
-    edades VARCHAR(20),
+    edades VARCHAR(150),
     portada VARCHAR(1000)
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE sesion (
 CREATE TABLE cliente (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
     telefono VARCHAR(20) NOT NULL
 );
 
