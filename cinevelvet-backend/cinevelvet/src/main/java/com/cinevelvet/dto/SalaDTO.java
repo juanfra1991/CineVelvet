@@ -3,6 +3,8 @@ package com.cinevelvet.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 public class SalaDTO {
@@ -11,5 +13,5 @@ public class SalaDTO {
     private int filas;
     private int columnas;
     private int capacidad;
-
+    private List<ButacaDTO> butacas;
 }

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/butacas")
+@CrossOrigin
 public class ButacaController {
 
     @Autowired
@@ -32,10 +33,11 @@ public class ButacaController {
 
     @GetMapping("/sala/{salaId}")
     public SalaDTO getSalaConButacas(@PathVariable Long salaId) {
-        Sala sala = salaRepository.findById(salaId).orElseThrow(() -> new RuntimeException("Sala no encontrada"));
+        Sala sala = salaRepository.findById(salaId)
+                .orElseThrow(() -> new RuntimeException("Sala no encontrada"));
 
         List<ButacaDTO> butacas = sala.getButacas().stream()
-                .map(b -> new ButacaDTO(b.getId(), b.getFila(), b.getButaca()))
+                .map(this::convertToDTO)
                 .toList();
 
         return new SalaDTO(
@@ -43,9 +45,11 @@ public class ButacaController {
                 sala.getNombre(),
                 sala.getFilas(),
                 sala.getColumnas(),
-                sala.getCapacidad()
+                sala.getCapacidad(),
+                butacas
         );
     }
+
     private ButacaDTO convertToDTO(Butaca butaca) {
         return new ButacaDTO(
                 butaca.getId(),
