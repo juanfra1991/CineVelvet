@@ -7,7 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class SesionDTO {
     private Long id;
-    private SalaDTO sala;
     private String fecha;
     private String hora;
+    private int peliculaId;
+    private int salaId;
 }

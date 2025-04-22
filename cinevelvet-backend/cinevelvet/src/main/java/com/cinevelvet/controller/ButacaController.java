@@ -5,6 +5,7 @@ import com.cinevelvet.dto.SalaDTO;
 import com.cinevelvet.model.Butaca;
 import com.cinevelvet.model.Sala;
 import com.cinevelvet.repository.ButacaRepository;
+import com.cinevelvet.repository.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/butacas")
 public class ButacaController {
+
+    @Autowired
+    private SalaRepository salaRepository;
 
     @Autowired
     private ButacaRepository butacaRepository;
@@ -27,28 +31,26 @@ public class ButacaController {
     }
 
     @GetMapping("/sala/{salaId}")
-    public List<ButacaDTO> getButacasPorSala(@PathVariable Long salaId) {
-        return butacaRepository.findBySalaId(salaId)
-                .stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
+    public SalaDTO getSalaConButacas(@PathVariable Long salaId) {
+        Sala sala = salaRepository.findById(salaId).orElseThrow(() -> new RuntimeException("Sala no encontrada"));
 
-    private ButacaDTO convertToDTO(Butaca butaca) {
-        Sala sala = butaca.getSala();
-        SalaDTO salaDTO = new SalaDTO(
+        List<ButacaDTO> butacas = sala.getButacas().stream()
+                .map(b -> new ButacaDTO(b.getId(), b.getFila(), b.getButaca()))
+                .toList();
+
+        return new SalaDTO(
                 sala.getId(),
                 sala.getNombre(),
                 sala.getFilas(),
                 sala.getColumnas(),
                 sala.getCapacidad()
         );
-
+    }
+    private ButacaDTO convertToDTO(Butaca butaca) {
         return new ButacaDTO(
                 butaca.getId(),
                 butaca.getFila(),
-                butaca.getButaca(),
-                salaDTO
+                butaca.getButaca()
         );
     }
 }

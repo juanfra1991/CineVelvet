@@ -2,6 +2,7 @@ package com.cinevelvet.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Sala {
     private int capacidad;
 
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Butaca> butacas;
 
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)

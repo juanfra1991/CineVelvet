@@ -9,5 +9,4 @@ public class ButacaDTO {
     private Long id;
     private int fila;
     private int butaca;
-    private SalaDTO sala;
 }

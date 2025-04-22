@@ -3,6 +3,7 @@ package com.cinevelvet.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Data
@@ -15,6 +16,7 @@ public class Butaca {
 
     @ManyToOne
     @JoinColumn(name = "sala_id")
+    @JsonBackReference
     private Sala sala;
 
     private int fila;
@@ -22,10 +24,4 @@ public class Butaca {
 
     @OneToOne(mappedBy = "butaca")
     private Entrada entrada;
-
-    public Butaca(Sala sala, int fila, int butaca) {
-        this.sala = sala;
-        this.fila = fila;
-        this.butaca = butaca;
-    }
 }

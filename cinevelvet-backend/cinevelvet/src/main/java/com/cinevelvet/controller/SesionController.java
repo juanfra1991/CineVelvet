@@ -1,8 +1,6 @@
 package com.cinevelvet.controller;
 
-import com.cinevelvet.dto.SalaDTO;
 import com.cinevelvet.dto.SesionDTO;
-import com.cinevelvet.model.Sala;
 import com.cinevelvet.model.Sesion;
 import com.cinevelvet.repository.SesionRepository;
 import org.springframework.http.ResponseEntity;
@@ -43,15 +41,8 @@ public class SesionController {
                 .map(this::convertToDTO)
                 .toList();
     }
+
     private SesionDTO convertToDTO(Sesion s) {
-        Sala sala = s.getSala();
-        SalaDTO salaDTO = new SalaDTO(
-                sala.getId(),
-                sala.getNombre(),
-                sala.getFilas(),
-                sala.getColumnas(),
-                sala.getCapacidad()
-        );
 
         String fecha = s.getFecha().toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -61,6 +52,9 @@ public class SesionController {
                 .atZone(ZoneId.systemDefault())
                 .format(DateTimeFormatter.ofPattern("HH:mm"));
 
-        return new SesionDTO(s.getId(), salaDTO, fecha, hora);
+        int peliculaId = s.getPelicula().getId().intValue();
+        int salaId = s.getSala().getId().intValue();
+
+        return new SesionDTO(s.getId(), fecha, hora, peliculaId, salaId);
     }
 }
