@@ -5,6 +5,7 @@ import com.cinevelvet.dto.SesionDTO;
 import com.cinevelvet.model.Sala;
 import com.cinevelvet.model.Sesion;
 import com.cinevelvet.repository.SesionRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZoneId;
@@ -26,6 +27,13 @@ public class SesionController {
     @GetMapping
     public List<Sesion> getAllSesiones() {
         return sesionRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Sesion> getSesionById(@PathVariable Long id) {
+        return sesionRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/pelicula/{peliculaId}")
