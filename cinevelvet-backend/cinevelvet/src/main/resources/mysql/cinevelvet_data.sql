@@ -1,11 +1,11 @@
 -- Inserción de 6 películas
 INSERT INTO pelicula (titulo, descripcion, duracion, genero, edades, portada) VALUES
-('Matrix', 'Un hacker descubre una realidad alternativa.', 136, 'Ciencia Ficción', '+16', ''),
-('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, 'Romance', 'Todos', ''),
-('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, 'Animación', 'Todos', ''),
-('Avatar', 'Una aventura en el mundo de Pandora.', 162, 'Fantasía', '+13', ''),
-('Parásitos', 'Una crítica social en forma de thriller.', 132, 'Drama', '+16', ''),
-('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, 'Ciencia Ficción', '+13', '');
+('Matrix', 'Un hacker descubre una realidad alternativa.', 136, 'Ciencia Ficción', 'No recomendada para menores de 16 años', 'https://pics.filmaffinity.com/Matrix-155050517-large.jpg'),
+('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, 'Romance', 'Apta para todos los públicos', 'https://pics.filmaffinity.com/Titanic-578584301-large.jpg'),
+('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, 'Animación', 'Apta para todos los públicos', 'https://www.aceprensa.com/wp-content/uploads/1994/10/8587-0.jpg'),
+('Avatar', 'Una aventura en el mundo de Pandora.', 162, 'Fantasía', 'No recomendada para menores de 12 años', 'https://m.media-amazon.com/images/M/MV5BNmQxNjZlZTctMWJiMC00NGMxLWJjNTctNTFiNjA1Njk3ZDQ5XkEyXkFqcGc@._V1_.jpg'),
+('Parásitos', 'Una crítica social en forma de thriller.', 132, 'Drama', 'No recomendada para menores de 16 años', 'https://www.lavanguardia.com/peliculas-series/images/movie/poster/2019/5/w1280/4N55tgxDW0RRATyrZHbx0q9HUKv.jpg'),
+('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, 'Ciencia Ficción', 'No recomendada para menores de 12 años', 'https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');
 
 -- Inserción de 6 salas
 INSERT INTO sala (nombre, filas, columnas, capacidad) VALUES
