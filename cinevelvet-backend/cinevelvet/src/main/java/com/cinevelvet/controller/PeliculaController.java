@@ -39,7 +39,7 @@ public class PeliculaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pelicula> editarPelicula(@PathVariable Long id, @RequestBody Pelicula peliculaActualizada) {
+    public ResponseEntity<Pelicula> editPelicula(@PathVariable Long id, @RequestBody Pelicula peliculaActualizada) {
         return peliculaRepository.findById(id)
                 .map(pelicula -> {
                     pelicula.setTitulo(peliculaActualizada.getTitulo());
