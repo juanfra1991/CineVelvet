@@ -48,20 +48,19 @@ const Home = () => {
         <div className="home-container">
             <div>
                 <header className="home-header">
-                    <div className="header-background"></div>
+                    <div className="header-background">
+                    <button className="admin-icon" onClick={() => navigate('/administrador')}>
+                            <FiSettings size={24} />
+                        </button>
+                    </div>
                     <div className="header-content">
                         <img className='logo' src={logoCinema} alt="Cinema Logo" />
                         <div>
                             <h1 className='title'>Velvet Cinema</h1>
                         </div>
-                        <button className="admin-icon" onClick={() => navigate('/administrador')}>
-                            <FiSettings size={24} />
-                        </button>
-
-
+                        
                     </div>
                 </header>
-
             </div>
 
             <div className="peliculas-list">
