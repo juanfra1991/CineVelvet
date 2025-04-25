@@ -1,0 +1,75 @@
+.peliculas-admin-container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: Verdana, sans-serif;
+  }
+  
+  .peliculas-admin-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .peliculas-admin-container label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .peliculas-admin-container input,
+  .peliculas-admin-container textarea,
+  .peliculas-admin-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .peliculas-admin-container button {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #970000;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .peliculas-admin-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .peliculas-admin-container button:hover:enabled {
+    background-color: #222;
+  }
+  
+  .back-button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la flecha y el texto */
+    margin-bottom: 20px;
+  }
+  
+  .back-button i {
+    font-size: 18px;
+  }
+  
+  .back-button:hover {
+    background-color: #2980b9;
+  }
+  

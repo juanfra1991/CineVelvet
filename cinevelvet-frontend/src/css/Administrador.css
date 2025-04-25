@@ -1,0 +1,39 @@
+.admin-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .admin-container input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .admin-container button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #970000c2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .admin-container button:hover {
+    background-color: #222;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importamos useNavigate para redirigir
+import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
 import '../css/Home.css';
 import axios from 'axios';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiSettings } from 'react-icons/fi';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -53,8 +54,14 @@ const Home = () => {
                         <div>
                             <h1 className='title'>Velvet Cinema</h1>
                         </div>
+                        <button className="admin-icon" onClick={() => navigate('/administrador')}>
+                            <FiSettings size={24} />
+                        </button>
+
+
                     </div>
                 </header>
+
             </div>
 
             <div className="peliculas-list">

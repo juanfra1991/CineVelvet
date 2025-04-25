@@ -173,5 +173,21 @@
     }
   }
   
+  .admin-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    padding: 8px;
+    transition: color 0.2s ease;
+  }
+  
+  .admin-icon:hover {
+    color: #ffcc00;
+  }
   
   
