@@ -1,22 +1,111 @@
-2025-04-22T18:39:58.460+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 1220 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T18:39:58.460+02:00 DEBUG 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T18:39:58.461+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T18:39:59.026+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T18:39:59.053+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 7 JPA repository interfaces.
-2025-04-22T18:39:59.324+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T18:39:59.326+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T18:39:59.327+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T18:39:59.348+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-22T18:39:59.348+02:00  INFO 1220 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 875 ms
-2025-04-22T18:39:59.532+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T18:39:59.536+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T18:39:59.550+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T18:39:59.551+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2025-04-22T18:39:59.563+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2edfa993
-2025-04-22T18:39:59.564+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2025-04-22T18:39:59.564+02:00  WARN 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T18:39:59.564+02:00  WARN 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T18:39:59.565+02:00  INFO 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T10:18:39.335+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11744 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:18:39.335+02:00 DEBUG 11744 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:18:39.335+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:18:39.380+02:00  INFO 11744 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T10:18:39.380+02:00  INFO 11744 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T10:18:40.115+02:00  INFO 11744 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:18:40.167+02:00  INFO 11744 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:18:40.714+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:18:40.726+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:18:40.726+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:18:40.763+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:18:40.764+02:00  INFO 11744 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1381 ms
+2025-04-25T10:18:41.010+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:18:41.074+02:00  INFO 11744 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T10:18:41.103+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:18:41.343+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:18:41.369+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T10:18:41.669+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fccc573
+2025-04-25T10:18:41.670+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T10:18:41.710+02:00  WARN 11744 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:18:41.711+02:00  WARN 11744 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:18:41.724+02:00  INFO 11744 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:18:42.536+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:18:42.538+02:00  INFO 11744 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:18:43.023+02:00  WARN 11744 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:18:43.624+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:18:43.632+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:18:43.702+02:00  INFO 11744 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:18:43.712+02:00  INFO 11744 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.753 seconds (process running for 5.36)
+2025-04-25T10:18:43.893+02:00  INFO 11744 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:18:43.894+02:00  INFO 11744 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:18:43.896+02:00  INFO 11744 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-25T10:19:30.235+02:00  INFO 11744 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:19:30.237+02:00  INFO 11744 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:19:30.237+02:00  INFO 11744 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:19:30.237+02:00  INFO 11744 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T10:19:30.253+02:00  INFO 11744 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T10:20:00.031+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:20:00.031+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:20:00.031+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:20:00.076+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T10:20:00.076+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T10:20:00.736+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:20:00.784+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:20:01.281+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:20:01.296+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:20:01.296+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:20:01.328+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:20:01.328+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1252 ms
+2025-04-25T10:20:01.561+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:20:01.612+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T10:20:01.629+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:20:01.835+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:20:01.851+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T10:20:02.106+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51d1d471
+2025-04-25T10:20:02.106+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T10:20:02.146+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:20:02.147+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:20:02.150+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:20:02.930+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:20:02.930+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:20:03.366+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:20:04.037+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:20:04.046+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:20:04.108+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:20:04.118+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.425 seconds (process running for 4.978)
+2025-04-25T10:20:04.782+02:00  INFO 11796 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:20:04.782+02:00  INFO 11796 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:20:04.782+02:00  INFO 11796 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-04-25T10:31:58.537+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-04-25T10:31:58.540+02:00  INFO 11796 --- [cinevelvet] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:31:58.547+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:31:58.551+02:00  INFO 11796 --- [cinevelvet] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:31:58.554+02:00  INFO 11796 --- [cinevelvet] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T10:31:58.559+02:00  INFO 11796 --- [cinevelvet] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T10:31:58.623+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:31:58.623+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:31:58.623+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:31:58.854+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:31:58.876+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:31:58.996+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:31:58.997+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:31:58.997+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:31:59.000+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:31:59.000+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 376 ms
+2025-04-25T10:31:59.117+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:31:59.119+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:31:59.126+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:31:59.126+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-04-25T10:31:59.126+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38f2c777
+2025-04-25T10:31:59.126+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-04-25T10:31:59.126+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:31:59.126+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:31:59.126+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -24,50 +113,39 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T18:39:59.726+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T18:39:59.726+02:00  INFO 1220 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T18:39:59.951+02:00  WARN 1220 --- [cinevelvet] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reservaController' defined in file [C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes\com\cinevelvet\controller\ReservaController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.cinevelvet.service.ReservaService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2025-04-22T18:39:59.951+02:00  INFO 1220 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T18:39:59.952+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2025-04-22T18:39:59.959+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2025-04-22T18:39:59.960+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2025-04-22T18:39:59.969+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-04-22T18:39:59.999+02:00 ERROR 1220 --- [cinevelvet] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.cinevelvet.controller.ReservaController required a bean of type 'com.cinevelvet.service.ReservaService' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your configuration.
-
-2025-04-22T18:40:01.478+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 1220 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T18:40:01.478+02:00 DEBUG 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T18:40:01.478+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T18:40:01.849+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T18:40:01.879+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 7 JPA repository interfaces.
-2025-04-22T18:40:02.061+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T18:40:02.061+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T18:40:02.061+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T18:40:02.078+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2025-04-22T18:40:02.078+02:00  INFO 1220 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 598 ms
-2025-04-22T18:40:02.266+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T18:40:02.266+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T18:40:02.272+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T18:40:02.272+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2025-04-22T18:40:02.300+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cb54ac0
-2025-04-22T18:40:02.300+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2025-04-22T18:40:02.300+02:00  WARN 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T18:40:02.300+02:00  WARN 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T18:40:02.300+02:00  INFO 1220 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T10:31:59.220+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:31:59.220+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:31:59.386+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:31:59.688+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:31:59.704+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:31:59.720+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:31:59.720+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.119 seconds (process running for 720.594)
+2025-04-25T10:31:59.720+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:32:13.346+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-04-25T10:32:13.346+02:00  INFO 11796 --- [cinevelvet] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:32:13.359+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:32:13.361+02:00  INFO 11796 --- [cinevelvet] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:32:13.362+02:00  INFO 11796 --- [cinevelvet] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-04-25T10:32:13.364+02:00  INFO 11796 --- [cinevelvet] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-04-25T10:32:13.440+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:32:13.440+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:32:13.440+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:32:13.646+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:32:13.658+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:32:13.746+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:32:13.746+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:32:13.746+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:32:13.746+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:32:13.746+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 305 ms
+2025-04-25T10:32:13.841+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:32:13.842+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:32:13.843+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:32:13.843+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-04-25T10:32:13.843+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@28a50354
+2025-04-25T10:32:13.843+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-04-25T10:32:13.858+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:32:13.858+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:32:13.858+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -75,44 +153,287 @@ Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T18:40:02.503+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T18:40:02.505+02:00  INFO 1220 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T18:40:02.807+02:00  WARN 1220 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-22T18:40:03.537+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-04-22T18:40:03.551+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-04-22T18:40:03.647+02:00  INFO 1220 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-04-22T18:40:03.665+02:00  INFO 1220 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 2.213 seconds (process running for 3246.152)
-2025-04-22T18:40:03.666+02:00  INFO 1220 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2025-04-22T18:58:42.990+02:00  INFO 1220 --- [cinevelvet] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-22T18:58:42.990+02:00  INFO 1220 --- [cinevelvet] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-22T18:58:42.994+02:00  INFO 1220 --- [cinevelvet] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-04-22T19:06:15.920+02:00  INFO 1220 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-22T19:06:15.920+02:00  INFO 1220 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-04-22T19:06:15.920+02:00  INFO 1220 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:06:15.920+02:00  INFO 1220 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
-2025-04-22T19:06:15.920+02:00  INFO 1220 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
-2025-04-22T19:06:18.096+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 18152 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T19:06:18.096+02:00 DEBUG 18152 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T19:06:18.096+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T19:06:18.135+02:00  INFO 18152 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-04-22T19:06:18.135+02:00  INFO 18152 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-04-22T19:06:18.857+02:00  INFO 18152 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T19:06:18.910+02:00  INFO 18152 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 7 JPA repository interfaces.
-2025-04-22T19:06:19.551+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T19:06:19.561+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T19:06:19.561+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T19:06:19.593+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-22T19:06:19.594+02:00  INFO 18152 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1458 ms
-2025-04-22T19:06:19.838+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T19:06:19.872+02:00  INFO 18152 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-04-22T19:06:19.896+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T19:06:20.088+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T19:06:20.111+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-22T19:06:20.365+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7611311e
-2025-04-22T19:06:20.367+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-22T19:06:20.437+02:00  WARN 18152 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T19:06:20.439+02:00  WARN 18152 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T19:06:20.462+02:00  INFO 18152 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T10:32:13.922+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:32:13.922+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:32:14.080+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:32:14.366+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:32:14.370+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:32:14.389+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:32:14.394+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 0.972 seconds (process running for 735.254)
+2025-04-25T10:32:14.395+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:33:08.760+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-04-25T10:33:08.763+02:00  INFO 11796 --- [cinevelvet] [Thread-11] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:33:08.771+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:33:08.776+02:00  INFO 11796 --- [cinevelvet] [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:33:08.777+02:00  INFO 11796 --- [cinevelvet] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-04-25T10:33:08.779+02:00  INFO 11796 --- [cinevelvet] [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-04-25T10:33:08.853+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:33:08.853+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:33:08.853+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:33:09.076+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:33:09.079+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:33:09.176+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:33:09.176+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:33:09.176+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:33:09.192+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:33:09.192+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 339 ms
+2025-04-25T10:33:09.305+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:33:09.307+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:33:09.314+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:33:09.314+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-04-25T10:33:09.325+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52f46022
+2025-04-25T10:33:09.325+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-04-25T10:33:09.326+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:33:09.326+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:33:09.326+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:33:09.401+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:33:09.401+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:33:09.546+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:33:09.837+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:33:09.841+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:33:09.862+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:33:09.866+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.039 seconds (process running for 790.727)
+2025-04-25T10:33:09.867+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:33:11.263+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-04-25T10:33:11.263+02:00  INFO 11796 --- [cinevelvet] [Thread-15] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:33:11.263+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:33:11.263+02:00  INFO 11796 --- [cinevelvet] [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:33:11.263+02:00  INFO 11796 --- [cinevelvet] [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-04-25T10:33:11.279+02:00  INFO 11796 --- [cinevelvet] [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2025-04-25T10:33:11.351+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:33:11.351+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:33:11.351+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:33:11.533+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:33:11.546+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:33:11.642+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:33:11.642+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:33:11.642+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:33:11.654+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:33:11.654+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 303 ms
+2025-04-25T10:33:11.720+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:33:11.720+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:33:11.741+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:33:11.743+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2025-04-25T10:33:11.748+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6eab8167
+2025-04-25T10:33:11.748+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2025-04-25T10:33:11.752+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:33:11.752+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:33:11.752+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:33:11.815+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:33:11.815+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:33:11.953+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:33:12.233+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:33:12.239+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:33:12.274+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:33:12.278+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 0.951 seconds (process running for 793.14)
+2025-04-25T10:33:12.278+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:38:14.972+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-04-25T10:38:14.973+02:00  INFO 11796 --- [cinevelvet] [Thread-19] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:38:14.980+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:38:14.981+02:00  INFO 11796 --- [cinevelvet] [Thread-19] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:38:14.982+02:00  INFO 11796 --- [cinevelvet] [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2025-04-25T10:38:14.985+02:00  INFO 11796 --- [cinevelvet] [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2025-04-25T10:38:15.079+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:38:15.079+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:38:15.079+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:38:15.305+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:38:15.321+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:38:15.424+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:38:15.424+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:38:15.424+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:38:15.438+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:38:15.438+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 358 ms
+2025-04-25T10:38:15.578+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:38:15.583+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:38:15.591+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:38:15.591+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2025-04-25T10:38:15.605+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d47ea44
+2025-04-25T10:38:15.605+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2025-04-25T10:38:15.605+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:38:15.605+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:38:15.605+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:38:15.681+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:38:15.681+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:38:15.844+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:38:16.166+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:38:16.166+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:38:16.194+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:38:16.201+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.142 seconds (process running for 1097.061)
+2025-04-25T10:38:16.201+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:38:17.593+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-04-25T10:38:17.593+02:00  INFO 11796 --- [cinevelvet] [Thread-23] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:38:17.598+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:38:17.598+02:00  INFO 11796 --- [cinevelvet] [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:38:17.598+02:00  INFO 11796 --- [cinevelvet] [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2025-04-25T10:38:17.598+02:00  INFO 11796 --- [cinevelvet] [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2025-04-25T10:38:17.670+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:38:17.670+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:38:17.670+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:38:17.862+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:38:17.862+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:38:17.951+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:38:17.951+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:38:17.951+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:38:17.966+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:38:17.966+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 293 ms
+2025-04-25T10:38:18.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:38:18.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:38:18.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:38:18.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2025-04-25T10:38:18.067+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ddca363
+2025-04-25T10:38:18.067+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2025-04-25T10:38:18.067+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:38:18.067+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:38:18.067+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-7)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:38:18.139+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:38:18.139+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:38:18.302+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:38:18.582+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:38:18.590+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:38:18.621+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:38:18.629+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 0.976 seconds (process running for 1099.489)
+2025-04-25T10:38:18.631+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:45:30.647+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:45:30.647+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:45:30.647+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [Thread-27] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [Thread-27] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2025-04-25T10:46:34.967+02:00  INFO 11796 --- [cinevelvet] [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2025-04-25T10:46:35.030+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:46:35.030+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:46:35.030+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:46:35.287+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:46:35.300+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:46:35.415+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:46:35.416+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:46:35.417+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:46:35.421+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:46:35.421+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 391 ms
+2025-04-25T10:46:35.517+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:46:35.517+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:46:35.532+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:46:35.532+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2025-04-25T10:46:35.532+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4315637e
+2025-04-25T10:46:35.548+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2025-04-25T10:46:35.548+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:46:35.548+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:46:35.548+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-8)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:46:35.612+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:46:35.612+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:46:35.780+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:46:36.085+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:46:36.085+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:46:36.101+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:46:36.101+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.087 seconds (process running for 1596.975)
+2025-04-25T10:46:36.101+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:46:37.517+02:00  INFO 11796 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-04-25T10:46:37.518+02:00  INFO 11796 --- [cinevelvet] [Thread-31] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:46:37.524+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:46:37.525+02:00  INFO 11796 --- [cinevelvet] [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:46:37.526+02:00  INFO 11796 --- [cinevelvet] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2025-04-25T10:46:37.528+02:00  INFO 11796 --- [cinevelvet] [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2025-04-25T10:46:37.597+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 11796 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:46:37.597+02:00 DEBUG 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:46:37.598+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:46:37.783+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:46:37.794+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:46:37.886+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:46:37.887+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:46:37.887+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:46:37.899+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:46:37.899+02:00  INFO 11796 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 300 ms
+2025-04-25T10:46:37.979+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:46:37.981+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:46:37.981+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:46:37.981+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2025-04-25T10:46:37.995+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection com.mysql.cj.jdbc.ConnectionImpl@175c075a
+2025-04-25T10:46:37.995+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2025-04-25T10:46:37.995+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:46:37.995+02:00  WARN 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:46:37.996+02:00  INFO 11796 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-9)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T10:46:38.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:46:38.051+02:00  INFO 11796 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:46:38.190+02:00  WARN 11796 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:46:38.481+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:46:38.481+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:46:38.496+02:00  INFO 11796 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:46:38.512+02:00  INFO 11796 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 0.931 seconds (process running for 1599.374)
+2025-04-25T10:46:38.512+02:00  INFO 11796 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T10:47:20.635+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:47:20.639+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:47:20.640+02:00  INFO 11796 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-25T10:48:44.030+02:00  INFO 11796 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:48:44.030+02:00  INFO 11796 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:48:44.040+02:00  INFO 11796 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:48:44.040+02:00  INFO 11796 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2025-04-25T10:48:44.042+02:00  INFO 11796 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2025-04-25T10:48:47.842+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 18132 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:48:47.842+02:00 DEBUG 18132 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:48:47.842+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:48:47.888+02:00  INFO 18132 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T10:48:47.888+02:00  INFO 18132 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T10:48:48.644+02:00  INFO 18132 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:48:48.708+02:00  INFO 18132 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:48:49.271+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:48:49.287+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:48:49.287+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:48:49.319+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:48:49.319+02:00  INFO 18132 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1431 ms
+2025-04-25T10:48:49.661+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:48:49.696+02:00  INFO 18132 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T10:48:49.727+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:48:49.958+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:48:49.990+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T10:48:50.293+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53ab4db1
+2025-04-25T10:48:50.293+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T10:48:50.340+02:00  WARN 18132 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:48:50.340+02:00  WARN 18132 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:48:50.356+02:00  INFO 18132 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -120,43 +441,43 @@ Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T19:06:21.435+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T19:06:21.438+02:00  INFO 18152 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:06:21.974+02:00  WARN 18152 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-22T19:06:22.583+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-04-22T19:06:22.591+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-04-22T19:06:22.652+02:00  INFO 18152 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-04-22T19:06:22.663+02:00  INFO 18152 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.947 seconds (process running for 5.619)
-2025-04-22T19:06:22.804+02:00  INFO 18152 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-22T19:06:22.804+02:00  INFO 18152 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-22T19:06:22.807+02:00  INFO 18152 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-04-22T19:07:48.663+02:00  INFO 18152 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-22T19:07:48.686+02:00  INFO 18152 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-04-22T19:07:48.692+02:00  INFO 18152 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:07:48.697+02:00  INFO 18152 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-22T19:07:48.719+02:00  INFO 18152 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-04-22T19:08:01.635+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 5656 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T19:08:01.637+02:00 DEBUG 5656 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T19:08:01.637+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T19:08:01.674+02:00  INFO 5656 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-04-22T19:08:01.675+02:00  INFO 5656 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-04-22T19:08:02.471+02:00  INFO 5656 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T19:08:02.529+02:00  INFO 5656 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 7 JPA repository interfaces.
-2025-04-22T19:08:03.031+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T19:08:03.042+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T19:08:03.042+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T19:08:03.076+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-22T19:08:03.077+02:00  INFO 5656 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1402 ms
-2025-04-22T19:08:03.335+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T19:08:03.369+02:00  INFO 5656 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-04-22T19:08:03.391+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T19:08:03.583+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T19:08:03.606+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-22T19:08:03.835+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1f0de043
-2025-04-22T19:08:03.837+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-22T19:08:03.870+02:00  WARN 5656 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T19:08:03.870+02:00  WARN 5656 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T19:08:03.886+02:00  INFO 5656 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T10:48:51.143+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:48:51.159+02:00  INFO 18132 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:48:51.624+02:00  WARN 18132 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:48:52.382+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:48:52.392+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:48:52.468+02:00  INFO 18132 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:48:52.478+02:00  INFO 18132 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.988 seconds (process running for 5.976)
+2025-04-25T10:48:53.052+02:00  INFO 18132 --- [cinevelvet] [RMI TCP Connection(5)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:48:53.052+02:00  INFO 18132 --- [cinevelvet] [RMI TCP Connection(5)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:48:53.053+02:00  INFO 18132 --- [cinevelvet] [RMI TCP Connection(5)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-25T10:49:00.109+02:00  INFO 18132 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T10:49:00.114+02:00  INFO 18132 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T10:49:00.114+02:00  INFO 18132 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:49:00.114+02:00  INFO 18132 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T10:49:00.130+02:00  INFO 18132 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T10:49:03.269+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 21948 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T10:49:03.276+02:00 DEBUG 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T10:49:03.276+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T10:49:03.308+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T10:49:03.308+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T10:49:04.041+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T10:49:04.096+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 7 JPA repository interfaces.
+2025-04-25T10:49:04.644+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T10:49:04.655+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T10:49:04.655+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T10:49:04.690+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T10:49:04.690+02:00  INFO 21948 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1382 ms
+2025-04-25T10:49:04.947+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T10:49:04.990+02:00  INFO 21948 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T10:49:05.016+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T10:49:05.247+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T10:49:05.273+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T10:49:05.542+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17bec65d
+2025-04-25T10:49:05.544+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T10:49:05.579+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T10:49:05.580+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T10:49:05.594+02:00  INFO 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -164,47 +485,126 @@ Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T19:08:04.616+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T19:08:04.618+02:00  INFO 5656 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:08:05.058+02:00  WARN 5656 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-22T19:08:05.796+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-04-22T19:08:05.809+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-04-22T19:08:05.918+02:00  INFO 5656 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-04-22T19:08:05.929+02:00  INFO 5656 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.706 seconds (process running for 5.305)
-2025-04-22T19:08:06.421+02:00  INFO 5656 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.110] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-22T19:08:06.421+02:00  INFO 5656 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-22T19:08:06.424+02:00  INFO 5656 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-04-22T19:35:35.616+02:00  WARN 5656 --- [cinevelvet] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Ignoring exception, response committed already: org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Document nesting depth (1001) exceeds the maximum allowed (1000, from `StreamWriteConstraints.getMaxNestingDepth()`)
-2025-04-22T19:35:35.617+02:00  WARN 5656 --- [cinevelvet] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Ignoring exception, response committed already: org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Document nesting depth (1001) exceeds the maximum allowed (1000, from `StreamWriteConstraints.getMaxNestingDepth()`)
-2025-04-22T19:35:35.618+02:00  WARN 5656 --- [cinevelvet] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Document nesting depth (1001) exceeds the maximum allowed (1000, from `StreamWriteConstraints.getMaxNestingDepth()`)]
-2025-04-22T19:35:35.618+02:00  WARN 5656 --- [cinevelvet] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Document nesting depth (1001) exceeds the maximum allowed (1000, from `StreamWriteConstraints.getMaxNestingDepth()`)]
-2025-04-22T19:42:39.590+02:00  INFO 5656 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-22T19:42:39.602+02:00  INFO 5656 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-04-22T19:42:39.609+02:00  INFO 5656 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:42:39.612+02:00  INFO 5656 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-22T19:42:39.620+02:00  INFO 5656 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-04-22T19:42:44.792+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 19360 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T19:42:44.793+02:00 DEBUG 19360 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T19:42:44.794+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T19:42:44.836+02:00  INFO 19360 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-04-22T19:42:44.836+02:00  INFO 19360 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-04-22T19:42:45.692+02:00  INFO 19360 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T19:42:45.742+02:00  INFO 19360 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 7 JPA repository interfaces.
-2025-04-22T19:42:46.248+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T19:42:46.258+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T19:42:46.259+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T19:42:46.292+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-22T19:42:46.292+02:00  INFO 19360 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1455 ms
-2025-04-22T19:42:46.618+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T19:42:46.658+02:00  INFO 19360 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-04-22T19:42:46.680+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T19:42:46.887+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T19:42:46.911+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-22T19:42:47.172+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d30fbaa
-2025-04-22T19:42:47.174+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-22T19:42:47.210+02:00  WARN 19360 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T19:42:47.211+02:00  WARN 19360 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T19:42:47.229+02:00  INFO 19360 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T10:49:06.509+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T10:49:06.512+02:00  INFO 21948 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T10:49:07.066+02:00  WARN 21948 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T10:49:07.772+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T10:49:07.782+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T10:49:07.848+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T10:49:07.858+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.949 seconds (process running for 5.602)
+2025-04-25T10:49:08.089+02:00  INFO 21948 --- [cinevelvet] [RMI TCP Connection(3)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T10:49:08.089+02:00  INFO 21948 --- [cinevelvet] [RMI TCP Connection(3)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T10:49:08.091+02:00  INFO 21948 --- [cinevelvet] [RMI TCP Connection(3)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-25T11:42:26.378+02:00  INFO 21948 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-04-25T11:42:26.382+02:00  INFO 21948 --- [cinevelvet] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T11:42:26.390+02:00  INFO 21948 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T11:42:26.396+02:00  INFO 21948 --- [cinevelvet] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:42:26.399+02:00  INFO 21948 --- [cinevelvet] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T11:42:26.403+02:00  INFO 21948 --- [cinevelvet] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T11:42:26.520+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 21948 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T11:42:26.520+02:00 DEBUG 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T11:42:26.520+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T11:42:26.896+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T11:42:26.917+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 7 JPA repository interfaces.
+2025-04-25T11:42:27.075+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T11:42:27.077+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T11:42:27.077+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T11:42:27.101+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T11:42:27.101+02:00  INFO 21948 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 579 ms
+2025-04-25T11:42:27.225+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T11:42:27.228+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T11:42:27.238+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T11:42:27.239+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-04-25T11:42:27.250+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b5c9d2d
+2025-04-25T11:42:27.250+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-04-25T11:42:27.251+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T11:42:27.251+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T11:42:27.251+02:00  INFO 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T11:42:27.343+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T11:42:27.343+02:00  INFO 21948 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:42:27.549+02:00  WARN 21948 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T11:42:27.904+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T11:42:27.911+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T11:42:27.935+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T11:42:27.940+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.459 seconds (process running for 3205.684)
+2025-04-25T11:42:27.942+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T11:42:29.334+02:00  INFO 21948 --- [cinevelvet] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-04-25T11:42:29.335+02:00  INFO 21948 --- [cinevelvet] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T11:42:29.341+02:00  INFO 21948 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T11:42:29.343+02:00  INFO 21948 --- [cinevelvet] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:42:29.344+02:00  INFO 21948 --- [cinevelvet] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-04-25T11:42:29.346+02:00  INFO 21948 --- [cinevelvet] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-04-25T11:42:29.432+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 21948 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T11:42:29.432+02:00 DEBUG 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T11:42:29.432+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T11:42:29.764+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T11:42:29.778+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 7 JPA repository interfaces.
+2025-04-25T11:42:29.882+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T11:42:29.888+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T11:42:29.888+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T11:42:29.902+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T11:42:29.902+02:00  INFO 21948 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 470 ms
+2025-04-25T11:42:30.020+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T11:42:30.020+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T11:42:30.034+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T11:42:30.034+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-04-25T11:42:30.041+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2ae021
+2025-04-25T11:42:30.041+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-04-25T11:42:30.041+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T11:42:30.041+02:00  WARN 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T11:42:30.041+02:00  INFO 21948 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T11:42:30.139+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T11:42:30.139+02:00  INFO 21948 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:42:30.347+02:00  WARN 21948 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T11:42:30.775+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T11:42:30.780+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T11:42:30.800+02:00  INFO 21948 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T11:42:30.806+02:00  INFO 21948 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 1.395 seconds (process running for 3208.551)
+2025-04-25T11:42:30.808+02:00  INFO 21948 --- [cinevelvet] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-04-25T11:44:10.290+02:00  INFO 21948 --- [cinevelvet] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T11:44:10.291+02:00  INFO 21948 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T11:44:10.292+02:00  INFO 21948 --- [cinevelvet] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-25T11:44:55.324+02:00  INFO 21948 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T11:44:55.330+02:00  INFO 21948 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T11:44:55.331+02:00  INFO 21948 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:44:55.331+02:00  INFO 21948 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-04-25T11:44:55.331+02:00  INFO 21948 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-04-25T11:44:58.287+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 25524 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T11:44:58.288+02:00 DEBUG 25524 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T11:44:58.289+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T11:44:58.323+02:00  INFO 25524 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T11:44:58.323+02:00  INFO 25524 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T11:44:59.030+02:00  INFO 25524 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T11:44:59.089+02:00  INFO 25524 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 7 JPA repository interfaces.
+2025-04-25T11:44:59.626+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T11:44:59.636+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T11:44:59.636+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T11:44:59.668+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T11:44:59.668+02:00  INFO 25524 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1344 ms
+2025-04-25T11:44:59.907+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T11:44:59.953+02:00  INFO 25524 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T11:44:59.977+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T11:45:00.180+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T11:45:00.204+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T11:45:00.435+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ecd693d
+2025-04-25T11:45:00.436+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T11:45:00.472+02:00  WARN 25524 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T11:45:00.473+02:00  WARN 25524 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T11:45:00.484+02:00  INFO 25524 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -212,43 +612,43 @@ Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T19:42:48.131+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T19:42:48.133+02:00  INFO 19360 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:42:48.650+02:00  WARN 19360 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-22T19:42:49.327+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-04-22T19:42:49.338+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-04-22T19:42:49.414+02:00  INFO 19360 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-04-22T19:42:49.423+02:00  INFO 19360 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 5.039 seconds (process running for 5.666)
-2025-04-22T19:42:49.589+02:00  INFO 19360 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-22T19:42:49.589+02:00  INFO 19360 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-22T19:42:49.592+02:00  INFO 19360 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2025-04-22T19:44:08.301+02:00  INFO 19360 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-22T19:44:08.303+02:00  INFO 19360 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-04-22T19:44:08.316+02:00  INFO 19360 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:44:08.321+02:00  INFO 19360 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-22T19:44:08.325+02:00  INFO 19360 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-04-22T19:45:35.451+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.4 with PID 14712 (C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by maria in C:\Users\maria\OneDrive\Escritorio\CineVelvet\cinevelvet-backend)
-2025-04-22T19:45:35.454+02:00 DEBUG 14712 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-22T19:45:35.454+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-04-22T19:45:35.533+02:00  INFO 14712 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2025-04-22T19:45:35.533+02:00  INFO 14712 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2025-04-22T19:45:37.235+02:00  INFO 14712 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-22T19:45:37.355+02:00  INFO 14712 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 103 ms. Found 7 JPA repository interfaces.
-2025-04-22T19:45:38.474+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-04-22T19:45:38.492+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-22T19:45:38.492+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-04-22T19:45:38.551+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-22T19:45:38.551+02:00  INFO 14712 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3015 ms
-2025-04-22T19:45:39.035+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-22T19:45:39.107+02:00  INFO 14712 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-04-22T19:45:39.153+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-22T19:45:39.467+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-22T19:45:39.505+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-22T19:45:40.055+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27848167
-2025-04-22T19:45:40.055+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-22T19:45:40.119+02:00  WARN 14712 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-22T19:45:40.119+02:00  WARN 14712 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-04-22T19:45:40.134+02:00  INFO 14712 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-25T11:45:01.215+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T11:45:01.218+02:00  INFO 25524 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:45:01.643+02:00  WARN 25524 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T11:45:02.228+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T11:45:02.237+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T11:45:02.303+02:00  INFO 25524 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T11:45:02.314+02:00  INFO 25524 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.356 seconds (process running for 4.828)
+2025-04-25T11:45:02.714+02:00  INFO 25524 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T11:45:02.715+02:00  INFO 25524 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T11:45:02.717+02:00  INFO 25524 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-25T12:14:00.029+02:00  INFO 25524 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T12:14:00.036+02:00  INFO 25524 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T12:14:00.042+02:00  INFO 25524 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T12:14:00.045+02:00  INFO 25524 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T12:14:00.050+02:00  INFO 25524 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T12:14:03.349+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Starting CinevelvetApplication using Java 21.0.5 with PID 20864 (C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend\cinevelvet\target\classes started by juanf in C:\Users\juanf\IdeaProjects\CineVelvet\cinevelvet-backend)
+2025-04-25T12:14:03.350+02:00 DEBUG 20864 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25T12:14:03.351+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T12:14:03.394+02:00  INFO 20864 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-25T12:14:03.394+02:00  INFO 20864 --- [cinevelvet] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-25T12:14:04.041+02:00  INFO 20864 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T12:14:04.091+02:00  INFO 20864 --- [cinevelvet] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 7 JPA repository interfaces.
+2025-04-25T12:14:04.580+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-25T12:14:04.591+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-25T12:14:04.592+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-25T12:14:04.623+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-25T12:14:04.623+02:00  INFO 20864 --- [cinevelvet] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1228 ms
+2025-04-25T12:14:04.870+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T12:14:04.920+02:00  INFO 20864 --- [cinevelvet] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-25T12:14:04.946+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T12:14:05.191+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T12:14:05.218+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-25T12:14:05.482+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2081b2ad
+2025-04-25T12:14:05.484+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-25T12:14:05.522+02:00  WARN 20864 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T12:14:05.523+02:00  WARN 20864 --- [cinevelvet] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-25T12:14:05.536+02:00  INFO 20864 --- [cinevelvet] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -256,18 +656,18 @@ Consider defining a bean of type 'com.cinevelvet.service.ReservaService' in your
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-22T19:45:41.487+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-04-22T19:45:41.490+02:00  INFO 14712 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:45:42.279+02:00  WARN 14712 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-22T19:45:43.398+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2025-04-22T19:45:43.414+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-04-22T19:45:43.533+02:00  INFO 14712 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-04-22T19:45:43.550+02:00  INFO 14712 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 9.138 seconds (process running for 11.089)
-2025-04-22T19:45:44.277+02:00  INFO 14712 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-22T19:45:44.279+02:00  INFO 14712 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-22T19:45:44.283+02:00  INFO 14712 --- [cinevelvet] [RMI TCP Connection(1)-192.168.0.110] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2025-04-22T19:46:30.519+02:00  INFO 14712 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-04-22T19:46:30.527+02:00  INFO 14712 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-04-22T19:46:30.529+02:00  INFO 14712 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-04-22T19:46:30.538+02:00  INFO 14712 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-04-22T19:46:30.538+02:00  INFO 14712 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-25T12:14:06.350+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T12:14:06.353+02:00  INFO 20864 --- [cinevelvet] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T12:14:06.818+02:00  WARN 20864 --- [cinevelvet] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-25T12:14:07.393+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-25T12:14:07.403+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-04-25T12:14:07.478+02:00  INFO 20864 --- [cinevelvet] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-25T12:14:07.488+02:00  INFO 20864 --- [cinevelvet] [restartedMain] com.cinevelvet.CinevelvetApplication     : Started CinevelvetApplication in 4.508 seconds (process running for 4.998)
+2025-04-25T12:14:07.723+02:00  INFO 20864 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-25T12:14:07.723+02:00  INFO 20864 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-25T12:14:07.725+02:00  INFO 20864 --- [cinevelvet] [RMI TCP Connection(2)-192.168.0.12] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-25T12:34:30.483+02:00  INFO 20864 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-25T12:34:30.490+02:00  INFO 20864 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-25T12:34:30.495+02:00  INFO 20864 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T12:34:30.498+02:00  INFO 20864 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-25T12:34:30.502+02:00  INFO 20864 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
