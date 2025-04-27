@@ -1,75 +1,138 @@
 .peliculas-admin-container {
-    max-width: 600px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-family: Verdana, sans-serif;
-  }
-  
-  .peliculas-admin-container h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .peliculas-admin-container label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .peliculas-admin-container input,
-  .peliculas-admin-container textarea,
-  .peliculas-admin-container select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  .peliculas-admin-container button {
-    margin-top: 20px;
-    width: 100%;
-    background-color: #970000;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .peliculas-admin-container button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .peliculas-admin-container button:hover:enabled {
-    background-color: #222;
-  }
-  
-  .back-button {
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Espacio entre la flecha y el texto */
-    margin-bottom: 20px;
-  }
-  
-  .back-button i {
-    font-size: 18px;
-  }
-  
-  .back-button:hover {
-    background-color: #2980b9;
-  }
-  
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+}
+
+.titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background-color: #45a049;
+}
+
+.crear-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.crear-button:hover {
+  background-color: #0056b3;
+}
+
+.formulario-editar {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo {
+  margin-bottom: 15px;
+}
+
+.campo label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.campo input, .campo textarea, .campo select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+select, textarea {
+  font-size: 16px;
+}
+
+select {
+  margin-top: 5px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.botones {
+  margin-top: 20px;
+}
+
+.botones button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botones button:hover {
+  background-color: #d32f2f;
+}
+
+hr {
+  margin: 20px 0;
+}

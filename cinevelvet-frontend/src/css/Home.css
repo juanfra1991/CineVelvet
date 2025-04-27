@@ -96,8 +96,8 @@
 }
 .sesion-horas {
   display: flex;
-  flex-direction: column; /* ✅ Hace que las horas se apilen verticalmente */
-  gap: 6px; /* Espacio entre botones */
+  flex-direction: column;
+  gap: 6px;
 }
 
 .sesion-horas button {

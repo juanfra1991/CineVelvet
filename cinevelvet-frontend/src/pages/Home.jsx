@@ -24,7 +24,7 @@ const Home = () => {
     // Cargar las sesiones por película
     const fetchSesionesPorPelicula = async (peliculaId) => {
         try {
-            const response = await axios.get(`${Config.urlBackend}/sesiones/pelicula/${peliculaId}`);
+            const response = await axios.get(`${Config.urlBackend}/sesiones/pelicula/${peliculaId}/futuras`);
             setSesionesPorPelicula(prev => ({
                 ...prev,
                 [peliculaId]: response.data
@@ -78,13 +78,13 @@ const Home = () => {
                                         sesionesPorPelicula[pelicula.id].length > 0 ? (
                                             Object.entries(
                                                 sesionesPorPelicula[pelicula.id].reduce((acc, sesion) => {
-                                                    if (!acc[sesion.fecha]) acc[sesion.fecha] = [];
-                                                    acc[sesion.fecha].push(sesion);
+                                                    if (!acc[sesion.strFecha]) acc[sesion.strFecha] = [];
+                                                    acc[sesion.strFecha].push(sesion);
                                                     return acc;
                                                 }, {})
-                                            ).map(([fecha, sesiones], index) => (
+                                            ).map(([strFecha, sesiones], index) => (
                                                 <div key={index} className="sesion-item">
-                                                    <span className="sesion-fecha">{fecha}</span>
+                                                    <span className="sesion-fecha">{strFecha}</span>
                                                     <div className="sesion-horas">
                                                         {sesiones.map((sesion, i) => (
                                                             <button
@@ -94,7 +94,7 @@ const Home = () => {
                                                                     navigate(`/salas/${sesion.salaId}`);
                                                                 }}
                                                             >
-                                                                {sesion.hora}
+                                                                {sesion.strHora}
                                                             </button>
                                                         ))}
                                                     </div>

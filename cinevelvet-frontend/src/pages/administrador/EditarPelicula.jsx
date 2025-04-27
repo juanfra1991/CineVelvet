@@ -47,39 +47,94 @@ export default function EditarPelicula() {
 
   return (
     <div className="peliculas-admin-container">
-      <h2>Editar Película</h2>
+      <h2 className="titulo">Editar Película</h2>
 
-      <label>Título:</label>
-      <input name="titulo" value={pelicula.titulo} onChange={handleChange} />
-
-      <label>Descripción:</label>
-      <textarea name="descripcion" value={pelicula.descripcion} onChange={handleChange} />
-
-      <label>Duración (minutos):</label>
-      <input type="number" name="duracion" value={pelicula.duracion} onChange={handleChange} />
-
-      <label>Género:</label>
-      <select name="genero" value={pelicula.genero} onChange={handleChange}>
-        <option value="">Selecciona un género</option>
-        {generos.map(genero => (
-          <option key={genero} value={genero}>{genero}</option>
-        ))}
-      </select>
-
-      <label>Edades permitidas:</label>
-      <select name="edades" value={pelicula.edades} onChange={handleChange}>
-        <option value="">Selecciona edad</option>
-        {edades.map(edad => (
-          <option key={edad} value={edad}>{edad}</option>
-        ))}
-      </select>
-
-      <label>URL de portada:</label>
-      <input name="portada" value={pelicula.portada} onChange={handleChange} />
-
-      <button className="btn" type="submit" disabled={!isValid} onClick={handleSubmit}>
-        Guardar Cambios
+      <button onClick={() => navigate('/peliculas')} className="back-button">
+        <i className="fas fa-arrow-left"></i> Atrás
       </button>
+
+      <form onSubmit={handleSubmit} className="formulario-editar">
+        <div className="campo">
+          <label htmlFor="titulo">Título:</label>
+          <input
+            id="titulo"
+            name="titulo"
+            value={pelicula.titulo}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="descripcion">Descripción:</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            value={pelicula.descripcion}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="duracion">Duración (minutos):</label>
+          <input
+            type="number"
+            id="duracion"
+            name="duracion"
+            value={pelicula.duracion}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="genero">Género:</label>
+          <select
+            id="genero"
+            name="genero"
+            value={pelicula.genero}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona un género</option>
+            {generos.map(genero => (
+              <option key={genero} value={genero}>{genero}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="campo">
+          <label htmlFor="edades">Edades permitidas:</label>
+          <select
+            id="edades"
+            name="edades"
+            value={pelicula.edades}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona edad</option>
+            {edades.map(edad => (
+              <option key={edad} value={edad}>{edad}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="campo">
+          <label htmlFor="portada">URL de portada:</label>
+          <input
+            id="portada"
+            name="portada"
+            value={pelicula.portada}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button className="btn" type="submit" disabled={!isValid}>
+          Guardar Cambios
+        </button>
+      </form>
     </div>
   );
 }

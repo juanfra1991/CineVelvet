@@ -7,6 +7,7 @@ export default function Dashboard() {
 
   const menuItems = [
     { name: "Películas", path: "/peliculas" },
+    { name: "Sesiones", path: "/sesiones" },
   ];
 
   const handleLogout = () => {
@@ -30,7 +31,7 @@ export default function Dashboard() {
 
       {/* Menú lateral */}
       <aside className="dashboard-sidebar">
-        <h2 className="dashboard-title">Panel Admin 🎬</h2>
+        <h2 className="dashboard-title">Panel Administrador 🎬</h2>
         <nav className="dashboard-nav">
           {menuItems.map((item) => (
             <button
@@ -43,11 +44,6 @@ export default function Dashboard() {
           ))}
         </nav>
       </aside>
-
-      {/* Zona de contenido */}
-      <main className="dashboard-content">
-        <Outlet />
-      </main>
     </div>
   );
 }

@@ -38,31 +38,82 @@ const Peliculas = () => {
     <div className="peliculas-admin-container">
       <h2>Crear Nueva Película</h2>
 
+      <button onClick={() => window.history.back()} className="back-button">
+        <i className="fas fa-arrow-left"></i> Atrás
+      </button>
+      
+      <hr />
+
       <label>Título:</label>
-      <input type="text" name="titulo" value={form.titulo} onChange={handleChange} />
+      <input
+        type="text"
+        name="titulo"
+        value={form.titulo}
+        onChange={handleChange}
+        className="input-field"
+      />
 
       <label>Descripción:</label>
-      <textarea name="descripcion" value={form.descripcion} onChange={handleChange} />
+      <textarea
+        name="descripcion"
+        value={form.descripcion}
+        onChange={handleChange}
+        className="input-field"
+      />
 
       <label>Duración (minutos):</label>
-      <input type="number" name="duracion" value={form.duracion} onChange={handleChange} />
+      <input
+        type="number"
+        name="duracion"
+        value={form.duracion}
+        onChange={handleChange}
+        className="input-field"
+      />
 
       <label>Género:</label>
-      <select name="genero" value={form.genero} onChange={handleChange}>
+      <select
+        name="genero"
+        value={form.genero}
+        onChange={handleChange}
+        className="input-field"
+      >
         <option value="">Selecciona un género</option>
-        {generos.map(g => <option key={g} value={g}>{g}</option>)}
+        {generos.map(g => (
+          <option key={g} value={g}>
+            {g}
+          </option>
+        ))}
       </select>
 
       <label>Edades permitidas:</label>
-      <select name="edades" value={form.edades} onChange={handleChange}>
+      <select
+        name="edades"
+        value={form.edades}
+        onChange={handleChange}
+        className="input-field"
+      >
         <option value="">Selecciona una edad</option>
-        {edadesPermitidas.map(e => <option key={e} value={e}>{e}</option>)}
+        {edadesPermitidas.map(e => (
+          <option key={e} value={e}>
+            {e}
+          </option>
+        ))}
       </select>
 
       <label>URL de portada:</label>
-      <input type="text" name="portada" value={form.portada} onChange={handleChange} />
+      <input
+        type="text"
+        name="portada"
+        value={form.portada}
+        onChange={handleChange}
+        className="input-field"
+      />
 
-      <button disabled={!isFormValid} onClick={handleSubmit}>
+      <button
+        className="btn"
+        disabled={!isFormValid}
+        onClick={handleSubmit}
+      >
         Crear Película
       </button>
     </div>

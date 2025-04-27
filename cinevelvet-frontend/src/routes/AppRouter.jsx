@@ -8,6 +8,8 @@ import Dashboard from '../pages/administrador/Dashboard';
 import Peliculas from '../pages/administrador/Peliculas';
 import EditarPelicula from '../pages/administrador/EditarPelicula';
 import CrearPelicula from '../pages/administrador/CrearPelicula';
+import Sesiones from '../pages/administrador/Sesiones';
+import EditarSesion from '../pages/administrador/EditarSesion';
 
 export default function AppRouter() {
   return (
@@ -21,6 +23,8 @@ export default function AppRouter() {
         <Route path="/peliculas" element={<Peliculas />} />
         <Route path="/editar-pelicula/:id" element={<EditarPelicula />} />
         <Route path="/crear-pelicula" element={<CrearPelicula />} />
+        <Route path="/sesiones" element={<Sesiones />} />
+        <Route path="/editar-sesion/:id" element={<EditarSesion />} />
       </Routes>
     </BrowserRouter>
   );
