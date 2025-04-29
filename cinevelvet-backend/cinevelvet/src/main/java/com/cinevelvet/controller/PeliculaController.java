@@ -45,6 +45,7 @@ public class PeliculaController {
                     pelicula.setTitulo(peliculaActualizada.getTitulo());
                     pelicula.setDescripcion(peliculaActualizada.getDescripcion());
                     pelicula.setDuracion(peliculaActualizada.getDuracion());
+                    pelicula.setFechaEstreno(peliculaActualizada.getFechaEstreno());
                     pelicula.setGenero(peliculaActualizada.getGenero());
                     pelicula.setEdades(peliculaActualizada.getEdades());
                     pelicula.setPortada(peliculaActualizada.getPortada());
