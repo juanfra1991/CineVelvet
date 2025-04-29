@@ -8,6 +8,7 @@ const Peliculas = () => {
     titulo: '',
     descripcion: '',
     duracion: '',
+    fechaEstreno: '',
     genero: '',
     edades: '',
     portada: '',
@@ -27,7 +28,15 @@ const Peliculas = () => {
     try {
       await axios.post(`${Config.urlBackend}/peliculas`, form);
       alert('Película creada correctamente');
-      setForm({ titulo: '', descripcion: '', duracion: '', genero: '', edades: '', portada: '' });
+      setForm({
+        titulo: '',
+        descripcion: '',
+        duracion: '',
+        fechaEstreno: '',
+        genero: '',
+        edades: '',
+        portada: '',
+      });
     } catch (error) {
       console.error('Error al crear la película:', error);
       alert('Error al crear la película');
@@ -41,7 +50,7 @@ const Peliculas = () => {
       <button onClick={() => window.history.back()} className="back-button">
         <i className="fas fa-arrow-left"></i> Atrás
       </button>
-      
+
       <hr />
 
       <label>Título:</label>
@@ -66,6 +75,15 @@ const Peliculas = () => {
         type="number"
         name="duracion"
         value={form.duracion}
+        onChange={handleChange}
+        className="input-field"
+      />
+
+      <label>Fecha de estreno:</label>
+      <input
+        type="date"
+        name="fechaEstreno"
+        value={form.fechaEstreno}
         onChange={handleChange}
         className="input-field"
       />

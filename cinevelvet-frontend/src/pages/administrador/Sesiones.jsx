@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
-import { es } from 'date-fns/locale'; // Importar la localización en español
+import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 
 const Sesiones = () => {
@@ -41,7 +41,7 @@ const Sesiones = () => {
   // Obtener sesiones
   const fetchSesiones = async () => {
     try {
-      const res = await axios.get(`${Config.urlBackend}/sesiones`);
+      const res = await axios.get(`${Config.urlBackend}/sesiones/futuras`);
       setSesiones(res.data);
     } catch (error) {
       console.error('Error al obtener las sesiones:', error);
@@ -122,11 +122,11 @@ const Sesiones = () => {
             selected={fecha}
             onChange={(date) => setFecha(date)}
             showTimeSelect
-            timeIntervals={5}  // Solo permite seleccionar minutos de 5 en 5
-            dateFormat="Pp"    // Establece el formato para la fecha y hora
+            timeIntervals={5}
+            dateFormat="Pp"
             className="input-field"
-            locale={es}        // Configura el idioma a español
-            placeholderText="Selecciona una fecha y hora"  // Placeholder cuando no se selecciona una fecha
+            locale={es}
+            placeholderText="Selecciona una fecha y hora"
           />
         </div>
 

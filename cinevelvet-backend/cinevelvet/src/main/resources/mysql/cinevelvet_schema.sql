@@ -7,6 +7,7 @@ CREATE TABLE pelicula (
     titulo VARCHAR(150) NOT NULL,
     descripcion TEXT,
     duracion INT,
+    fecha_estreno DATE NOT NULL,
     genero VARCHAR(50),
     edades VARCHAR(150),
     portada VARCHAR(1000)

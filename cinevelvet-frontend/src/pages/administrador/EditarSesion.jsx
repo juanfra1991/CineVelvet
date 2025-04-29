@@ -1,20 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Config } from '../../api/Config';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 
 const EditarSesion = () => {
-  const { state } = useLocation();
-  const { sesion } = state || {};
-  const [fecha, setFecha] = useState(sesion ? sesion.fecha : '');
-  const [peliculaId, setPeliculaId] = useState(sesion ? sesion.peliculaId : '');
-  const [salaId, setSalaId] = useState(sesion ? sesion.salaId : '');
-  const [peliculas, setPeliculas] = useState([]);
-  const [salas, setSalas] = useState([]);
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  // Obtener películas
+  const [sesion, setSesion] = useState(null);
+  const [peliculas, setPeliculas] = useState([]);
+  const [salas, setSalas] = useState([]);
+  const [fecha, setFecha] = useState(null);
+  const [peliculaId, setPeliculaId] = useState('');
+  const [salaId, setSalaId] = useState('');
+
+  const fetchSesion = async () => {
+    try {
+      const res = await axios.get(`${Config.urlBackend}/sesiones/${id}`);
+      const data = res.data;
+      setSesion(data);
+      setFecha(new Date(data.fecha));
+      setPeliculaId(data.peliculaId);
+      setSalaId(data.salaId);
+    } catch (error) {
+      console.error('Error al obtener la sesión:', error);
+    }
+  };
+  
+
   const fetchPeliculas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/peliculas`);
@@ -24,7 +41,6 @@ const EditarSesion = () => {
     }
   };
 
-  // Obtener salas
   const fetchSalas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/salas/sin-sesiones-sin-butacas`);
@@ -35,83 +51,85 @@ const EditarSesion = () => {
   };
 
   useEffect(() => {
+    fetchSesion();
     fetchPeliculas();
     fetchSalas();
   }, []);
 
-  // Guardar cambios en la sesión
-  const handleGuardarSesion = async () => {
-    if (!fecha || !peliculaId || !salaId) {
-      alert('Debes completar todos los campos.');
-      return;
-    }
-
+  const handleActualizarSesion = async () => {
     try {
-      await axios.put(`${Config.urlBackend}/sesiones/${sesion.id}`, {
-        fecha,
+      await axios.put(`${Config.urlBackend}/sesiones/${id}`, {
+        fecha: fecha.toISOString(),
         peliculaId,
         salaId,
       });
-      alert('Sesión editada correctamente.');
+      alert('Sesión actualizada correctamente.');
       navigate('/sesiones');
     } catch (error) {
-      console.error('Error al editar la sesión:', error);
-      alert('Error al editar la sesión.');
+      console.error('Error al actualizar la sesión:', error);
+      alert('Error al actualizar la sesión.');
     }
   };
+
+  if (!sesion) return <div>Cargando sesión...</div>;
 
   return (
     <div className="sesiones-admin-container">
       <h2>Editar Sesión</h2>
 
       <button onClick={() => navigate('/sesiones')} className="back-button">
-        <i className="fas fa-arrow-left"></i> Atrás
+        <i className="fas fa-arrow-left"></i> Volver
       </button>
 
-      <hr />
+      <div className="formulario-editar">
+        <div className="campo">
+          <label>Fecha de la sesión:</label>
+          <DatePicker
+            selected={fecha}
+            onChange={(date) => setFecha(date)}
+            showTimeSelect
+            timeIntervals={5}
+            dateFormat="Pp"
+            className="input-field"
+            locale={es}
+            placeholderText="Selecciona una fecha y hora"
+          />
+        </div>
 
-      <div className="form-group">
-        <label>Fecha de la sesión:</label>
-        <input
-          type="datetime-local"
-          value={fecha}
-          onChange={(e) => setFecha(e.target.value)}
-        />
+        <div className="campo">
+          <label>Película:</label>
+          <select
+            value={peliculaId}
+            onChange={(e) => setPeliculaId(e.target.value)}
+            className="input-field"
+          >
+            {peliculas.map((pelicula) => (
+              <option key={pelicula.id} value={pelicula.id}>
+                {pelicula.titulo}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="campo">
+          <label>Sala:</label>
+          <select
+            value={salaId}
+            onChange={(e) => setSalaId(e.target.value)}
+            className="input-field"
+          >
+            {salas.map((sala) => (
+              <option key={sala.id} value={sala.id}>
+                {sala.nombre} (Capacidad: {sala.capacidad})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button onClick={handleActualizarSesion} className="btn">
+          Actualizar Sesión
+        </button>
       </div>
-
-      <div className="form-group">
-        <label>Película:</label>
-        <select
-          value={peliculaId}
-          onChange={(e) => setPeliculaId(e.target.value)}
-        >
-          <option value="">Seleccione una película</option>
-          {peliculas.map((pelicula) => (
-            <option key={pelicula.id} value={pelicula.id}>
-              {pelicula.titulo}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="form-group">
-        <label>Sala:</label>
-        <select
-          value={salaId}
-          onChange={(e) => setSalaId(e.target.value)}
-        >
-          <option value="">Seleccione una sala</option>
-          {salas.map((sala) => (
-            <option key={sala.id} value={sala.id}>
-              {sala.nombre} (Capacidad: {sala.capacidad})
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <button onClick={handleGuardarSesion} className="crear-button">
-        Guardar Cambios
-      </button>
     </div>
   );
 };

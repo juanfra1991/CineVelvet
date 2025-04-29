@@ -60,8 +60,9 @@ public class SesionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Sesion> getSesionById(@PathVariable Long id) {
+    public ResponseEntity<SesionDTO> getSesionById(@PathVariable Long id) {
         return sesionRepository.findById(id)
+                .map(this::convertToFullDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -155,11 +156,11 @@ public class SesionController {
                 .format(DateTimeFormatter.ofPattern("HH:mm"));
 
         int peliculaId = s.getPelicula().getId().intValue();
-        int salaId = s.getSala().getId().intValue();
         String peliculaTitulo = s.getPelicula().getTitulo();
+        int salaId = s.getSala().getId().intValue();
         String salaNombre = s.getSala().getNombre();
 
-        return new SesionDTO(s.getId(), fechaHora, strFecha, strHora, peliculaId, salaId, peliculaTitulo, salaNombre);
+        return new SesionDTO(s.getId(), fechaHora, strFecha, strHora, peliculaId, peliculaTitulo, salaId, salaNombre);
     }
 
     private SesionDTO convertToFullDTO(Sesion s) {

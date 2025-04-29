@@ -15,8 +15,7 @@ public class SesionDTO {
     private String strFecha;
     private String strHora;
     private int peliculaId;
-    private int salaId;
-
     private String peliculaTitulo;
+    private int salaId;
     private String salaNombre;
 }

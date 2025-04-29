@@ -4,7 +4,6 @@ import { Config } from '../../api/Config';
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/Peliculas.css";
 
-// Definición de las constantes fuera del componente
 const generos = ["Terror", "Romance", "Acción", "Drama"];
 const edades = ["+7", "+12", "+16", "+18"];
 
@@ -15,6 +14,7 @@ export default function EditarPelicula() {
     titulo: "",
     descripcion: "",
     duracion: "",
+    fechaEstreno: "",
     genero: "",
     edades: "",
     portada: ""
@@ -83,6 +83,18 @@ export default function EditarPelicula() {
             id="duracion"
             name="duracion"
             value={pelicula.duracion}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="campo">
+          <label htmlFor="fechaEstreno">Fecha de estreno:</label>
+          <input
+            type="date"
+            id="fechaEstreno"
+            name="fechaEstreno"
+            value={pelicula.fechaEstreno}
             onChange={handleChange}
             required
           />

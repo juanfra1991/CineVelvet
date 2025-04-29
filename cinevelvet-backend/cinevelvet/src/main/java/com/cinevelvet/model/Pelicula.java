@@ -1,11 +1,9 @@
 package com.cinevelvet.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @Getter
@@ -26,6 +24,9 @@ public class Pelicula {
     private String descripcion;
 
     private int duracion;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaEstreno;
 
     @Column(length = 50)
     private String genero;
