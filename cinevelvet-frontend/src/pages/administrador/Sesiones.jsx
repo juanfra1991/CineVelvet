@@ -196,8 +196,8 @@ const Sesiones = () => {
       {/* Botones de acciones si hay sesión seleccionada */}
       {selectedSesion && (
         <div className="botones">
-          <button onClick={() => navigate(`/editar-sesion/${selectedSesion.id}`)} className="btn">Editar</button>
-          <button onClick={() => handleEliminarSesion(selectedSesion.id)} className="btn">Eliminar</button>
+          <button onClick={() => navigate(`/editar-sesion/${selectedSesion.id}`)}>Editar</button>
+          <button onClick={() => handleEliminarSesion(selectedSesion.id)}>Eliminar</button>
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { FiLogOut } from "react-icons/fi";
 import '../../css/Dashboard.css';
 
 export default function Dashboard() {
@@ -24,8 +25,8 @@ export default function Dashboard() {
     <div className="dashboard-container">
       {/* Barra superior con el botón de Cerrar Sesión */}
       <div className="dashboard-header">
-        <button onClick={handleLogout} className="logout-button">
-          Cerrar Sesión
+        <button onClick={handleLogout} className="logout-button" title="Cerrar Sesión">
+          <FiLogOut size={24} />
         </button>
       </div>
 

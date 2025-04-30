@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
-import '../css/Home.css';
 import axios from 'axios';
 import logoCinema from '../assets/logoCine.jpg';
 import { FiSettings } from 'react-icons/fi';
+import '../css/Home.css';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -67,7 +67,7 @@ const Home = () => {
                 {peliculas.length > 0 ? (
                     peliculas.map(pelicula => (
                         <div key={pelicula.id} className="pelicula-card">
-                            <img src={pelicula.portada} alt={pelicula.titulo} width="100" />
+                            <img src={pelicula.portada} alt={pelicula.titulo} width="100px" />
                             <div className="pelicula-info">
                                 <h2>{pelicula.titulo}</h2>
                                 <p>{pelicula.duracion} min | {pelicula.genero} | {pelicula.edades}</p>

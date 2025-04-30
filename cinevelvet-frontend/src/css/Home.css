@@ -1,99 +1,100 @@
 .home-container {
-    padding: 20px;
-    background-color: #f5f5f5;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  
-  @media (min-width: 1024px) {
-    .home-container {
-      max-width: 1400px;
-    }
-  }
-  .title{
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
-    font-weight: bold;
+@media (min-width: 1024px) {
+  .home-container {
+    max-width: 1400px;
+  }
+}
 
-  }
-  .home-header {
-    position: relative;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    justify-content: start;
-    gap: 50px;
-  }
-  
-  .header-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/fondoHeader.png'); 
-    background-size: cover;
-    background-position: center;
-    filter: blur(0.25px) brightness(1); 
-    z-index: 1;
-  }
-  
-  .header-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-  }
-  
-  .logo {
-    width: 230px;
-    height: auto;
-    border-radius: 100%;
-  }
-  
-  
-  .peliculas-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .pelicula-card {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    display: flex;               
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 15px;
-  }
-  
-  .pelicula-card:hover {
-    transform: translateY(-5px);
-  }
+.title {
+  font-weight: bold;
+}
 
-  .sesion-group {
-    margin-bottom: 1em;
+.home-header {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  justify-content: start;
+  gap: 50px;
+}
+
+.header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/fondoHeader.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.25px) brightness(1);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+  width: 230px;
+  height: auto;
+  border-radius: 100%;
+}
+
+
+.peliculas-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.pelicula-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.pelicula-card:hover {
+  transform: translateY(-5px);
+}
+
+.sesion-group {
+  margin-bottom: 1em;
 }
 
 .sesion-fecha {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5em;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5em;
 }
+
 .sesion-horas {
   display: flex;
   flex-direction: column;
@@ -101,93 +102,92 @@
 }
 
 .sesion-horas button {
-    margin-right: 0.5em;
-    margin-bottom: 0.3em;
+  margin-right: 0.5em;
+  margin-bottom: 0.3em;
 }
 
-  
+
+.pelicula-card img {
+
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.pelicula-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 10px;
+}
+
+
+@media (min-width: 1024px) {
   .pelicula-card img {
-               
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
+    width: 250px;
   }
-  
+
   .pelicula-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-left: 10px;
+    padding-left: 20px;
   }
-  
-  
-  @media (min-width: 1024px) {
-    .pelicula-card img {
-      width: 250px;
-    }
-  
-    .pelicula-info {
-      padding-left: 20px;
-    }
-  }
+}
 
-  .sesiones{
-    display: flex;
-  }
-  
-  .sesion-item {
-    display: block;
-    margin: 8px 8px 0 0;
-    text-align: center;
-  }
-  
-  .sesion-item span {
-    display: block;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-  
-  .sesion-item button {
-    width: 120px;
-    height: 40px;
-    background-color: #970000c2;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s ease;
-  }
-  
-  .sesion-item button:hover {
-    background-color: #222;
-  }
+.sesiones {
+  display: flex;
+}
 
-  @media (max-width: 768px) {
-    .logo {
-      width: 150px; /* Ajusta a tu gusto */
-    }
+.sesion-item {
+  display: block;
+  margin: 8px 8px 0 0;
+  text-align: center;
+}
+
+.sesion-item span {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.sesion-item button {
+  width: 120px;
+  height: 40px;
+  background-color: #970000c2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.sesion-item button:hover {
+  background-color: #222;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 150px;
+    /* Ajusta a tu gusto */
   }
-  
-  .admin-icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    z-index: 3;
-    padding: 8px;
-    transition: color 0.2s ease;
-  }
-  
-  .admin-icon:hover {
-    color: #ffcc00;
-  }
-  
-  
+}
+
+.admin-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 3;
+  padding: 8px;
+  transition: color 0.2s ease;
+}
+
+.admin-icon:hover {
+  color: #ffcc00;
+}

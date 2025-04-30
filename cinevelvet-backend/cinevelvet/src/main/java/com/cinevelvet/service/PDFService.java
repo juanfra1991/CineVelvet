@@ -33,7 +33,7 @@ public class PDFService {
 
             // Formato para el nombre del archivo usando la fecha y hora actuales
             SimpleDateFormat sdfNombreArchivo = new SimpleDateFormat("yyyyMMddHHmmss");
-            String nombreArchivo = "entradas_velvetcinema_" + sdfNombreArchivo.format(new Date()) + ".pdf"; // Usamos la fecha actual
+            String nombreArchivo = "entradas_velvetcinema_" + sdfNombreArchivo.format(new Date()) + ".pdf";
             logger.info("Nombre del archivo generado: " + nombreArchivo);
 
             Path archivoPDF = ruta.resolve(nombreArchivo);
