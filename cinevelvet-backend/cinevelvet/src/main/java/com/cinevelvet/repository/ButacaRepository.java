@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface ButacaRepository extends JpaRepository<Butaca, Long> {
     List<Butaca> findBySalaId(Long salaId);
-    List<Butaca> findBySalaIdAndFilaAndButaca(Long salaId, int fila, int butaca);
 }

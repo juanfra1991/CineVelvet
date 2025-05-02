@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Reservas = () => {
+  const location = useLocation(); // Obtén el estado de la navegación
+  const { sesionId, butacasSeleccionadas } = location.state || {}; // Asegúrate de que state no sea undefined
+
   const [sesiones, setSesiones] = useState([]);
   const [butacas, setButacas] = useState([]);
-  const [sesionSeleccionada, setSesionSeleccionada] = useState('');
-  const [butacasSeleccionadas, setButacasSeleccionadas] = useState([]);
   const [cliente, setCliente] = useState({ nombre: '', email: '', telefono: '' });
 
   // Cargar sesiones disponibles
@@ -17,12 +19,16 @@ const Reservas = () => {
 
   // Cargar butacas según sesión seleccionada
   useEffect(() => {
-    if (sesionSeleccionada) {
-      axios.get(`http://localhost:8080/api/sesiones/${sesionSeleccionada}/butacas`)
-        .then(res => setButacas(res.data))
+    if (sesionId) {
+      // Aquí tratamos de obtener las butacas de la sesión
+      axios.get(`http://localhost:8080/api/sesiones/${sesionId}`)
+        .then(res => {
+          // Si la respuesta de la sesión tiene las butacas, las asignamos
+          setButacas(res.data.butacas || []);
+        })
         .catch(err => console.error('Error al cargar butacas', err));
     }
-  }, [sesionSeleccionada]);
+  }, [sesionId]);
 
   const toggleButaca = (id) => {
     setButacasSeleccionadas(prev =>
@@ -33,22 +39,24 @@ const Reservas = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validar que haya butacas seleccionadas
+    if (butacasSeleccionadas.length === 0) {
+      alert('Por favor, selecciona al menos una butaca.');
+      return;
+    }
+
+    // Construir el objeto de datos que se enviará
     const data = {
       cliente,
-      sesionId: sesionSeleccionada,
+      sesionId, // Usamos el sesionId de la navegación
       butacasId: butacasSeleccionadas,
     };
 
     try {
-      const res = await axios.post('http://localhost:8080/api/reservas/crear', data, {
-        responseType: 'blob' // porque es un PDF
-      });
+      const res = await axios.post('http://localhost:8080/api/reservas', data);
 
-      const blob = new Blob([res.data], { type: 'application/pdf' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = 'reserva.pdf';
-      link.click();
+      // Si la reserva es exitosa, mostrar algún mensaje o manejar la respuesta
+      alert('Reserva creada exitosamente');
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
@@ -71,17 +79,13 @@ const Reservas = () => {
           <input value={cliente.telefono} onChange={e => setCliente({ ...cliente, telefono: e.target.value })} required />
         </div>
 
-        <div>
-          <label>Sesión:</label>
-          <select value={sesionSeleccionada} onChange={e => setSesionSeleccionada(e.target.value)} required>
-            <option value="">Selecciona una sesión</option>
-            {sesiones.map(s => (
-              <option key={s.id} value={s.id}>
-                {s.pelicula.titulo} - {s.fecha}
-              </option>
-            ))}
-          </select>
-        </div>
+        {/* Mostrar la sesión seleccionada */}
+        {sesionId && (
+          <div>
+            <label>Sesión Seleccionada:</label>
+            <p>{sesionId}</p>
+          </div>
+        )}
 
         {butacas.length > 0 && (
           <div>

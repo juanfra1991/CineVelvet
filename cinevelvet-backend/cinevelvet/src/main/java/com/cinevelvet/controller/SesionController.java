@@ -150,6 +150,11 @@ public class SesionController {
                 .atZone(ZoneId.systemDefault())
                 .format(DateTimeFormatter.ofPattern("EEE, dd/MM", Locale.forLanguageTag("es")));
 
+        String strFechaLarga = s.getFecha().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("EEEE, d 'de' MMMM", Locale.forLanguageTag("es")));
+
+
         String strHora = s.getFecha().toInstant()
                 .atZone(ZoneId.systemDefault())
                 .format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -159,7 +164,7 @@ public class SesionController {
         int salaId = s.getSala().getId().intValue();
         String salaNombre = s.getSala().getNombre();
 
-        return new SesionDTO(s.getId(), fechaHora, strFecha, strHora, peliculaId, peliculaTitulo, salaId, salaNombre);
+        return new SesionDTO(s.getId(), fechaHora, strFecha, strFechaLarga, strHora, peliculaId, peliculaTitulo, salaId, salaNombre);
     }
 
     private SesionDTO convertToFullDTO(Sesion s) {

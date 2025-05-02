@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +19,7 @@ public class ReservaService {
     private final ClienteRepository clienteRepository;
     private final ButacaRepository butacaRepository;
     private final SesionRepository sesionRepository;
+    private final EntradaRepository entradaRepository;
     private final PDFService pdfService;
 
     private static final Logger logger = Logger.getLogger(ReservaService.class.getName());
@@ -52,6 +52,13 @@ public class ReservaService {
             Butaca butaca = butacaRepository.findById(butacaId)
                     .orElseThrow(() -> new RuntimeException("Butaca no encontrada con ID: " + butacaId));
 
+            // Verificar si la butaca ya está ocupada en esta sesión
+            boolean isButacaOcupada = entradaRepository.existsByReserva_Sesion_IdAndButaca_Id(sesionId, butacaId);
+            if (isButacaOcupada) {
+                throw new RuntimeException("La butaca con ID " + butacaId + " ya está ocupada en esta sesión.");
+            }
+
+            // Crear la entrada solo si la butaca no está ocupada
             Entrada entrada = Entrada.builder()
                     .reserva(reserva)
                     .butaca(butaca)
@@ -61,9 +68,11 @@ public class ReservaService {
             logger.info("Entrada creada para butaca ID: " + butacaId);
         }
 
+        // Asignar las entradas a la reserva
         reserva.setEntradas(entradas);
-        reserva = reservaRepository.save(reserva);
 
+        // Guardar la reserva
+        reserva = reservaRepository.save(reserva);
         logger.info("Reserva guardada con ID: " + reserva.getId());
 
         // Generar el PDF tras la reserva
@@ -74,6 +83,7 @@ public class ReservaService {
 
         return reserva;
     }
+
 
     public List<Reserva> obtenerReservas() {
         return reservaRepository.findAll();

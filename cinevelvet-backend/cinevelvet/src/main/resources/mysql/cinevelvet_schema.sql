@@ -66,5 +66,7 @@ CREATE TABLE entrada (
     reserva_id BIGINT,
     butaca_id BIGINT,
     FOREIGN KEY (reserva_id) REFERENCES reserva(id),
-    FOREIGN KEY (butaca_id) REFERENCES butaca(id)
+    FOREIGN KEY (butaca_id) REFERENCES butaca(id),
+    CONSTRAINT unique_reserva_butaca UNIQUE (reserva_id, butaca_id)
 );
+

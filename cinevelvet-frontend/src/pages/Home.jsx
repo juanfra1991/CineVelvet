@@ -91,7 +91,7 @@ const Home = () => {
                                                                 key={i}
                                                                 onClick={() => {
                                                                     console.log("Sesión seleccionada:", sesion);
-                                                                    navigate(`/salas/${sesion.salaId}`);
+                                                                    navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`);
                                                                 }}
                                                             >
                                                                 {sesion.strHora}

@@ -1,4 +1,3 @@
-// src/routes/AppRouter.jsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Reservas from '../pages/Reservas';
@@ -17,7 +16,7 @@ export default function AppRouter() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reservas" element={<Reservas />} />
-        <Route path="/salas/:salaId" element={<Sala />} />
+        <Route path="/salas/:salaId/sesion/:sesionId" element={<Sala />} />
         <Route path="/administrador" element={<Administrador />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/peliculas" element={<Peliculas />} />

@@ -1,3 +1,4 @@
+/* Layout de la cuadrícula */
 .sala-grid {
     display: grid;
     gap: 6px;
@@ -7,17 +8,158 @@
     margin-right: auto;
 }
 
+/* Estilos para cada butaca */
 .butaca {
-    background-color: #4caf50;
-    color: white;
-    border-radius: 4px;
-    padding: 12px;
-    text-align: center;
-    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    position: relative;
+    transition: transform 0.2s, background-color 0.3s;
 }
 
-.butaca:hover {
-    background-color: #388e3c;
+/* Cambia el color de la butaca seleccionada */
+.butaca-seleccionada .butaca-img {
+    filter: brightness(0.7) sepia(1) hue-rotate(120deg) saturate(2);
+}
+
+/* Cambia el color de la butaca ocupada */
+.butaca-ocupada .butaca-img {
+    filter: brightness(0.9) sepia(1) hue-rotate(-30deg) saturate(5);
+}
+
+/* Contenedor de la butaca */
+.butaca-contenedor {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+/* Imagen de la butaca */
+.butaca-img {
+    width: 100%;
+    height: 100%;
+    transition: filter 0.2s;
+}
+
+/* Icono de selección (Check) */
+.icono-check {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px; /* Ajustado a tamaño más pequeño */
+    height: 20px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Estilos del pasillo central */
+.pasillo {
+    width: 100%;
+    height: 100%; 
+}
+
+/* 📱📲 Estilo para móviles (hasta 480px) */
+@media (max-width: 480px) {
+    .sala-grid {
+        max-width: 100%;
+        gap: 4px;
+    }
+
+    .butaca-contenedor {
+        width: 30px;
+        height: 30px;
+    }
+
+    .icono-check {
+        width: 16px;
+        height: 16px;
+    }
+
+    h2, p {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+/* Estilos de los botones */
+.boton-comprar-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea a la izquierda */
+    margin-top: 20px;
+}
+
+.boton-comprar {
+    background-color: #800000; /* granate */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-comprar:hover {
+    background-color: #660000;
+}
+
+/* Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.popup-content button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-content button:first-of-type {
+    background-color: #ccc;
+}
+
+.popup-content button:last-of-type {
+    background-color: #800000;
+    color: white;
+}
+
+/* 📱📲 Estilo para Tablets (481px a 768px) */
+@media (max-width: 768px) {
+    .sala-grid {
+        max-width: 90%;
+        gap: 5px;
+    }
+
+    .butaca-contenedor {
+        width: 35px;
+        height: 35px;
+    }
+
+    h2, p {
+        text-align: center;
+    }
 }

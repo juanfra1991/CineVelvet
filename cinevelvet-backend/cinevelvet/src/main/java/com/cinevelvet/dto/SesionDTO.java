@@ -13,6 +13,7 @@ public class SesionDTO {
     private Long id;
     private Date fecha;
     private String strFecha;
+    private String strFechaLarga;
     private String strHora;
     private int peliculaId;
     private String peliculaTitulo;

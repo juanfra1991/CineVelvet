@@ -1,10 +1,8 @@
 package com.cinevelvet.controller;
 
-import com.cinevelvet.dto.ButacaDTO;
 import com.cinevelvet.dto.SalaDTO;
 import com.cinevelvet.model.Sala;
-import com.cinevelvet.repository.SalaRepository;
-import org.springframework.http.ResponseEntity;
+import com.cinevelvet.repository.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,28 +24,6 @@ public class SalaController {
         return salaRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SalaDTO> getSalaById(@PathVariable Long id) {
-        return salaRepository.findById(id)
-                .map(sala -> {
-                    List<ButacaDTO> butacas = sala.getButacas().stream()
-                            .map(butaca -> new ButacaDTO(butaca.getId(), butaca.getFila(), butaca.getButaca()))
-                            .collect(Collectors.toList());
-
-                    SalaDTO salaDTO = new SalaDTO(
-                            sala.getId(),
-                            sala.getNombre(),
-                            sala.getFilas(),
-                            sala.getColumnas(),
-                            sala.getCapacidad(),
-                            butacas
-                    );
-
-                    return ResponseEntity.ok(salaDTO);
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
     @GetMapping("/sin-sesiones-sin-butacas")
     public List<SalaDTO> getAllSalasSinSesionesYButacas() {
         return salaRepository.findAll().stream()
@@ -57,7 +33,7 @@ public class SalaController {
                         sala.getFilas(),
                         sala.getColumnas(),
                         sala.getCapacidad(),
-                        null  // No incluimos las butacas
+                        null
                 ))
                 .collect(Collectors.toList());
     }

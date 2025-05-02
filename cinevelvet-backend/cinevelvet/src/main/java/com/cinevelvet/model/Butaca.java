@@ -21,7 +21,4 @@ public class Butaca {
 
     private int fila;
     private int butaca;
-
-    @OneToOne(mappedBy = "butaca")
-    private Entrada entrada;
 }

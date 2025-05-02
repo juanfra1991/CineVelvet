@@ -60,7 +60,7 @@ public class PDFService {
             doc.open();
 
             // Cargamos el logo desde los recursos (carpeta src/main/resources/images)
-            String logoPath = Objects.requireNonNull(getClass().getClassLoader().getResource("images/cinema.jpg")).getPath();
+            String logoPath = Objects.requireNonNull(getClass().getClassLoader().getResource("images/logoCine.jpg")).getPath();
             Image logo = Image.getInstance(logoPath);
             logo.scaleToFit(200, 100);
             logo.setAlignment(Element.ALIGN_RIGHT);

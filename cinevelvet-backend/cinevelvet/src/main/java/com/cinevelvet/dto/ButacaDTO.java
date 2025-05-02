@@ -9,4 +9,8 @@ public class ButacaDTO {
     private Long id;
     private int fila;
     private int butaca;
+    private boolean ocupada;
+
+    public ButacaDTO() {
+    }
 }
