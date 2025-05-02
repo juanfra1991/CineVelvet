@@ -6,7 +6,7 @@ import { Config } from '../api/Config';
  
 
 const Sala = () => {
-    const { salaId } = useParams(); // <- captura el ID desde la URL
+    const { salaId } = useParams();
     console.log(salaId)
     const [sala, setSala] = useState(null);
     const [loading, setLoading] = useState(true);

@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,6 @@ import java.util.logging.Logger;
 public class ReservaService {
 
     private final ReservaRepository reservaRepository;
-    private final EntradaRepository entradaRepository;
     private final ClienteRepository clienteRepository;
     private final ButacaRepository butacaRepository;
     private final SesionRepository sesionRepository;

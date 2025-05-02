@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importamos useNavigate para redirigir
+import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
-import '../css/Home.css';
 import axios from 'axios';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiSettings } from 'react-icons/fi';
+import '../css/Home.css';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Home = () => {
     // Cargar las sesiones por película
     const fetchSesionesPorPelicula = async (peliculaId) => {
         try {
-            const response = await axios.get(`${Config.urlBackend}/sesiones/pelicula/${peliculaId}`);
+            const response = await axios.get(`${Config.urlBackend}/sesiones/pelicula/${peliculaId}/futuras`);
             setSesionesPorPelicula(prev => ({
                 ...prev,
                 [peliculaId]: response.data
@@ -47,12 +48,17 @@ const Home = () => {
         <div className="home-container">
             <div>
                 <header className="home-header">
-                    <div className="header-background"></div>
+                    <div className="header-background">
+                    <button className="admin-icon" onClick={() => navigate('/administrador')}>
+                            <FiSettings size={24} />
+                        </button>
+                    </div>
                     <div className="header-content">
                         <img className='logo' src={logoCinema} alt="Cinema Logo" />
                         <div>
                             <h1 className='title'>Velvet Cinema</h1>
                         </div>
+                        
                     </div>
                 </header>
             </div>
@@ -61,7 +67,7 @@ const Home = () => {
                 {peliculas.length > 0 ? (
                     peliculas.map(pelicula => (
                         <div key={pelicula.id} className="pelicula-card">
-                            <img src={pelicula.portada} alt={pelicula.titulo} width="100" />
+                            <img src={pelicula.portada} alt={pelicula.titulo} width="100px" />
                             <div className="pelicula-info">
                                 <h2>{pelicula.titulo}</h2>
                                 <p>{pelicula.duracion} min | {pelicula.genero} | {pelicula.edades}</p>
@@ -72,13 +78,13 @@ const Home = () => {
                                         sesionesPorPelicula[pelicula.id].length > 0 ? (
                                             Object.entries(
                                                 sesionesPorPelicula[pelicula.id].reduce((acc, sesion) => {
-                                                    if (!acc[sesion.fecha]) acc[sesion.fecha] = [];
-                                                    acc[sesion.fecha].push(sesion);
+                                                    if (!acc[sesion.strFecha]) acc[sesion.strFecha] = [];
+                                                    acc[sesion.strFecha].push(sesion);
                                                     return acc;
                                                 }, {})
-                                            ).map(([fecha, sesiones], index) => (
+                                            ).map(([strFecha, sesiones], index) => (
                                                 <div key={index} className="sesion-item">
-                                                    <span className="sesion-fecha">{fecha}</span>
+                                                    <span className="sesion-fecha">{strFecha}</span>
                                                     <div className="sesion-horas">
                                                         {sesiones.map((sesion, i) => (
                                                             <button
@@ -88,7 +94,7 @@ const Home = () => {
                                                                     navigate(`/salas/${sesion.salaId}`);
                                                                 }}
                                                             >
-                                                                {sesion.hora}
+                                                                {sesion.strHora}
                                                             </button>
                                                         ))}
                                                     </div>
