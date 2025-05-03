@@ -2,15 +2,13 @@ package com.cinevelvet.controller;
 
 import com.cinevelvet.dto.ButacaDTO;
 import com.cinevelvet.dto.SalaDTO;
-import com.cinevelvet.model.Butaca;
-import com.cinevelvet.model.Entrada;
-import com.cinevelvet.model.Sala;
-import com.cinevelvet.model.Sesion;
+import com.cinevelvet.model.*;
 import com.cinevelvet.repository.ButacaRepository;
 import com.cinevelvet.repository.EntradaRepository;
 import com.cinevelvet.repository.SalaRepository;
 import com.cinevelvet.repository.SesionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,6 +57,20 @@ public class ButacaController {
                 butacas
         );
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Butaca> getButacaById(@PathVariable Long id) {
+        return butacaRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/lista")
+    public ResponseEntity<List<Butaca>> getButacasByIds(@RequestParam List<Long> ids) {
+        List<Butaca> butacas = butacaRepository.findAllById(ids);
+        return ResponseEntity.ok(butacas);
+    }
+
 
     @GetMapping("/disponibles/{sesionId}/{salaId}")
     public List<ButacaDTO> getButacasDisponibles(@PathVariable Long sesionId, @PathVariable Long salaId) {

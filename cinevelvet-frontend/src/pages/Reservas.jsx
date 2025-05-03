@@ -1,70 +1,85 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import '../css/Sala.css';
+import '../css/Home.css';
+import { Config } from '../api/Config';
+import logoCinema from '../assets/logoCine.jpg';
 
 const Reservas = () => {
   const location = useLocation(); // Obtén el estado de la navegación
-  const { sesionId, butacasSeleccionadas } = location.state || {}; // Asegúrate de que state no sea undefined
+  const { sesionId, butacasSeleccionadas } = location.state || {};
+  const [butacasSeleccionadasState] = useState(butacasSeleccionadas || []);
 
-  const [sesiones, setSesiones] = useState([]);
+  const [sesion, setSesiones] = useState([]);
   const [butacas, setButacas] = useState([]);
   const [cliente, setCliente] = useState({ nombre: '', email: '', telefono: '' });
-
-  // Cargar sesiones disponibles
   useEffect(() => {
-    axios.get('http://localhost:8080/api/sesiones')
-      .then(res => setSesiones(res.data))
-      .catch(err => console.error('Error al cargar sesiones', err));
-  }, []);
+    const fetchSesion = async () => {
+      if (!sesionId) return;
 
-  // Cargar butacas según sesión seleccionada
-  useEffect(() => {
-    if (sesionId) {
-      // Aquí tratamos de obtener las butacas de la sesión
-      axios.get(`http://localhost:8080/api/sesiones/${sesionId}`)
-        .then(res => {
-          // Si la respuesta de la sesión tiene las butacas, las asignamos
-          setButacas(res.data.butacas || []);
-        })
-        .catch(err => console.error('Error al cargar butacas', err));
-    }
-  }, [sesionId]);
+      try {
+        const res = await axios.get(`${Config.urlBackend}/sesiones/${sesionId}`);
+        setSesiones(res.data);
+        console.log("Sesión cargada:", res.data);
 
-  const toggleButaca = (id) => {
-    setButacasSeleccionadas(prev =>
-      prev.includes(id) ? prev.filter(b => b !== id) : [...prev, id]
-    );
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Validar que haya butacas seleccionadas
-    if (butacasSeleccionadas.length === 0) {
-      alert('Por favor, selecciona al menos una butaca.');
-      return;
-    }
-
-    // Construir el objeto de datos que se enviará
-    const data = {
-      cliente,
-      sesionId, // Usamos el sesionId de la navegación
-      butacasId: butacasSeleccionadas,
+        const resButacas = await axios.get(`${Config.urlBackend}/butacas/lista?ids=${butacasSeleccionadas}`)
+        setButacas(resButacas.data);
+        console.log("butacas: ", resButacas.data)
+      } catch (err) {
+        console.error('Error al cargar la sesión y butacas:', err);
+      }
     };
 
-    try {
-      const res = await axios.post('http://localhost:8080/api/reservas', data);
+    fetchSesion();
+  }, [sesionId]);
 
-      // Si la reserva es exitosa, mostrar algún mensaje o manejar la respuesta
+  const crearReserva = async (data) => {
+    try {
+      const res = await axios.post(`${Config.urlBackend}/reservas`, data);
       alert('Reserva creada exitosamente');
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
   };
-
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (butacasSeleccionadas.length === 0) {
+      alert('Por favor, selecciona al menos una butaca.');
+      return;
+    }
+  
+    const data = {
+      cliente,
+      sesionId,
+      butacasId: butacasSeleccionadasState,
+    };
+  
+    await crearReserva(data);
+  };
+  
   return (
-    <div>
-      <h1>📝 Crear Reserva</h1>
+    <div className="home-container">
+      <header className="home-header">
+        <div className="header-background"></div>
+        <div className="header-content">
+          <img className='logo' src={logoCinema} alt="Cinema Logo" />
+          <div>
+            <h1 className='title'>Velvet Cinema</h1>
+          </div>
+        </div>
+
+      </header>
+      <p><strong>Velvet Cinema</strong></p>
+      <div className="info-pelicula">
+        <p><strong>Película: </strong> {sesion.peliculaTitulo}, {sesion.strFechaLarga} {sesion.strHora}, {sesion.salaNombre}</p>
+        <p><strong>Selección de butacas: </strong>
+          {butacas.map(b => `Fila ${b.fila}, Butaca ${b.butaca}`).join(' | ')}
+        </p>
+
+      </div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
@@ -78,37 +93,6 @@ const Reservas = () => {
           <label>Teléfono:</label>
           <input value={cliente.telefono} onChange={e => setCliente({ ...cliente, telefono: e.target.value })} required />
         </div>
-
-        {/* Mostrar la sesión seleccionada */}
-        {sesionId && (
-          <div>
-            <label>Sesión Seleccionada:</label>
-            <p>{sesionId}</p>
-          </div>
-        )}
-
-        {butacas.length > 0 && (
-          <div>
-            <h3>Selecciona butacas</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {butacas.map(b => (
-                <button
-                  type="button"
-                  key={b.id}
-                  style={{
-                    margin: '5px',
-                    padding: '10px',
-                    backgroundColor: butacasSeleccionadas.includes(b.id) ? 'green' : 'lightgray',
-                  }}
-                  onClick={() => toggleButaca(b.id)}
-                >
-                  {b.fila}-{b.columna}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
         <button type="submit">Reservar</button>
       </form>
     </div>

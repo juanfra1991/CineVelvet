@@ -18,16 +18,40 @@
     position: relative;
     transition: transform 0.2s, background-color 0.3s;
 }
+.seatplan__cinema-screen {
+    width: 657.6px;
+    background: hsla(202, 12%, 44%, 1);
+    box-shadow: inset 0 -10px 5px -10px #000;
+    color: hsla(0, 0%, 100%, 1);
+    letter-spacing: 2px;
+    margin: 20px auto;
+    padding: 2px 0;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.txt-center{
+    text-align: center;
+    letter-spacing: 1px;
+}
 
 /* Cambia el color de la butaca seleccionada */
 .butaca-seleccionada .butaca-img {
-    filter: brightness(0.7) sepia(1) hue-rotate(120deg) saturate(2);
+    filter: brightness(0.7) sepia(1) hue-rotate(100deg) saturate(2);
+}
+
+.margenes{
+    margin-right: 10px;
+}
+.font{
+    font-size: 12px;
 }
 
 /* Cambia el color de la butaca ocupada */
 .butaca-ocupada .butaca-img {
-    filter: brightness(0.9) sepia(1) hue-rotate(-30deg) saturate(5);
+    filter: brightness(0.9) sepia(1) hue-rotate(-48deg) saturate(5);
 }
+
 
 /* Contenedor de la butaca */
 .butaca-contenedor {

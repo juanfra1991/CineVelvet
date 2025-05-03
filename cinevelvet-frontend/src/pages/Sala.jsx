@@ -5,11 +5,9 @@ import '../css/Sala.css';
 import '../css/Home.css';
 import butacaImg from '../assets/butaca.svg';
 import iconoCheck from '../assets/iconoCheck.svg';
+import iconoNocheck from '../assets/iconoNocheck.svg';
 import logoCinema from '../assets/logoCine.jpg';
-import pantallaCine from '../assets/pantallaCine.png';
 import { Config } from '../api/Config';
-
-// Importaciones iguales
 
 const Sala = () => {
     const { salaId, sesionId } = useParams();
@@ -81,7 +79,6 @@ const Sala = () => {
         }
     };
 
-
     return (
         <div className="home-container">
             <header className="home-header">
@@ -101,8 +98,8 @@ const Sala = () => {
 
             <p><strong>Selección de butacas: </strong>{mostrarButacasSeleccionadas}</p>
 
-            <div>
-                <img src={pantallaCine} alt="Pantalla de Cine" style={{ width: '100%', height: 'auto' }} />
+            <div className='seatplan__cinema-screen txt-center'>
+                <span>PANTALLA</span>
             </div>
 
             <div className="sala-grid" style={{
@@ -124,17 +121,31 @@ const Sala = () => {
                             >
                                 <div className="butaca-contenedor">
                                     <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
-                                    <img src={iconoCheck} alt="Seleccionada" className="icono-check" />
+                                    {butaca.ocupada ? (
+                                        <img src={iconoNocheck} alt="Ocupada" className="icono-check" />
+                                    ) : (
+                                        <img src={iconoCheck} alt="Disponible" className="icono-check" />
+                                    )}
                                 </div>
                             </div>
                         );
                     })
                 ))}
             </div>
+            <div>
+                <br></br>
+                <p className='font'>*No incluye gastos adicionales.</p>
+                <div>
+                <img src="https://cine.entradas.com/images/payment/payment_creditcards_entradas.svg"  className='margenes' alt="Tarjeta de crédito" title="Tarjeta de crédito" width="67"></img>
+                <img src="https://cine.entradas.com/images/payment/payment_paypal.svg"  className='margenes' alt="PayPal"title="PayPal" width="68"></img>
+                <img src="https://cine.entradas.com/images/payment/payment_bizum.svg"  className='margenes' alt="Bizum" title="Bizum" width="68"></img>
+                </div>
+            </div>
 
             <div className="boton-comprar-container">
                 <button className="boton-comprar" onClick={handleComprarClick}>Comprar</button>
             </div>
+            
         </div>
     );
 };
