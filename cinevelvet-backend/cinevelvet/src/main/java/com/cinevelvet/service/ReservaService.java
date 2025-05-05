@@ -19,8 +19,6 @@ public class ReservaService {
     private final ClienteRepository clienteRepository;
     private final ButacaRepository butacaRepository;
     private final SesionRepository sesionRepository;
-    private final EntradaRepository entradaRepository;
-    private final PDFService pdfService;
 
     private static final Logger logger = Logger.getLogger(ReservaService.class.getName());
 
@@ -52,13 +50,6 @@ public class ReservaService {
             Butaca butaca = butacaRepository.findById(butacaId)
                     .orElseThrow(() -> new RuntimeException("Butaca no encontrada con ID: " + butacaId));
 
-            // Verificar si la butaca ya está ocupada en esta sesión
-            boolean isButacaOcupada = entradaRepository.existsByReserva_Sesion_IdAndButaca_Id(sesionId, butacaId);
-            if (isButacaOcupada) {
-                throw new RuntimeException("La butaca con ID " + butacaId + " ya está ocupada en esta sesión.");
-            }
-
-            // Crear la entrada solo si la butaca no está ocupada
             Entrada entrada = Entrada.builder()
                     .reserva(reserva)
                     .butaca(butaca)
@@ -68,22 +59,13 @@ public class ReservaService {
             logger.info("Entrada creada para butaca ID: " + butacaId);
         }
 
-        // Asignar las entradas a la reserva
         reserva.setEntradas(entradas);
-
-        // Guardar la reserva
         reserva = reservaRepository.save(reserva);
+
         logger.info("Reserva guardada con ID: " + reserva.getId());
-
-        // Generar el PDF tras la reserva
-        logger.info("Generando PDF para la reserva con ID: " + reserva.getId());
-        pdfService.guardarPDF(reserva, "cinevelvet/tickets");
-
-        logger.info("Reserva procesada exitosamente con ID: " + reserva.getId());
 
         return reserva;
     }
-
 
     public List<Reserva> obtenerReservas() {
         return reservaRepository.findAll();

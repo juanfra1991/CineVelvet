@@ -17,6 +17,7 @@ const EditarSesion = () => {
   const [fecha, setFecha] = useState(null);
   const [peliculaId, setPeliculaId] = useState('');
   const [salaId, setSalaId] = useState('');
+  const [mensajeGuardado, setMensajeGuardado] = useState('');
 
   const fetchSesion = async () => {
     try {
@@ -30,7 +31,6 @@ const EditarSesion = () => {
       console.error('Error al obtener la sesión:', error);
     }
   };
-  
 
   const fetchPeliculas = async () => {
     try {
@@ -58,16 +58,19 @@ const EditarSesion = () => {
 
   const handleActualizarSesion = async () => {
     try {
-      await axios.put(`${Config.urlBackend}/sesiones/${id}`, {
+      const sesionActualizada = {
         fecha: fecha.toISOString(),
-        peliculaId,
-        salaId,
-      });
-      alert('Sesión actualizada correctamente.');
-      navigate('/sesiones');
+        pelicula: { id: peliculaId },
+        sala: { id: salaId },
+      };
+  
+      await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
+      setMensajeGuardado("Sesión actualizada correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     } catch (error) {
       console.error('Error al actualizar la sesión:', error);
-      alert('Error al actualizar la sesión.');
+      setMensajeGuardado("Error al actualizar la sesión.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     }
   };
 
@@ -125,7 +128,11 @@ const EditarSesion = () => {
             ))}
           </select>
         </div>
-
+        {mensajeGuardado && (
+          <div className="popup-mensaje">
+            {mensajeGuardado}
+          </div>
+        )}
         <button onClick={handleActualizarSesion} className="btn">
           Actualizar Sesión
         </button>

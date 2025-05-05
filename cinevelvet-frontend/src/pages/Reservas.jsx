@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Sala.css';
 import '../css/Home.css';
@@ -7,13 +7,16 @@ import { Config } from '../api/Config';
 import logoCinema from '../assets/logoCine.jpg';
 
 const Reservas = () => {
-  const location = useLocation(); // Obtén el estado de la navegación
+  const location = useLocation();
   const { sesionId, butacasSeleccionadas } = location.state || {};
   const [butacasSeleccionadasState] = useState(butacasSeleccionadas || []);
 
   const [sesion, setSesiones] = useState([]);
   const [butacas, setButacas] = useState([]);
   const [cliente, setCliente] = useState({ nombre: '', email: '', telefono: '' });
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchSesion = async () => {
       if (!sesionId) return;
@@ -23,9 +26,9 @@ const Reservas = () => {
         setSesiones(res.data);
         console.log("Sesión cargada:", res.data);
 
-        const resButacas = await axios.get(`${Config.urlBackend}/butacas/lista?ids=${butacasSeleccionadas}`)
+        const resButacas = await axios.get(`${Config.urlBackend}/butacas/lista?ids=${butacasSeleccionadas}`);
         setButacas(resButacas.data);
-        console.log("butacas: ", resButacas.data)
+        console.log("butacas: ", resButacas.data);
       } catch (err) {
         console.error('Error al cargar la sesión y butacas:', err);
       }
@@ -38,28 +41,54 @@ const Reservas = () => {
     try {
       const res = await axios.post(`${Config.urlBackend}/reservas`, data);
       alert('Reserva creada exitosamente');
+      await descargarPDF(res.data.id);
+      navigate('/');
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
   };
-  
+
+  const descargarPDF = async (reservaId) => {
+    try {
+      const response = await axios.get(`${Config.urlBackend}/reservas/${reservaId}/pdf`, {
+        responseType: 'blob',
+      });
+
+      const contentDisposition = response.headers['content-disposition'];
+      let filename = "entrada_velvetcinema.pdf";
+      if (contentDisposition && contentDisposition.includes("filename=")) {
+        filename = contentDisposition.split("filename=")[1].replace(/"/g, "");
+      }
+
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Error al descargar el PDF:", error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (butacasSeleccionadas.length === 0) {
       alert('Por favor, selecciona al menos una butaca.');
       return;
     }
-  
+
     const data = {
       cliente,
       sesionId,
       butacasId: butacasSeleccionadasState,
     };
-  
+
     await crearReserva(data);
   };
-  
+
   return (
     <div className="home-container">
       <header className="home-header">
@@ -70,7 +99,6 @@ const Reservas = () => {
             <h1 className='title'>Velvet Cinema</h1>
           </div>
         </div>
-
       </header>
       <p><strong>Velvet Cinema</strong></p>
       <div className="info-pelicula">
@@ -78,7 +106,6 @@ const Reservas = () => {
         <p><strong>Selección de butacas: </strong>
           {butacas.map(b => `Fila ${b.fila}, Butaca ${b.butaca}`).join(' | ')}
         </p>
-
       </div>
       <form onSubmit={handleSubmit}>
         <div>
@@ -93,7 +120,7 @@ const Reservas = () => {
           <label>Teléfono:</label>
           <input value={cliente.telefono} onChange={e => setCliente({ ...cliente, telefono: e.target.value })} required />
         </div>
-        <button type="submit">Reservar</button>
+        <button type="submit">Confirmar compra</button>
       </form>
     </div>
   );

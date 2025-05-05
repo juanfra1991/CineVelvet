@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,4 +23,13 @@ public class Butaca {
 
     private int fila;
     private int butaca;
+    private LocalDateTime bloqueadaHasta;
+
+    // Constructor para facilitar la creación de objetos Butaca
+    public Butaca(Sala sala, int fila, int butaca, LocalDateTime bloqueadaHasta) {
+        this.sala = sala;
+        this.fila = fila;
+        this.butaca = butaca;
+        this.bloqueadaHasta = bloqueadaHasta;
+    }
 }

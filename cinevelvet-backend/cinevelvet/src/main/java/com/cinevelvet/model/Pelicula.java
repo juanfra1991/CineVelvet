@@ -36,4 +36,7 @@ public class Pelicula {
 
     @Column(length = 1000)
     private String portada;
+
+    @Column(nullable = false)
+    private boolean publicada = true;
 }

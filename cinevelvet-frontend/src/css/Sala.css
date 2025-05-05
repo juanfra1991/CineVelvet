@@ -40,10 +40,10 @@
     filter: brightness(0.7) sepia(1) hue-rotate(100deg) saturate(2);
 }
 
-.margenes{
+.margenes {
     margin-right: 10px;
 }
-.font{
+.font {
     font-size: 12px;
 }
 
@@ -51,7 +51,6 @@
 .butaca-ocupada .butaca-img {
     filter: brightness(0.9) sepia(1) hue-rotate(-48deg) saturate(5);
 }
-
 
 /* Contenedor de la butaca */
 .butaca-contenedor {

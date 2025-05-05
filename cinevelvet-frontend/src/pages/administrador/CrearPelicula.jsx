@@ -14,9 +14,6 @@ const Peliculas = () => {
     portada: '',
   });
 
-  const generos = ['Acción', 'Comedia', 'Drama', 'Terror', 'Romance', 'Ciencia Ficción'];
-  const edadesPermitidas = ['+7', '+12', '+16', '+18'];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
@@ -96,7 +93,7 @@ const Peliculas = () => {
         className="input-field"
       >
         <option value="">Selecciona un género</option>
-        {generos.map(g => (
+        {Config.generos.map(g => (
           <option key={g} value={g}>
             {g}
           </option>
@@ -111,14 +108,14 @@ const Peliculas = () => {
         className="input-field"
       >
         <option value="">Selecciona una edad</option>
-        {edadesPermitidas.map(e => (
+        {Config.edades.map(e => (
           <option key={e} value={e}>
             {e}
           </option>
         ))}
       </select>
 
-      <label>URL de portada:</label>
+      <label>Imagen de portada:</label>
       <input
         type="text"
         name="portada"

@@ -4,9 +4,6 @@ import { Config } from '../../api/Config';
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/Peliculas.css";
 
-const generos = ["Terror", "Romance", "Acción", "Drama"];
-const edades = ["+7", "+12", "+16", "+18"];
-
 export default function EditarPelicula() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -21,6 +18,7 @@ export default function EditarPelicula() {
   });
 
   const [isValid, setIsValid] = useState(false);
+  const [mensajeGuardado, setMensajeGuardado] = useState("");
 
   useEffect(() => {
     axios.get(`${Config.urlBackend}/peliculas/${id}`)
@@ -41,12 +39,16 @@ export default function EditarPelicula() {
   const handleSubmit = e => {
     e.preventDefault();
     axios.put(`${Config.urlBackend}/peliculas/${id}`, pelicula)
-      .then(() => navigate("/peliculas"))
+      .then(() => {
+        setMensajeGuardado("Cambios guardados correctamente.");
+        setTimeout(() => setMensajeGuardado(""), 3000);
+      })
       .catch(err => console.error(err));
   };
 
   return (
-    <div className="peliculas-admin-container">
+
+    <div className="home-container">
       <h2 className="titulo">Editar Película</h2>
 
       <button onClick={() => navigate('/peliculas')} className="back-button">
@@ -110,7 +112,7 @@ export default function EditarPelicula() {
             required
           >
             <option value="">Selecciona un género</option>
-            {generos.map(genero => (
+            {Config.generos.map(genero => (
               <option key={genero} value={genero}>{genero}</option>
             ))}
           </select>
@@ -126,14 +128,14 @@ export default function EditarPelicula() {
             required
           >
             <option value="">Selecciona edad</option>
-            {edades.map(edad => (
+            {Config.edades.map(edad => (
               <option key={edad} value={edad}>{edad}</option>
             ))}
           </select>
         </div>
 
         <div className="campo">
-          <label htmlFor="portada">URL de portada:</label>
+          <label htmlFor="portada">Imagen de portada:</label>
           <input
             id="portada"
             name="portada"
@@ -142,7 +144,11 @@ export default function EditarPelicula() {
             required
           />
         </div>
-
+        {mensajeGuardado && (
+          <div className="popup-mensaje">
+            {mensajeGuardado}
+          </div>
+        )}
         <button className="btn" type="submit" disabled={!isValid}>
           Guardar Cambios
         </button>

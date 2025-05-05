@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select'; // Importamos React Select
+import Select from 'react-select';
 import '../../css/Peliculas.css';
 
 const Peliculas = () => {
@@ -20,15 +20,25 @@ const Peliculas = () => {
     }
   };
 
-  // Eliminar una película
-  const handleEliminar = async (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar esta película?')) {
-      try {
-        await axios.delete(`${Config.urlBackend}/peliculas/${id}`);
-        fetchPeliculas();
-      } catch (error) {
-        console.error('Error al eliminar la película:', error);
-      }
+  // Publicar / Despublicar película
+  const handleTogglePublicar = async (id) => {
+    try {
+      const res = await axios.patch(`${Config.urlBackend}/peliculas/${id}/publicar`);
+      
+      // Actualizamos el estado de la película seleccionada en el estado
+      const updatedPelicula = res.data;
+      setPeliculas(peliculas.map(pelicula => 
+        pelicula.id === id ? updatedPelicula : pelicula
+      ));
+      
+      // Actualizamos selectedPelicula
+      setSelectedPelicula(updatedPelicula);
+
+      // Mostrar mensaje de confirmación en un alert
+      alert('Estado de publicación actualizado exitosamente.');
+    } catch (error) {
+      console.error('Error al cambiar el estado de publicación:', error);
+      alert('Hubo un error al actualizar el estado de la película.');
     }
   };
 
@@ -36,7 +46,6 @@ const Peliculas = () => {
     fetchPeliculas();
   }, []);
 
-  // Mapeamos las películas a un formato que React-Select pueda entender
   const opcionesPeliculas = peliculas.map((pelicula) => ({
     value: pelicula.id,
     label: pelicula.titulo
@@ -46,14 +55,12 @@ const Peliculas = () => {
     <div className="peliculas-admin-container">
       <h2>Gestión de Películas</h2>
 
-      {/* Botón de "Atrás" */}
       <button onClick={() => navigate(`/dashboard`)} className="back-button">
         <i className="fas fa-arrow-left"></i> Atrás
       </button>
 
       <hr />
 
-      {/* Formulario para crear una nueva película */}
       <h3>Crear Nueva Película</h3>
       <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
         Crear Nueva Película
@@ -61,7 +68,6 @@ const Peliculas = () => {
 
       <hr />
 
-      {/* Listado de películas */}
       <h3>Listado de Películas</h3>
       <div className="campo">
         <label htmlFor="select-pelicula">Selecciona una película:</label>
@@ -78,11 +84,12 @@ const Peliculas = () => {
         />
       </div>
 
-      {/* Botones de editar y eliminar si hay una película seleccionada */}
       {selectedPelicula && (
         <div className="botones">
           <button onClick={() => navigate(`/editar-pelicula/${selectedPelicula.id}`)}>Editar</button>
-          <button onClick={() => handleEliminar(selectedPelicula.id)}>Eliminar</button>
+          <button onClick={() => handleTogglePublicar(selectedPelicula.id)}>
+            {selectedPelicula.publicada ? 'Ocultar' : 'Publicar'}
+          </button>
         </div>
       )}
     </div>

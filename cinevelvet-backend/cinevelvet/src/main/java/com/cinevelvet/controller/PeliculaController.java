@@ -31,6 +31,26 @@ public class PeliculaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/publicadas")
+    public List<Pelicula> getPeliculasPublicadas() {
+        return peliculaRepository.findByPublicadaTrue();
+    }
+
+    @PatchMapping("/{id}/publicar")
+    public ResponseEntity<Pelicula> cambiarEstadoPublicacion(@PathVariable Long id) {
+        return peliculaRepository.findById(id)
+                .map(pelicula -> {
+                    System.out.println("Película encontrada: " + pelicula.getTitulo());
+                    pelicula.setPublicada(!pelicula.isPublicada());
+                    Pelicula actualizada = peliculaRepository.save(pelicula);
+                    return ResponseEntity.ok(actualizada);
+                })
+                .orElseGet(() -> {
+                    System.out.println("Película no encontrada con id: " + id);
+                    return ResponseEntity.notFound().build();
+                });
+    }
+
     @PostMapping
     public ResponseEntity<Pelicula> createPelicula(@RequestBody Pelicula pelicula) {
         Pelicula nuevaPelicula = peliculaRepository.save(pelicula);

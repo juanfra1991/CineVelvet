@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class ButacaController {
     public List<ButacaDTO> getAllButacas() {
         return butacaRepository.findAll()
                 .stream()
-                .map(butaca -> convertToDTO(butaca, false))
+                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now())))
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +46,7 @@ public class ButacaController {
                 .orElseThrow(() -> new RuntimeException("Sala no encontrada"));
 
         List<ButacaDTO> butacas = sala.getButacas().stream()
-                .map(butaca -> convertToDTO(butaca, false))
+                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now())))
                 .toList();
 
         return new SalaDTO(
@@ -71,7 +72,6 @@ public class ButacaController {
         return ResponseEntity.ok(butacas);
     }
 
-
     @GetMapping("/disponibles/{sesionId}/{salaId}")
     public List<ButacaDTO> getButacasDisponibles(@PathVariable Long sesionId, @PathVariable Long salaId) {
         Sesion sesion = sesionRepository.findById(sesionId)
@@ -86,19 +86,35 @@ public class ButacaController {
 
         return todasButacas.stream()
                 .map(butaca -> {
-                    // Comprobar si la butaca está ocupada
                     boolean ocupada = butacasOcupadas.contains(butaca);
-                    return convertToDTO(butaca, ocupada);
+                    boolean bloqueada = butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now());
+                    return convertToDTO(butaca, ocupada, bloqueada);
                 })
                 .collect(Collectors.toList());
     }
 
-    private ButacaDTO convertToDTO(Butaca butaca, boolean ocupada) {
+    @PutMapping("/bloquear")
+    public ResponseEntity<String> bloquearButacas(@RequestBody List<Long> butacaIds) {
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime bloqueadaHasta = ahora.plusMinutes(5);
+
+        List<Butaca> butacas = butacaRepository.findAllById(butacaIds);
+
+        for (Butaca butaca : butacas) {
+            butaca.setBloqueadaHasta(bloqueadaHasta);
+            butacaRepository.save(butaca);
+        }
+
+        return ResponseEntity.ok("Butacas bloqueadas por 5 minutos.");
+    }
+
+    private ButacaDTO convertToDTO(Butaca butaca, boolean ocupada, boolean bloqueada) {
         ButacaDTO dto = new ButacaDTO();
         dto.setId(butaca.getId());
         dto.setFila(butaca.getFila());
         dto.setButaca(butaca.getButaca());
         dto.setOcupada(ocupada);
+        dto.setBloqueada(bloqueada);
         return dto;
     }
 }

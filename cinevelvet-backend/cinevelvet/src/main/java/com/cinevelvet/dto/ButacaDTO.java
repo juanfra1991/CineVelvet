@@ -10,6 +10,7 @@ public class ButacaDTO {
     private int fila;
     private int butaca;
     private boolean ocupada;
+    private boolean bloqueada;
 
     public ButacaDTO() {
     }

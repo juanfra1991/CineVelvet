@@ -57,7 +57,7 @@ const Sala = () => {
         ? `${butacasSeleccionadas.length} butacas, (${butacasSeleccionadas.map(b => `Fila ${b.fila}, Butaca ${b.columna}`).join(' | ')})`
         : 'por favor, selecciona las butacas deseadas';
 
-    const handleComprarClick = () => {
+    const handleComprarClick = async () => {
         if (butacasSeleccionadas.length > 0) {
             const idsSeleccionados = butacasSeleccionadas.map(b => {
                 const butaca = butacas.find(
@@ -65,15 +65,22 @@ const Sala = () => {
                 );
                 return butaca?.id;
             }).filter(id => id !== undefined);
-
-            console.log("IDs reales:", idsSeleccionados);
-
-            navigate('/reservas', {
-                state: {
-                    sesionId,
-                    butacasSeleccionadas: idsSeleccionados
-                }
-            });
+    
+            try {
+                // Bloquear las butacas seleccionadas en el backend
+                await axios.put(`${Config.urlBackend}/butacas/bloquear`, idsSeleccionados);
+    
+                // Navegar a la página de reservas
+                navigate('/reservas', {
+                    state: {
+                        sesionId,
+                        butacasSeleccionadas: idsSeleccionados
+                    }
+                });
+            } catch (error) {
+                console.error("Error al bloquear las butacas:", error);
+                alert("Ocurrió un error al bloquear las butacas. Intenta de nuevo.");
+            }
         } else {
             alert("Selecciona al menos una butaca.");
         }
@@ -116,12 +123,13 @@ const Sala = () => {
                         return (
                             <div
                                 key={butaca.id}
-                                className={`butaca ${seleccionada ? 'butaca-seleccionada' : ''} ${butaca.ocupada ? 'butaca-ocupada' : ''}`}
-                                onClick={() => !butaca.ocupada && toggleSeleccion(fila, columna)}
-                            >
+                                className={`butaca 
+                                    ${seleccionada ? 'butaca-seleccionada' : ''} 
+                                    ${butaca.ocupada || butaca.bloqueada ? 'butaca-ocupada' : ''}`}
+                                onClick={() => !butaca.ocupada && !butaca.bloqueada && toggleSeleccion(fila, columna)}>
                                 <div className="butaca-contenedor">
                                     <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
-                                    {butaca.ocupada ? (
+                                    {butaca.ocupada || butaca.bloqueada ? (
                                         <img src={iconoNocheck} alt="Ocupada" className="icono-check" />
                                     ) : (
                                         <img src={iconoCheck} alt="Disponible" className="icono-check" />
@@ -136,16 +144,15 @@ const Sala = () => {
                 <br></br>
                 <p className='font'>*No incluye gastos adicionales.</p>
                 <div>
-                <img src="https://cine.entradas.com/images/payment/payment_creditcards_entradas.svg"  className='margenes' alt="Tarjeta de crédito" title="Tarjeta de crédito" width="67"></img>
-                <img src="https://cine.entradas.com/images/payment/payment_paypal.svg"  className='margenes' alt="PayPal"title="PayPal" width="68"></img>
-                <img src="https://cine.entradas.com/images/payment/payment_bizum.svg"  className='margenes' alt="Bizum" title="Bizum" width="68"></img>
+                    <img src={`/assets/payment/payment_creditcards_entradas.svg`} className='margenes' alt="Tarjeta de crédito" title="Tarjeta de crédito" width="68"></img>
+                    <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" title="PayPal" width="68"></img>
+                    <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" title="Bizum" width="68"></img>
                 </div>
             </div>
 
             <div className="boton-comprar-container">
                 <button className="boton-comprar" onClick={handleComprarClick}>Comprar</button>
             </div>
-            
         </div>
     );
 };

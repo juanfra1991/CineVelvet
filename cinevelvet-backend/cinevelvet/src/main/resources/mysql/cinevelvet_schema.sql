@@ -10,7 +10,8 @@ CREATE TABLE pelicula (
     fecha_estreno DATE NOT NULL,
     genero VARCHAR(50),
     edades VARCHAR(150),
-    portada VARCHAR(1000)
+    portada VARCHAR(1000),
+    publicada BOOLEAN DEFAULT FALSE
 );
 
 -- Tabla: Sala
@@ -28,6 +29,7 @@ CREATE TABLE butaca (
     fila INT NOT NULL,
     butaca INT NOT NULL,
     sala_id BIGINT,
+    bloqueada_hasta TIMESTAMP,
     FOREIGN KEY (sala_id) REFERENCES sala(id)
 );
 
