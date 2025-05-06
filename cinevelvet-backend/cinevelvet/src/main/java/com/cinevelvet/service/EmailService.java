@@ -53,26 +53,31 @@ public class EmailService {
             // Enviar el mensaje
             Transport.send(mensaje);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("❌ Error al enviar correo con PDF", e);
         }
     }
     private static MimeBodyPart getMimeBodyPart() throws MessagingException {
         MimeBodyPart cuerpo = new MimeBodyPart();
-        String texto = "¡Gracias por elegir Velvet Cinema!\n\n"
-                + "Tu compra ha sido confirmada. A continuación, encontrarás el archivo adjunto con tus entradas. "
-                + "Este archivo contiene los detalles de tu reserva, incluyendo la película, la sesión y las butacas seleccionadas.\n\n"
-                + "Si tienes alguna duda o necesitas hacer alguna modificación en tu reserva, no dudes en ponerte en contacto con nosotros.\n\n"
-                + "Agradecemos tu preferencia y esperamos verte pronto en nuestras salas.\n\n"
-                + "Atentamente,\n"
-                + "El equipo de Velvet Cinema\n\n"
-                + "----------------------------------------------------\n"
-                + "Protección de Datos Personales (LOPD):\n"
-                + "Los datos personales que nos has proporcionado son tratados de acuerdo con la legislación vigente en materia de protección de datos. "
-                + "Solo utilizaremos tus datos para gestionar tu reserva y enviarte información relacionada con ella. En cualquier momento, podrás ejercitar tus derechos de acceso, "
-                + "rectificación, cancelación y oposición, según lo estipulado por la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales.\n"
-                + "Para más información, consulta nuestra Política de Privacidad.\n"
-                + "----------------------------------------------------";
+        String texto = """
+                ¡Gracias por elegir Velvet Cinema!
+                
+                Tu compra ha sido confirmada. A continuación, encontrarás el archivo adjunto con tus entradas. \
+                Este archivo contiene los detalles de tu reserva, incluyendo la película, la sesión y las butacas seleccionadas.
+                
+                Si tienes alguna duda o necesitas hacer alguna modificación en tu reserva, no dudes en ponerte en contacto con nosotros.
+                
+                Agradecemos tu preferencia y esperamos verte pronto en nuestras salas.
+                
+                Atentamente,
+                El equipo de Velvet Cinema
+                
+                ----------------------------------------------------
+                Protección de Datos Personales (LOPD):
+                Los datos personales que nos has proporcionado son tratados de acuerdo con la legislación vigente en materia de protección de datos. \
+                Solo utilizaremos tus datos para gestionar tu reserva y enviarte información relacionada con ella. En cualquier momento, podrás ejercitar tus derechos de acceso, \
+                rectificación, cancelación y oposición, según lo estipulado por la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales.
+                Para más información, consulta nuestra Política de Privacidad.
+                ----------------------------------------------------""";
 
         cuerpo.setText(texto);
         return cuerpo;

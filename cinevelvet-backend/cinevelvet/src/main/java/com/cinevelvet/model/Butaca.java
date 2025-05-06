@@ -27,11 +27,4 @@ public class Butaca {
 
     private String usuarioId;
 
-    public Butaca(Sala sala, int fila, int butaca, LocalDateTime bloqueadaHasta, String usuarioId) {
-        this.sala = sala;
-        this.fila = fila;
-        this.butaca = butaca;
-        this.bloqueadaHasta = bloqueadaHasta;
-        this.usuarioId = usuarioId;
-    }
 }
