@@ -14,6 +14,10 @@ const Reservas = () => {
   const [sesion, setSesiones] = useState([]);
   const [butacas, setButacas] = useState([]);
   const [cliente, setCliente] = useState({ nombre: '', email: '', telefono: '' });
+  const [mensajeGuardado, setMensajeGuardado] = useState("");
+  const [contador, setContador] = useState(null);
+  const [comprando, setComprando] = useState(false);
+  const [mostrandoLoader, setMostrandoLoader] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,17 +41,39 @@ const Reservas = () => {
     fetchSesion();
   }, [sesionId]);
 
+  useEffect(() => {
+    if (contador !== 5) return;
+  
+    // Mostrar mensaje inmediatamente
+    setMensajeGuardado("Compra realizada correctamente. Serás redirigido en unos segundos...");
+  
+    // Mostrar loader después de 3 segundos
+    const mostrarLoaderTimer = setTimeout(() => {
+      setMostrandoLoader(true);
+    }, 3000);
+  
+    // Redirigir después de 8 segundos (3 + 5)
+    const redirigirTimer = setTimeout(() => {
+      navigate('/');
+    }, 8000);
+  
+    return () => {
+      clearTimeout(mostrarLoaderTimer);
+      clearTimeout(redirigirTimer);
+    };
+  }, [contador, navigate]);
+  
   const crearReserva = async (data) => {
+    setComprando(true);
     try {
       const res = await axios.post(`${Config.urlBackend}/reservas`, data);
-      alert('Reserva creada exitosamente');
       await descargarPDF(res.data.id);
-      navigate('/');
+      setContador(5);
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
   };
-
+  
   const descargarPDF = async (reservaId) => {
     try {
       const response = await axios.get(`${Config.urlBackend}/reservas/${reservaId}/pdf`, {
@@ -91,6 +117,12 @@ const Reservas = () => {
 
   return (
     <div className="home-container">
+      {mostrandoLoader && (
+      <div className="loader-overlay">
+        <div className="loader"></div>
+        <p>Redirigiendo al inicio...</p>
+      </div>
+    )}
       <header className="home-header">
         <div className="header-background"></div>
         <div className="header-content">
@@ -107,20 +139,44 @@ const Reservas = () => {
           {butacas.map(b => `Fila ${b.fila}, Butaca ${b.butaca}`).join(' | ')}
         </p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="formulario-reserva">
+        <div className="campo-formulario">
           <label>Nombre:</label>
-          <input value={cliente.nombre} onChange={e => setCliente({ ...cliente, nombre: e.target.value })} required />
+          <input
+            value={cliente.nombre}
+            onChange={e => setCliente({ ...cliente, nombre: e.target.value })}
+            required
+          />
         </div>
-        <div>
+        <div className="campo-formulario">
           <label>Email:</label>
-          <input value={cliente.email} onChange={e => setCliente({ ...cliente, email: e.target.value })} required />
+          <input
+            value={cliente.email}
+            onChange={e => setCliente({ ...cliente, email: e.target.value })}
+            required
+          />
         </div>
-        <div>
+        <div className="campo-formulario">
           <label>Teléfono:</label>
-          <input value={cliente.telefono} onChange={e => setCliente({ ...cliente, telefono: e.target.value })} required />
+          <input
+            value={cliente.telefono}
+            onChange={e => setCliente({ ...cliente, telefono: e.target.value })}
+            required
+          />
         </div>
-        <button type="submit">Confirmar compra</button>
+        {mensajeGuardado && (
+          <div className="popup-mensaje">
+            {mensajeGuardado}
+          </div>
+        )}
+        <div className="boton-comprar-container">
+          <button
+            type="submit"
+            className="boton-comprar"
+            disabled={comprando}>
+            {comprando ? 'Procesando compra...' : 'Confirmar compra'}
+          </button>
+        </div>
       </form>
     </div>
   );

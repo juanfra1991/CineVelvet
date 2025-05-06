@@ -15,7 +15,7 @@ const Sesiones = () => {
   const [peliculaId, setPeliculaId] = useState('');
   const [salaId, setSalaId] = useState('');
   const [selectedSesion, setSelectedSesion] = useState(null);
-
+  const [mensajeGuardado, setMensajeGuardado] = useState('');
   const navigate = useNavigate();
 
   // Obtener películas
@@ -57,7 +57,8 @@ const Sesiones = () => {
   // Crear nueva sesión
   const handleCrearSesion = async () => {
     if (!fecha || !peliculaId || !salaId) {
-      alert('Debes completar todos los campos.');
+      setMensajeGuardado("Debes completar todos los campos.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
       return;
     }
 
@@ -67,14 +68,16 @@ const Sesiones = () => {
         peliculaId,
         salaId,
       });
-      alert('Sesión creada correctamente.');
+      setMensajeGuardado("Sesión creada correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
       setFecha(null);
       setPeliculaId('');
       setSalaId('');
       fetchSesiones();
     } catch (error) {
       console.error('Error al crear la sesión:', error);
-      alert('Error al crear la sesión.');
+      setMensajeGuardado("Error al crear la sesión.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     }
   };
 
@@ -161,7 +164,11 @@ const Sesiones = () => {
             ))}
           </select>
         </div>
-
+        {mensajeGuardado && (
+          <div className="popup-mensaje">
+            {mensajeGuardado}
+          </div>
+        )}
         <button
           onClick={handleCrearSesion}
           className="btn"

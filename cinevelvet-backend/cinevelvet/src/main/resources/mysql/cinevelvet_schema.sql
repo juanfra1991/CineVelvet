@@ -30,6 +30,7 @@ CREATE TABLE butaca (
     butaca INT NOT NULL,
     sala_id BIGINT,
     bloqueada_hasta TIMESTAMP,
+    usuario_id VARCHAR(255),
     FOREIGN KEY (sala_id) REFERENCES sala(id)
 );
 

@@ -20,11 +20,13 @@ const Peliculas = () => {
   };
 
   const isFormValid = Object.values(form).every(value => value.trim() !== '');
+  const [mensajeGuardado, setMensajeGuardado] = useState("");
 
   const handleSubmit = async () => {
     try {
       await axios.post(`${Config.urlBackend}/peliculas`, form);
-      alert('Película creada correctamente');
+      setMensajeGuardado("Película creada correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
       setForm({
         titulo: '',
         descripcion: '',
@@ -36,7 +38,8 @@ const Peliculas = () => {
       });
     } catch (error) {
       console.error('Error al crear la película:', error);
-      alert('Error al crear la película');
+      setMensajeGuardado("Error al crear la película.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     }
   };
 
@@ -123,7 +126,11 @@ const Peliculas = () => {
         onChange={handleChange}
         className="input-field"
       />
-
+      {mensajeGuardado && (
+        <div className="popup-mensaje">
+          {mensajeGuardado}
+        </div>
+      )}
       <button
         className="btn"
         disabled={!isFormValid}

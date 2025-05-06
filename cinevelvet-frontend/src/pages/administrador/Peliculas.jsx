@@ -8,6 +8,7 @@ import '../../css/Peliculas.css';
 const Peliculas = () => {
   const [peliculas, setPeliculas] = useState([]);
   const [selectedPelicula, setSelectedPelicula] = useState(null);
+  const [mensajeGuardado, setMensajeGuardado] = useState('');
   const navigate = useNavigate();
 
   // Obtener las películas
@@ -20,25 +21,23 @@ const Peliculas = () => {
     }
   };
 
-  // Publicar / Despublicar película
+  // Publicar / Ocultar película
   const handleTogglePublicar = async (id) => {
     try {
       const res = await axios.patch(`${Config.urlBackend}/peliculas/${id}/publicar`);
       
-      // Actualizamos el estado de la película seleccionada en el estado
       const updatedPelicula = res.data;
       setPeliculas(peliculas.map(pelicula => 
         pelicula.id === id ? updatedPelicula : pelicula
       ));
       
-      // Actualizamos selectedPelicula
       setSelectedPelicula(updatedPelicula);
-
-      // Mostrar mensaje de confirmación en un alert
-      alert('Estado de publicación actualizado exitosamente.');
+      setMensajeGuardado("Estado de publicación actualizado exitosamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     } catch (error) {
       console.error('Error al cambiar el estado de publicación:', error);
-      alert('Hubo un error al actualizar el estado de la película.');
+      setMensajeGuardado("Hubo un error al actualizar el estado de la película.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     }
   };
 
@@ -83,9 +82,14 @@ const Peliculas = () => {
           isSearchable
         />
       </div>
-
+      {mensajeGuardado && (
+          <div className="popup-mensaje">
+            {mensajeGuardado}
+          </div>
+        )}
       {selectedPelicula && (
         <div className="botones">
+          
           <button onClick={() => navigate(`/editar-pelicula/${selectedPelicula.id}`)}>Editar</button>
           <button onClick={() => handleTogglePublicar(selectedPelicula.id)}>
             {selectedPelicula.publicada ? 'Ocultar' : 'Publicar'}

@@ -25,11 +25,13 @@ public class Butaca {
     private int butaca;
     private LocalDateTime bloqueadaHasta;
 
-    // Constructor para facilitar la creación de objetos Butaca
-    public Butaca(Sala sala, int fila, int butaca, LocalDateTime bloqueadaHasta) {
+    private String usuarioId;
+
+    public Butaca(Sala sala, int fila, int butaca, LocalDateTime bloqueadaHasta, String usuarioId) {
         this.sala = sala;
         this.fila = fila;
         this.butaca = butaca;
         this.bloqueadaHasta = bloqueadaHasta;
+        this.usuarioId = usuarioId;
     }
 }

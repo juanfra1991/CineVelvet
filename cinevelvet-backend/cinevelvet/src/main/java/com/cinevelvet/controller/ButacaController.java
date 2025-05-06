@@ -94,13 +94,20 @@ public class ButacaController {
     }
 
     @PutMapping("/bloquear")
-    public ResponseEntity<String> bloquearButacas(@RequestBody List<Long> butacaIds) {
+    public ResponseEntity<String> bloquearButacas(@RequestParam("usuarioId") String usuarioId, @RequestBody List<Long> butacaIds) {
         LocalDateTime ahora = LocalDateTime.now();
         LocalDateTime bloqueadaHasta = ahora.plusMinutes(5);
 
         List<Butaca> butacas = butacaRepository.findAllById(butacaIds);
 
         for (Butaca butaca : butacas) {
+            // Verificamos si la butaca está bloqueada por otro usuario
+            if (butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(ahora) && !butaca.getUsuarioId().equals(usuarioId)) {
+                return ResponseEntity.status(403).body("La butaca está bloqueada por otro usuario.");
+            }
+
+            // Bloqueamos la butaca y asociamos al usuario que la bloquea
+            butaca.setUsuarioId(usuarioId);
             butaca.setBloqueadaHasta(bloqueadaHasta);
             butacaRepository.save(butaca);
         }
@@ -115,6 +122,7 @@ public class ButacaController {
         dto.setButaca(butaca.getButaca());
         dto.setOcupada(ocupada);
         dto.setBloqueada(bloqueada);
+        dto.setUsuarioId(butaca.getUsuarioId());
         return dto;
     }
 }

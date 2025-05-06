@@ -11,6 +11,7 @@ public class ButacaDTO {
     private int butaca;
     private boolean ocupada;
     private boolean bloqueada;
+    private String usuarioId;
 
     public ButacaDTO() {
     }
