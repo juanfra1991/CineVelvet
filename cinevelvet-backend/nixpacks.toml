@@ -1,13 +1,9 @@
 [build]
 builder = "heroku/buildpacks:java"
 
-[phases.setup]
-# Usa una versión de Java específica
-nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/8ecf62b.tar.gz"
-
 [phases.build]
 cmds = [
-    "./mvnw package -DskipTests"
+    "mvn clean package -DskipTests"
 ]
 
 [start]
