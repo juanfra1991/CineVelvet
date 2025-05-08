@@ -1,0 +1,14 @@
+[build]
+builder = "heroku/buildpacks:java"
+
+[phases.setup]
+# Usa una versión de Java específica
+nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/8ecf62b.tar.gz"
+
+[phases.build]
+cmds = [
+    "./mvnw package -DskipTests"
+]
+
+[start]
+cmd = "java -jar target/cinevelvet-0.0.1-SNAPSHOT.jar"
