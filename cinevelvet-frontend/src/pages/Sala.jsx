@@ -17,7 +17,7 @@ const Sala = () => {
     const [butacas, setButacas] = useState(null);
     const [loading, setLoading] = useState(true);
     const [butacasSeleccionadas, setButacasSeleccionadas] = useState([]);
-    const usuarioID = localStorage.getItem('usuarioId'); // O sessionStorage.getItem('usuarioId')
+    const usuarioID = localStorage.getItem('usuarioId');
 
     useEffect(() => {
         const fetchData = async () => {
