@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CinemaVelvet</string>
+    <string name="title_activity_main">CinemaVelvet</string>
+    <string name="package_name">com.cinevelvet</string>
+    <string name="custom_url_scheme">com.cinevelvet</string>
+</resources>
