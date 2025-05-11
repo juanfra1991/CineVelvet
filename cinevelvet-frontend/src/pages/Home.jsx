@@ -90,7 +90,6 @@ const Home = () => {
                                                             <button
                                                                 key={i}
                                                                 onClick={() => {
-                                                                    console.log("Sesión seleccionada:", sesion);
                                                                     navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`);
                                                                 }}
                                                             >

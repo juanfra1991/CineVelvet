@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../../css/Home.css';
+import logoCinema from '../../assets/logoCine.jpg';
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Administrador.css';
@@ -48,7 +50,25 @@ const Administrador = () => {
     };
 
     return (
-        <div className="admin-container">
+
+        <div className="admin-container home-container">
+            <header className="home-header">
+                            <div className="header-background"></div>
+                            <div className="header-content">
+                                <img
+                                    className='logo'
+                                    src={logoCinema}
+                                    alt="Cinema Logo"
+                                    onClick={() => navigate('/')}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                <div>
+                                    <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                                        Velvet Cinema
+                                    </h1>
+                                </div>
+                            </div>
+                        </header>
             <h2>Acceso Administrador</h2>
             <input
                 type="text"

@@ -4,6 +4,9 @@ import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import '../../css/Peliculas.css';
+import '../../css/Home.css';
+import '../../css/Dashboard.css';
+import logoCinema from '../../assets/logoCine.jpg';
 
 const Peliculas = () => {
   const [peliculas, setPeliculas] = useState([]);
@@ -25,12 +28,12 @@ const Peliculas = () => {
   const handleTogglePublicar = async (id) => {
     try {
       const res = await axios.patch(`${Config.urlBackend}/peliculas/${id}/publicar`);
-      
+
       const updatedPelicula = res.data;
-      setPeliculas(peliculas.map(pelicula => 
+      setPeliculas(peliculas.map(pelicula =>
         pelicula.id === id ? updatedPelicula : pelicula
       ));
-      
+
       setSelectedPelicula(updatedPelicula);
       setMensajeGuardado("Estado de publicación actualizado exitosamente.");
       setTimeout(() => setMensajeGuardado(""), 3000);
@@ -51,23 +54,35 @@ const Peliculas = () => {
   }));
 
   return (
-    <div className="peliculas-admin-container">
-      <h2>Gestión de Películas</h2>
-
-      <button onClick={() => navigate(`/dashboard`)} className="back-button">
-        <i className="fas fa-arrow-left"></i> Atrás
-      </button>
-
+    <div className="home-container">
+      <header className="home-header">
+        <div className="header-background"></div>
+        <div className="header-content">
+          <img
+            className='logo'
+            src={logoCinema}
+            alt="Cinema Logo"
+            onClick={() => navigate('/')}
+            style={{ cursor: 'pointer' }}
+          />
+          <div>
+            <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+              Velvet Cinema
+            </h1>
+          </div>
+        </div>
+      </header>
+      <h2 className='h2'>Gestión de Películas</h2>
       <hr />
 
-      <h3>Crear Nueva Película</h3>
+      <h5>Crear Nueva Película</h5>
       <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
         Crear Nueva Película
       </button>
 
       <hr />
 
-      <h3>Listado de Películas</h3>
+      <h5>Listado de Películas Disponibles</h5>
       <div className="campo">
         <label htmlFor="select-pelicula">Selecciona una película:</label>
         <Select
@@ -83,20 +98,26 @@ const Peliculas = () => {
         />
       </div>
       {mensajeGuardado && (
-          <div className="popup-mensaje">
-            {mensajeGuardado}
-          </div>
-        )}
+        <div className="popup-mensaje">
+          {mensajeGuardado}
+        </div>
+      )}
       {selectedPelicula && (
         <div className="botones">
-          
+
           <button onClick={() => navigate(`/editar-pelicula/${selectedPelicula.id}`)}>Editar</button>
           <button onClick={() => handleTogglePublicar(selectedPelicula.id)}>
             {selectedPelicula.publicada ? 'Ocultar' : 'Publicar'}
           </button>
         </div>
       )}
+      <div className='boton-comprar-container'>
+        <button onClick={() => navigate(`/dashboard`)} className="boton-comprar">
+         Cerrar
+      </button>
     </div>
+      </div>
+      
   );
 };
 

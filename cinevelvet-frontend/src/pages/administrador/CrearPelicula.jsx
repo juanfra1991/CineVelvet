@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Config } from '../../api/Config';
 import '../../css/Peliculas.css';
+import '../../css/Home.css';
+import { FiArrowRightCircle } from "react-icons/fi";
+import logoCinema from '../../assets/logoCine.jpg';
 
 const Peliculas = () => {
   const [form, setForm] = useState({
@@ -45,12 +48,29 @@ const Peliculas = () => {
 
   return (
     <div className="peliculas-admin-container">
-      <h2>Crear Nueva Película</h2>
 
-      <button onClick={() => window.history.back()} className="back-button">
-        <i className="fas fa-arrow-left"></i> Atrás
-      </button>
+      <header className="home-header">
+          <div className="header-background">
+            <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+              <FiArrowRightCircle size={24} />
+            </button>
+          </div>
+      
+          <div className="header-content">
+            <img
+              className="logo"
+              src={logoCinema}
+              alt="Cinema Logo"
+              onClick={() => navigate('/')}
+              style={{ cursor: 'pointer' }}
+            />
+            <div>
+              <h1 className='title'>Velvet Cinema</h1>
+            </div>
+          </div>
+        </header>
 
+      <h2 className='h2'>Crear Nueva Película</h2>
       <hr />
 
       <label>Título:</label>
