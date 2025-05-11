@@ -9,18 +9,24 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
     "jsx": "react-jsx",
+
+    /* Soporte para importar archivos .jsx */
+    "allowJs": true,
+    "checkJs": false,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Requerido para referencias de proyecto */
+    "composite": true,
+    "outDir": "./dist"
   },
-  "include": ["src"]
+  "include": ["src", "src/types.d.ts"]
 }
