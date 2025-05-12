@@ -13,20 +13,20 @@
 }
 
 .admin-icon {
-  position: absolute;  /* Asegura que el botón se posicione sobre el header */
+  position: absolute;
   top: 20px;
   right: 20px;
   background: transparent;
   border: none;
-  color: white;  /* El ícono será blanco */
+  color: white;
   cursor: pointer;
-  z-index: 10;  /* Asegúrate de que esté por encima de todo lo demás */
+  z-index: 10;
   padding: 8px;
   transition: color 0.2s ease;
 }
 
 .admin-icon:hover {
-  color: #ffcc00;  /* Color cuando el mouse pasa por encima */
+  color: #ffcc00;
 }
 
 @media (max-width: 768px) {
@@ -35,10 +35,6 @@
     right: 10px;
     padding: 6px;
     font-size: 18px;
-  }
-
-  .logo {
-    width: 150px;
   }
 
   .dashboard-title {
@@ -50,7 +46,6 @@
     padding: 10px;
   }
 }
-
 
 .dashboard-header {
   display: flex;
