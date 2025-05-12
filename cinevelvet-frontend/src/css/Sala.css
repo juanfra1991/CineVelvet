@@ -307,11 +307,16 @@
   }
   
   @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-  }
-  
-    100% {
-        transform: rotate(360deg);
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
     }
+
+.cuenta-atras {
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #800000;
+    margin-bottom: 1rem;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
 }

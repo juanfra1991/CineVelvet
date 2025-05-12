@@ -5,6 +5,8 @@ import '../css/Sala.css';
 import '../css/Home.css';
 import { Config } from '../api/Config';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiClock } from 'react-icons/fi';
+
 
 const Reservas = () => {
   const location = useLocation();
@@ -18,6 +20,8 @@ const Reservas = () => {
   const [contador, setContador] = useState(null);
   const [comprando, setComprando] = useState(false);
   const [mostrandoLoader, setMostrandoLoader] = useState(false);
+  const [tiempoRestante, setTiempoRestante] = useState(300);
+  const [mostrarPopupTiempo, setMostrarPopupTiempo] = useState(false);
 
   const navigate = useNavigate();
 
@@ -62,6 +66,23 @@ const Reservas = () => {
       clearTimeout(redirigirTimer);
     };
   }, [contador, navigate]);
+
+  useEffect(() => {
+    if (contador === 5) return;
+
+    const timer = setInterval(() => {
+      setTiempoRestante(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setMostrarPopupTiempo(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [contador]);
   
   const crearReserva = async (data) => {
     setComprando(true);
@@ -139,6 +160,16 @@ const Reservas = () => {
           {butacas.map(b => `Fila ${b.fila}, Butaca ${b.butaca}`).join(' | ')}
         </p>
       </div>
+      <p className="cuenta-atras">
+        <FiClock size={24} /> Cuenta atrás {
+          String(Math.floor(tiempoRestante / 3600)).padStart(2, '0')
+        }:{
+          String(Math.floor((tiempoRestante % 3600) / 60)).padStart(2, '0')
+        }:{
+          String(tiempoRestante % 60).padStart(2, '0')
+        }
+      </p>
+
       <form onSubmit={handleSubmit} className="formulario-reserva">
         <div className="campo-formulario">
           <label>Nombre:</label>
@@ -178,6 +209,15 @@ const Reservas = () => {
           </button>
         </div>
       </form>
+      {mostrarPopupTiempo && (
+        <div className="popup-overlay">
+          <div className="popup-mensaje">
+            <p>Parece que el tiempo se ha agotado, por favor, selecciona tus butacas de nuevo.</p>
+            <button onClick={() => navigate(-1)}>Repetir compra</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
