@@ -195,14 +195,9 @@ const Sala = () => {
                 <span>Pantalla</span>
             </div>
 
-            <div
-                className="sala-grid"
-                style={{
-                    gridTemplateColumns: `repeat(${mitadColumnas}, 30px) 40px repeat(${sala.columnas - mitadColumnas}, 30px)`
-                }}
-            >
+            <div className="sala-grid">
                 {Array.from({ length: sala.filas }).flatMap((_, filaIndex) => {
-                        const fila = filaIndex + 1;
+                    const fila = filaIndex + 1;
                     const rowElements = [];
 
                     for (let colIndex = 0; colIndex < sala.columnas; colIndex++) {

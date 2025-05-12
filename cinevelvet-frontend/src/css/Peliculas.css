@@ -78,7 +78,10 @@ textarea {
   resize: vertical;
   min-height: 10vw;
 }
-
+@media (min-width: 1024px) {
+.home-container {
+    max-width: 1400px;
+  }}
 .btn {
   background-color: #3498db;
   color: white;

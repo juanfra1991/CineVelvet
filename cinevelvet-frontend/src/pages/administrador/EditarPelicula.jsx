@@ -4,7 +4,7 @@ import { Config } from '../../api/Config';
 import { useNavigate, useParams } from "react-router-dom";
 import "../../css/Peliculas.css";
 import '../../css/Home.css';
-import { FiArrowRightCircle } from "react-icons/fi";
+import { FiArrowLeftCircle } from "react-icons/fi";
 import logoCinema from '../../assets/logoCine.jpg';
 
 export default function EditarPelicula() {
@@ -53,7 +53,7 @@ export default function EditarPelicula() {
       <header className="home-header">
         <div className="header-background">
           <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
-            <FiArrowRightCircle size={24} />
+            <FiArrowLeftCircle size={24} />
           </button>
         </div>
         <div className="header-content">
