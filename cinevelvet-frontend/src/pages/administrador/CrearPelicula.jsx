@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Config } from '../../api/Config';
-import '../../css/Peliculas.css';
+import { useNavigate, useParams } from "react-router-dom";
+import "../../css/Peliculas.css";
 import '../../css/Home.css';
 import { FiArrowRightCircle } from "react-icons/fi";
 import logoCinema from '../../assets/logoCine.jpg';
@@ -50,6 +51,7 @@ const Peliculas = () => {
     <div className="peliculas-admin-container">
 
       <header className="home-header">
+        
           <div className="header-background">
             <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
               <FiArrowRightCircle size={24} />
@@ -61,8 +63,6 @@ const Peliculas = () => {
               className="logo"
               src={logoCinema}
               alt="Cinema Logo"
-              onClick={() => navigate('/')}
-              style={{ cursor: 'pointer' }}
             />
             <div>
               <h1 className='title'>Velvet Cinema</h1>

@@ -38,5 +38,5 @@ public class Pelicula {
     private String portada;
 
     @Column(nullable = false)
-    private boolean publicada = true;
+    private boolean publicada = false;
 }

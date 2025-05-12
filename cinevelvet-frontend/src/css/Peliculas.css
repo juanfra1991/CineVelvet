@@ -22,7 +22,6 @@
 .back-button,
 .crear-button {
   padding: 1vw 2vw;
-  font-size: 1vw;
   font-weight: 500;
   border: none;
   border-radius: 0.5vw;
@@ -48,13 +47,6 @@
 
 .crear-button:hover {
   background-color: #970000c2;
-}
-
-.formulario-editar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5vw;
-  margin-top: 2vw;
 }
 
 .campo label {
@@ -129,9 +121,8 @@ textarea {
 
 .botones button {
   padding: 1vw 2vw;
-  font-size: 1vw;
   font-weight: 500;
-  background-color: #e74c3c;
+  background-color: #970000c2;
   color: white;
   border: none;
   border-radius: 0.5vw;
@@ -141,7 +132,7 @@ textarea {
 }
 
 .botones button:hover {
-  background-color: #c0392b;
+  background-color: #970000c2;
 }
 
 hr {

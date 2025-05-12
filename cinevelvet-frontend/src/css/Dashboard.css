@@ -12,6 +12,23 @@
   box-sizing: border-box;
 }
 
+.admin-icon {
+  position: absolute;  /* Asegura que el botón se posicione sobre el header */
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;  /* El ícono será blanco */
+  cursor: pointer;
+  z-index: 10;  /* Asegúrate de que esté por encima de todo lo demás */
+  padding: 8px;
+  transition: color 0.2s ease;
+}
+
+.admin-icon:hover {
+  color: #ffcc00;  /* Color cuando el mouse pasa por encima */
+}
+
 @media (max-width: 768px) {
   .admin-icon {
     top: 10px;
@@ -86,21 +103,21 @@
 
 .menu-button,
 .dashboard-nav button {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  padding: 1vw 1.5vw;
-  border: none;
-  text-align: left;
-  font-size: 1.2vw;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 0.5vw;
-  transition: background-color 0.3s ease;
+background-color: #970000c2;
+    color: rgb(255, 255, 255);
+    padding: 1vw 1.5vw;
+    border: none;
+    text-align: left;
+    font-size: 1.2vw;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.5vw;
+    transition: background-color 0.3s ease;
 }
 
 .menu-button:hover,
 .dashboard-nav button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #222;
 }
 
 .menu-button.active,

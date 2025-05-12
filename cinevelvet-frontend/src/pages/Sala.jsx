@@ -113,6 +113,8 @@ const Sala = () => {
         }
     };
 
+    const mitadColumnas = Math.floor(sala.columnas / 2);
+
     return (
         <div className="home-container">
             <header className="home-header">
@@ -126,10 +128,7 @@ const Sala = () => {
                         style={{ cursor: 'pointer' }}
                     />
                     <div>
-                        <h1
-                            className='title'
-                            onClick={() => navigate('/')}
-                            style={{ cursor: 'pointer' }}>
+                        <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
                             Velvet Cinema
                         </h1>
                     </div>
@@ -141,31 +140,93 @@ const Sala = () => {
                 <p><strong>Película:</strong> {sesion.peliculaTitulo}, {sesion.strFechaLarga} {sesion.strHora}, {sala.nombre}</p>
             </div>
 
-            <p><strong>Selección de butacas: </strong>{mostrarButacasSeleccionadas}</p>
+            <div>
+                <div>
+                    <strong>Selección de butacas:</strong>{' '}
+                    {butacasSeleccionadas.length === 0 ? (
+                        <span>por favor, selecciona las butacas deseadas.</span>
+                    ) : (
+                        <span>{butacasSeleccionadas.length} butacas</span>
+                    )}
+                </div>
+
+                {butacasSeleccionadas.length > 0 && (
+                    <div style={{ marginTop: '0.5em' }}>
+                        {butacasSeleccionadas
+                            .reduce((acc, curr, i) => {
+                                const groupIndex = Math.floor(i / 4);
+                                if (!acc[groupIndex]) acc[groupIndex] = [];
+                                acc[groupIndex].push(`Fila ${curr.fila}, Butaca ${curr.columna}`);
+                                return acc;
+                            }, [])
+                            .map((grupo, idx) => (
+                                <div key={idx}>{grupo.join(' | ')}</div>
+                            ))}
+                    </div>
+                )}
+            </div>
+
+            <div className="leyenda-butacas">
+                <div className="leyenda-item">
+                    <div className="butaca-contenedor-leyenda">
+                        <img src={butacaImg} className="leyenda-icono seleccionada" alt="Butaca seleccionada" />
+                        <img src={iconoCheck} alt="Disponible" className="icono-check" />
+                    </div>
+                    <span>Butacas seleccionadas</span>
+                </div>
+                <div className="leyenda-item">
+                    <div className="butaca-contenedor-leyenda">
+                        <img src={butacaImg} className="leyenda-icono no-disponible" alt="No disponible" />
+                        <img src={iconoNocheck} alt="No disponible" className="icono-check" />
+                    </div>
+                    <span>No disponible</span>
+                </div>
+                <div className="leyenda-item">
+                    <div className="butaca-contenedor-leyenda">
+                        <img src={butacaImg} className="leyenda-icono bloqueada" alt="Butaca bloqueada" />
+                        <img src={iconoNocheck} alt="Bloqueada" className="icono-check" />
+                    </div>
+                    <span>Butaca bloqueada</span>
+                </div>
+            </div>
+
 
             <div className='seatplan__cinema-screen txt-center uppercase'>
                 <span>Pantalla</span>
             </div>
 
-            <div className="sala-grid" style={{
-                gridTemplateColumns: `repeat(${sala.columnas}, 1fr)`,
-            }}>
-                {Array.from({ length: sala.filas }).map((_, filaIndex) => (
-                    Array.from({ length: sala.columnas }).map((_, colIndex) => {
+            <div
+                className="sala-grid"
+                style={{
+                    gridTemplateColumns: `repeat(${mitadColumnas}, 30px) 40px repeat(${sala.columnas - mitadColumnas}, 30px)`
+                }}
+            >
+                {Array.from({ length: sala.filas }).flatMap((_, filaIndex) => {
                         const fila = filaIndex + 1;
+                    const rowElements = [];
+
+                    for (let colIndex = 0; colIndex < sala.columnas; colIndex++) {
                         const columna = colIndex + 1;
                         const index = filaIndex * sala.columnas + colIndex;
                         const butaca = butacas[index];
                         const seleccionada = butacasSeleccionadas.some(b => b.fila === fila && b.columna === columna);
                         const isBlockedByCurrentUser = butaca.bloqueada && butaca.usuarioId === usuarioID;
 
-                        return (
+                        if (colIndex === mitadColumnas) {
+                            rowElements.push(<div className="pasillo" key={`pasillo-${filaIndex}`} />);
+                        }
+
+                        rowElements.push(
                             <div
                                 key={butaca.id}
                                 className={`butaca 
                         ${seleccionada ? 'butaca-seleccionada' : ''} 
                         ${butaca.ocupada || (butaca.bloqueada && butaca.usuarioId !== usuarioID) ? 'butaca-ocupada' : ''}`}
-                                onClick={() => !butaca.ocupada && !(butaca.bloqueada && !isBlockedByCurrentUser) && toggleSeleccion(fila, columna)}>
+                                onClick={() =>
+                                    !butaca.ocupada && !(butaca.bloqueada && !isBlockedByCurrentUser) &&
+                                    toggleSeleccion(fila, columna)
+                                }
+                            >
                                 <div className="butaca-contenedor">
                                     <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
                                     {butaca.ocupada || (butaca.bloqueada && butaca.usuarioId !== usuarioID) ? (
@@ -173,21 +234,22 @@ const Sala = () => {
                                     ) : (
                                         <img src={iconoCheck} alt="Disponible" className="icono-check" />
                                     )}
-
                                 </div>
                             </div>
                         );
-                    })
-                ))}
+                    }
+
+                    return rowElements;
+                })}
             </div>
 
             <div>
-                <br></br>
+                <br />
                 <p className='font'>*No incluye gastos adicionales.</p>
                 <div>
-                    <img src={`/assets/payment/payment_creditcards_entradas.svg`} className='margenes' alt="Tarjeta de crédito" title="Tarjeta de crédito" width="68"></img>
-                    <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" title="PayPal" width="68"></img>
-                    <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" title="Bizum" width="68"></img>
+                    <img src={`/assets/payment/payment_creditcards_entradas.svg`} className='margenes' alt="Tarjeta de crédito" width="68" />
+                    <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" width="68" />
+                    <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" width="68" />
                 </div>
             </div>
 

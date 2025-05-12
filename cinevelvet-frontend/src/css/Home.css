@@ -43,8 +43,9 @@
   background-size: cover;
   background-position: center;
   filter: blur(0.25px) brightness(1);
-  z-index: 1;
+  z-index: 1;  /* Este z-index está bien para que el fondo esté debajo del ícono */
 }
+
 
 .header-content {
   position: relative;

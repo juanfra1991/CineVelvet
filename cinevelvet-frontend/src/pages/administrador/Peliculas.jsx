@@ -54,7 +54,7 @@ const Peliculas = () => {
   }));
 
   return (
-    <div className="home-container">
+    <div className="peliculas-admin-container">
       <header className="home-header">
         <div className="header-background"></div>
         <div className="header-content">

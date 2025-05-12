@@ -5,8 +5,6 @@ import '../../css/Dashboard.css';
 import '../../css/Home.css';
 import logoCinema from '../../assets/logoCine.jpg';
 
-
-
 export default function Dashboard() {
   const navigate = useNavigate();
 
@@ -19,6 +17,11 @@ export default function Dashboard() {
     navigate("/");
   };
 
+  const handleAnotherAction = () => {
+    // Lógica para el nuevo botón
+    console.log("Nuevo botón clickeado");
+  };
+
   useEffect(() => {
     if (window.location.pathname === "/administrador") {
       navigate(menuItems[0].path);
@@ -26,45 +29,33 @@ export default function Dashboard() {
   }, []);
 
   return (
-  <div className="home-container">
-  <aside className="dashboard-sidebar">
-  <header className="home-header">
-    <div className="header-background">
-      <button className="admin-icon" onClick={handleLogout} title="Cerrar Sesión">
-        <FiLogOut size={24} />
-      </button>
+    <div className="home-container">
+      <aside>
+        <header className="home-header">
+          <div className="header-background"></div>
+          <div className="header-content">
+            <img className='logo' src={logoCinema} alt="Cinema Logo" />
+            <div>
+              <h1 className='title'>Velvet Cinema</h1>
+            </div>
+          </div>
+        </header>
+        <h2 className="dashboard-title">Panel Administrador</h2>
+        <nav className="dashboard-nav">
+          {menuItems.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => navigate(item.path)}
+              className={`menu-button ${window.location.pathname === item.path ? 'active' : ''}`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </nav>
+        <div className="boton-comprar-container">
+                <button className="boton-comprar" onClick={handleLogout}>Cerrar Sesión</button>
+            </div>
+      </aside>
     </div>
-
-    <div className="header-content">
-      <img
-        className="logo"
-        src={logoCinema}
-        alt="Cinema Logo"
-        onClick={() => navigate('/')}
-        style={{ cursor: 'pointer' }}
-      />
-      <div>
-        <h1 className='title'>Velvet Cinema</h1>
-      </div>
-    </div>
-  </header>
-
-  <h2 className="dashboard-title">Panel Administrador</h2>
-  <nav className="dashboard-nav">
-    {menuItems.map((item) => (
-      <button
-        key={item.name}
-        onClick={() => navigate(item.path)}
-        className={`menu-button ${window.location.pathname === item.path ? 'active' : ''}`}
-      >
-        {item.name}
-      </button>
-    ))}
-  </nav>
-</aside>
-
-
-  </div>
-);
-
+  );
 }
