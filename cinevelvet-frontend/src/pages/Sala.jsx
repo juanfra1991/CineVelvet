@@ -154,7 +154,7 @@ const Sala = () => {
                     <div style={{ marginTop: '0.5em' }}>
                         {butacasSeleccionadas
                             .reduce((acc, curr, i) => {
-                                const groupIndex = Math.floor(i / 4);
+                                const groupIndex = Math.floor(i / 8);
                                 if (!acc[groupIndex]) acc[groupIndex] = [];
                                 acc[groupIndex].push(`Fila ${curr.fila}, Butaca ${curr.columna}`);
                                 return acc;
