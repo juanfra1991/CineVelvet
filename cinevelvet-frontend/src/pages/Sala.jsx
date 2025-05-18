@@ -17,6 +17,9 @@ const Sala = () => {
     const [butacas, setButacas] = useState(null);
     const [loading, setLoading] = useState(true);
     const [butacasSeleccionadas, setButacasSeleccionadas] = useState([]);
+    const [mensajeErrorButaca, setMensajeErrorButaca] = useState(false);
+    const [fechaSesion, setFechaSesion] = useState(null);
+    const [sesionExpirada, setSesionExpirada] = useState(false);
     const usuarioID = localStorage.getItem('usuarioId');
 
     useEffect(() => {
@@ -26,6 +29,12 @@ const Sala = () => {
                 setSala(salaResponse.data);
 
                 const sesionResponse = await axios.get(`${Config.urlBackend}/sesiones/${sesionId}`);
+                const fecha = new Date(sesionResponse.data.fecha);
+                setFechaSesion(fecha);
+                const ahora = new Date();
+                if (fecha < ahora) {
+                    setSesionExpirada(true);
+                }
                 setSesion(sesionResponse.data);
 
                 const butacasResponse = await axios.get(`${Config.urlBackend}/butacas/disponibles/${sesionId}/${salaId}`);
@@ -48,8 +57,6 @@ const Sala = () => {
             usuarioID = `invitado-${Date.now()}`;
             localStorage.setItem('usuarioId', usuarioID);
         }
-
-        console.log("Usuario ID:", usuarioID);
     }, []);
 
 
@@ -74,10 +81,13 @@ const Sala = () => {
     const handleComprarClick = async () => {
         const usuarioID = localStorage.getItem('usuarioId');
 
-        // Verificar que el usuarioId esté presente
         if (!usuarioID) {
-            console.log("No se ha encontrado el usuarioId en localStorage.");
-            alert("No se ha encontrado un usuario activo.");
+            return;
+        }
+
+        const ahora = new Date();
+        if (fechaSesion && fechaSesion < ahora) {
+            setSesionExpirada(true);
             return;
         }
 
@@ -90,7 +100,6 @@ const Sala = () => {
             }).filter(id => id !== undefined);
 
             try {
-                // Enviar usuarioID como parámetro de consulta en la URL
                 await axios.put(
                     `${Config.urlBackend}/butacas/bloquear?usuarioId=${usuarioID}`,
                     idsSeleccionados
@@ -105,11 +114,9 @@ const Sala = () => {
                 });
             } catch (error) {
                 console.error("Error al bloquear las butacas:", error.response ? error.response.data : error);
-                alert("Ocurrió un error al bloquear las butacas. Intenta de nuevo.");
             }
-
         } else {
-            alert("Selecciona al menos una butaca.");
+            setMensajeErrorButaca(true);
         }
     };
 
@@ -190,7 +197,6 @@ const Sala = () => {
                 </div>
             </div>
 
-
             <div className='seatplan__cinema-screen txt-center uppercase'>
                 <span>Pantalla</span>
             </div>
@@ -247,9 +253,33 @@ const Sala = () => {
                     <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" width="68" />
                 </div>
             </div>
+            {mensajeErrorButaca && (
+                <div className="popup-overlay">
+                    <div className="popup-mensaje">
+                        <p>Por favor seleccione al menos una butaca.</p>
+                        <button onClick={() => setMensajeErrorButaca(false)}>Cerrar</button>
+                    </div>
+                </div>
+            )}
+
+            {sesionExpirada && (
+                <div className="popup-overlay">
+                    <div className="popup-mensaje">
+                        <p>Esta sesión ha expirado. No puedes comprar en esta sesión.</p>
+                        <button onClick={() => navigate('/')}>Ir a la cartelera</button>
+                    </div>
+                </div>
+            )}
 
             <div className="boton-comprar-container">
-                <button className="boton-comprar" onClick={handleComprarClick}>Comprar</button>
+                <button
+                    onClick={handleComprarClick}
+                    disabled={sesionExpirada}
+                    className={`boton-comprar ${sesionExpirada ? 'boton-desactivado' : ''}`}
+                >
+                    Comprar
+                </button>
+
             </div>
         </div>
     );

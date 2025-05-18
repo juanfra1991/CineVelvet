@@ -83,12 +83,13 @@ const Administrador = () => {
                 onChange={(e) => setContrasena(e.target.value)}
             />
             <div>
-                <label>Recuerdame</label>
+                <label className="label-recuerdame">Recuerdame
                 <input
                     type="checkbox"
                     checked={recordar}
                     onChange={() => setRecordar(!recordar)}
                 />
+                </label>
             </div>
 
             <button onClick={handleLogin}>Iniciar sesión</button>

@@ -54,7 +54,7 @@ const Peliculas = () => {
         
           <div className="header-background">
             <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
-              <FiArrowLeftCircle size={24} />
+              <FiArrowRightCircle size={24} />
             </button>
           </div>
       

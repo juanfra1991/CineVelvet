@@ -52,7 +52,7 @@ export default function EditarPelicula() {
 
       <header className="home-header">
         <div className="header-background">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Atras">
             <FiArrowLeftCircle size={24} />
           </button>
         </div>

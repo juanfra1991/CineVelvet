@@ -58,6 +58,12 @@
   color: #555;
 }
 
+.label-recuerdame {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .admin-container input[type="checkbox"] {
   margin-right: 500px;
 }

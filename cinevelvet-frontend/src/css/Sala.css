@@ -20,7 +20,7 @@
 }
 
 .seatplan__cinema-screen {
-    width: 75% ;
+    width: 75%;
     background: hsla(202, 12%, 44%, 1);
     box-shadow: inset 0 -10px 5px -10px #000;
     color: hsla(0, 0%, 100%, 1);
@@ -75,7 +75,6 @@
 
 .leyenda-icono.seleccionada {
     filter: brightness(0.7) sepia(1) hue-rotate(100deg) saturate(2);
-
 }
 
 .leyenda-icono.bloqueada {
@@ -164,13 +163,11 @@
 .boton-comprar-container {
     display: flex;
     justify-content: flex-end;
-    /* Alinea a la izquierda */
     margin-top: 20px;
 }
 
 .boton-comprar {
     background-color: #800000;
-    /* granate */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -245,15 +242,16 @@
         border-bottom-left-radius: .25rem;
         border-bottom-right-radius: .25rem;
     }
-    .leyenda-butacas {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
-    gap: 10px;
-    margin-bottom: 1.5rem;
-    align-items: center;
-    flex-wrap: wrap;
 
+    .leyenda-butacas {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 }
 
 .formulario-reserva {
