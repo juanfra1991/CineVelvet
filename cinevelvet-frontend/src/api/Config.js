@@ -3,7 +3,7 @@
 // API_URL local
 export const API_URL = 'http://localhost:8080/api';
 // API_URL emulador fisico
-//export const API_URL = 'http://192.168.0.12:8080/api';
+//export const API_URL = 'http://192.168.0.13:8080/api';
 // API_URL emulador virtual
 //export const API_URL = 'http://10.0.2.2:8080/api';
 
