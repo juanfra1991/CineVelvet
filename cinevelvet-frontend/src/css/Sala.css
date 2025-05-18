@@ -75,7 +75,6 @@
 
 .leyenda-icono.seleccionada {
     filter: brightness(0.7) sepia(1) hue-rotate(100deg) saturate(2);
-
 }
 
 .leyenda-icono.bloqueada {
@@ -197,13 +196,11 @@
 .boton-comprar-container {
     display: flex;
     justify-content: flex-end;
-    /* Alinea a la izquierda */
     margin-top: 20px;
 }
 
 .boton-comprar {
     background-color: #800000;
-    /* granate */
     color: white;
     padding: 10px 20px;
     border: none;

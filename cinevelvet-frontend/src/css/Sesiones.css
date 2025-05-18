@@ -87,7 +87,7 @@ select:focus {
 }
 
 .popup-mensaje {
-  background-color: #2ecc71;
+  background-color: #800000;
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
@@ -96,6 +96,23 @@ select:focus {
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadein 0.3s ease-in;
+}
+
+.popup-mensaje button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background-color: white;
+  color: #800000;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.popup-mensaje button:hover {
+  background-color: #222222;
+  color: white;
 }
 
 @keyframes fadein {
