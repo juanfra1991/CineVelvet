@@ -35,17 +35,31 @@ export default function EditarPelicula() {
   const isFormValid = Object.values(form).every(value => String(value).trim() !== '');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`${Config.urlBackend}/peliculas/${id}`, form);
-      setMensajeGuardado("Cambios guardados correctamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    } catch (error) {
-      console.error('Error al editar la película:', error);
-      setMensajeGuardado("Error al guardar los cambios.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    }
-  };
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append("titulo", form.titulo);
+  formData.append("descripcion", form.descripcion);
+  formData.append("duracion", form.duracion);
+  formData.append("fechaEstreno", form.fechaEstreno);
+  formData.append("genero", form.genero);
+  formData.append("edades", form.edades);
+
+  if (form.portada && form.portada instanceof File) {
+    formData.append("portada", form.portada);
+  }
+
+  try {
+    await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
+    setMensajeGuardado("Cambios guardados correctamente.");
+    setTimeout(() => setMensajeGuardado(""), 3000);
+  } catch (error) {
+    console.error('Error al editar la película:', error);
+    setMensajeGuardado("Error al guardar los cambios.");
+    setTimeout(() => setMensajeGuardado(""), 3000);
+  }
+};
+
 
   return (
     <div className="peliculas-admin-container">
@@ -129,10 +143,9 @@ export default function EditarPelicula() {
 
         <label>Imagen de portada:</label>
         <input
-          type="text"
-          name="portada"
-          value={form.portada}
-          onChange={handleChange}
+          type="file"
+          accept="image/*"
+          onChange={(e) => setForm(prev => ({ ...prev, portada: e.target.files[0] }))}
           className="input-field"
         />
 
