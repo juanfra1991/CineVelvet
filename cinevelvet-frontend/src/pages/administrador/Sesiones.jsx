@@ -4,8 +4,12 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
+import logoCinema from '../../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
+import '../../css/Home.css';
+
 
 const Sesiones = () => {
   const [peliculas, setPeliculas] = useState([]);
@@ -105,7 +109,22 @@ const Sesiones = () => {
   const isFormValid = fecha && peliculaId && salaId;
 
   return (
-    <div className="sesiones-admin-container">
+    <div className="sesiones-admin-container home-container">
+      <div>
+        <header className="home-header">
+          <div className="header-background">
+            <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+              <FiArrowLeftCircle size={24} />
+            </button>
+          </div>
+          <div className="header-content">
+            <img className='logo' src={logoCinema} alt="Cinema Logo" />
+            <div>
+              <h1 className='title'>Velvet Cinema</h1>
+            </div>
+          </div>
+        </header>
+      </div>
       <h2 className="titulo">Gestión de Sesiones</h2>
 
       {/* Botón de "Atrás" */}

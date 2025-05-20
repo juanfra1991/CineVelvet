@@ -47,6 +47,12 @@
   }
 }
 
+.flex-button{
+      width: 50%;
+    text-align: center;
+    text-align: center;
+}
+
 .dashboard-header {
   display: flex;
   justify-content: flex-end;
@@ -83,7 +89,7 @@
 }
 
 .dashboard-title {
-  font-size: 2vw;
+    font-size: 18px;
   margin-bottom: 1.5vw;
   font-weight: 600;
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -92,7 +98,6 @@
 
 .dashboard-nav {
   display: flex;
-  flex-direction: column;
   gap: 1vw;
 }
 
@@ -102,12 +107,16 @@ background-color: #970000c2;
     color: rgb(255, 255, 255);
     padding: 1vw 1.5vw;
     border: none;
+    border-radius: 8px;
     text-align: left;
-    font-size: 1.2vw;
-    font-weight: 500;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 0.5vw;
     transition: background-color 0.3s ease;
+}
+
+.radius{
+  border-radius: 6px;
 }
 
 .menu-button:hover,

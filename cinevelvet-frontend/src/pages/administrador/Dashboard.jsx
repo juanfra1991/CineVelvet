@@ -41,12 +41,12 @@ export default function Dashboard() {
           </div>
         </header>
         <h2 className="dashboard-title">Panel Administrador</h2>
-        <nav className="dashboard-nav">
+        <nav className="dashboard-nav ">
           {menuItems.map((item) => (
             <button
               key={item.name}
               onClick={() => navigate(item.path)}
-              className={`menu-button ${window.location.pathname === item.path ? 'active' : ''}`}
+              className={`menu-button flex-button ${window.location.pathname === item.path ? 'active' : ''}`}
             >
               {item.name}
             </button>

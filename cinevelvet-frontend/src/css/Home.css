@@ -6,6 +6,8 @@
   max-width: 100%;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 1024px) {
@@ -166,11 +168,12 @@
 }
 
 @media (max-width: 768px) {
-  
+
   .pelicula-card {
     flex-direction: column;
     align-items: center;
   }
+
   .pelicula-card img {
     width: 200px;
     height: 280px;
