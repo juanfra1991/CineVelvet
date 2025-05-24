@@ -48,9 +48,9 @@
 }
 
 .flex-button{
+  display: flex;
       width: 50%;
-    text-align: center;
-    text-align: center;
+    text-align: center !important;
 }
 
 .dashboard-header {
@@ -108,7 +108,7 @@ background-color: #970000c2;
     padding: 1vw 1.5vw;
     border: none;
     border-radius: 8px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     cursor: pointer;
     border-radius: 0.5vw;

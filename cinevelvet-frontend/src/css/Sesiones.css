@@ -116,7 +116,18 @@ select:focus {
 }
 
 @keyframes fadein {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.flex-botones {
+  justify-content: center;
+  display: flex;
+}
