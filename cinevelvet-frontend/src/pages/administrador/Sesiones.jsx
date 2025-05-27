@@ -116,18 +116,19 @@ const Sesiones = () => {
 
   return (
     <div className="sesiones-admin-container home-container">
-      <header className="home-header">
-        <div className="header-background">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
-            <FiArrowLeftCircle size={24} />
-          </button>
-        </div>
-        <div className="header-content">
-          <img className='logo' src={logoCinema} alt="Cinema Logo" />
-          <h1 className='title'>Velvet Cinema</h1>
-        </div>
-      </header>
-
+      <div>
+        <header className="home-header">
+          <div className="header-background header-content">
+            <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+              <FiArrowLeftCircle size={24} />
+            </button>
+            <img className='logo' src={logoCinema} alt="Cinema Logo" />
+            <div>
+              <h1 className='title'>Velvet Cinema</h1>
+            </div>
+          </div>
+        </header>
+      </div>
       <h2 className="titulo">Gestión de Sesiones</h2>
 
       <div className='dashboard-nav'>

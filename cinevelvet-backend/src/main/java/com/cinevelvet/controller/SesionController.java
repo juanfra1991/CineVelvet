@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -86,9 +87,14 @@ public class SesionController {
                             .toLocalDateTime();
                     return sesionFecha.isEqual(now) || sesionFecha.isAfter(now);
                 })
+                .sorted(Comparator.comparing(sesion -> sesion.getFecha()
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime()))
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
+
 
     @PostMapping
     public ResponseEntity<Sesion> createSesion(@RequestBody SesionDTO sesionDTO) {
