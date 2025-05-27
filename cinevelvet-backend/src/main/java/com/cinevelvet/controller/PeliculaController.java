@@ -21,12 +21,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/peliculas")
 @CrossOrigin
 public class PeliculaController {
 
+    private static final Logger logger = Logger.getLogger(PeliculaController.class.getName());
     private final PeliculaRepository peliculaRepository;
 
     @Value("${upload.dir}")
@@ -77,9 +79,8 @@ public class PeliculaController {
             Path destino = Paths.get(uploadDir, nombreArchivo);
             Files.copy(portada.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
 
-            String fechaEntrada = fechaEstreno.replace("-", "/");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(fechaEntrada);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = sdf.parse(fechaEstreno);
 
             Pelicula pelicula = new Pelicula();
             pelicula.setTitulo(titulo);
@@ -113,7 +114,7 @@ public class PeliculaController {
 
         Optional<Pelicula> optionalPelicula = peliculaRepository.findById(id);
 
-        if (!optionalPelicula.isPresent()) {
+        if (optionalPelicula.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
@@ -133,9 +134,8 @@ public class PeliculaController {
                 pelicula.setPortada(nombreArchivo);
             }
 
-            String fechaEntrada = fechaEstreno.replace("-", "/");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(fechaEntrada);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = sdf.parse(fechaEstreno);
 
             pelicula.setTitulo(titulo);
             pelicula.setDescripcion(descripcion);
@@ -148,10 +148,10 @@ public class PeliculaController {
             return ResponseEntity.ok(peliculaEditada);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
