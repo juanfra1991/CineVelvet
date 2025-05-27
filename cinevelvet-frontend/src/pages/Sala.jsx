@@ -20,7 +20,9 @@ const Sala = () => {
     const [mensajeErrorButaca, setMensajeErrorButaca] = useState(false);
     const [fechaSesion, setFechaSesion] = useState(null);
     const [sesionExpirada, setSesionExpirada] = useState(false);
+    const [butacaOcupada, setButacaOcupada] = useState('');
     const usuarioID = localStorage.getItem('usuarioId');
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -58,7 +60,6 @@ const Sala = () => {
             localStorage.setItem('usuarioId', usuarioID);
         }
     }, []);
-
 
     if (loading) return <p>Cargando sala...</p>;
     if (!sala || !sesion) return <p>No se encontró la sala o la sesión.</p>;
@@ -114,6 +115,7 @@ const Sala = () => {
                 });
             } catch (error) {
                 console.error("Error al bloquear las butacas:", error.response ? error.response.data : error);
+                setButacaOcupada('ocupada');
             }
         } else {
             setMensajeErrorButaca(true);
@@ -262,6 +264,13 @@ const Sala = () => {
                 </div>
             )}
 
+            {butacaOcupada && <div className="popup-overlay">
+                <div className="popup-mensaje">
+                    <p>La selección de butacas está ocupada por otro usuario.</p>
+                    <button onClick={() => window.location.reload()}>Cerrar</button>
+                </div>
+            </div>}
+
             {sesionExpirada && (
                 <div className="popup-overlay">
                     <div className="popup-mensaje">
@@ -281,6 +290,8 @@ const Sala = () => {
                 </button>
 
             </div>
+
+
         </div>
     );
 };

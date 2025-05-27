@@ -61,7 +61,7 @@
 .campo select {
   width: 100%;
   padding: 1vw 1.5vw;
-  font-size: 1vw;
+  font-size: 14px;
   border: 1px solid #dcdde1;
   border-radius: 0.5vw;
   transition: border-color 0.3s ease;

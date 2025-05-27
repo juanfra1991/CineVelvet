@@ -10,6 +10,10 @@ import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 import '../../css/Home.css';
 import '../../css/Dashboard.css';
+import '../../css/Sala.css';
+import butacaImg from '../../assets/butaca.svg';
+import iconoCheck from '../../assets/iconoCheck.svg';
+import iconoNocheck from '../../assets/iconoNocheck.svg';
 
 const Sesiones = () => {
   const [peliculas, setPeliculas] = useState([]);
@@ -21,6 +25,12 @@ const Sesiones = () => {
   const [selectedSesion, setSelectedSesion] = useState(null);
   const [mensajeGuardado, setMensajeGuardado] = useState('');
   const [vistaActiva, setVistaActiva] = useState('crear');
+  const [peliculaFiltroId, setPeliculaFiltroId] = useState('');
+  const [salaFiltroId, setSalaFiltroId] = useState('');
+  const [butacasSesion, setButacasSesion] = useState([]);
+  const [mostrarDistribucion, setMostrarDistribucion] = useState(false);
+  const [salaDetalle, setSalaDetalle] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,11 +74,7 @@ const Sesiones = () => {
     }
 
     try {
-      await axios.post(`${Config.urlBackend}/sesiones`, {
-        fecha,
-        peliculaId,
-        salaId,
-      });
+      await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
       setMensajeGuardado("Sesión creada correctamente.");
       setTimeout(() => setMensajeGuardado(""), 3000);
       setFecha(null);
@@ -100,7 +106,13 @@ const Sesiones = () => {
     });
   };
 
-  const isFormValid = fecha && peliculaId && salaId;
+  const salasConSesionesDePelicula = salas.filter(sala =>
+    sesiones.some(s => s.peliculaId === Number(peliculaFiltroId) && s.salaId === sala.id)
+  );
+
+  const sesionesFiltradas = sesiones.filter(s =>
+    s.peliculaId === Number(peliculaFiltroId) && s.salaId === Number(salaFiltroId)
+  );
 
   return (
     <div className="sesiones-admin-container home-container">
@@ -118,119 +130,150 @@ const Sesiones = () => {
 
       <h2 className="titulo">Gestión de Sesiones</h2>
 
-      {/* Navegación entre vistas */}
       <div className='dashboard-nav'>
-        <button
-          className={`menu-button flex-button ${vistaActiva === 'crear' ? 'activo' : ''}`}
-          onClick={() => setVistaActiva('crear')}
-        >
-          Crear sesión
-        </button>
-        <button
-          className={`menu-button flex-button ${vistaActiva === 'lista' ? 'activo' : ''}`}
-          onClick={() => setVistaActiva('lista')}
-        >
-          Lista de sesiones
-        </button>
+        <button className={`flex-button ${vistaActiva === 'crear' ? 'btn-selected' : 'btn-unselected'}`} onClick={() => setVistaActiva('crear')}>Crear sesión</button>
+        <button className={`flex-button ${vistaActiva === 'lista' ? 'btn-selected' : 'btn-unselected'}`} onClick={() => setVistaActiva('lista')}>Lista de sesiones</button>
       </div>
 
-      {/* Vista: Crear sesión */}
       {vistaActiva === 'crear' && (
         <>
-          <h3>Crear Nueva Sesión</h3>
+          <h3 className='margin'>Crear Nueva Sesión</h3>
           <div className="formulario-editar">
             <div className="campo">
               <label>Fecha de la sesión:</label>
-              <DatePicker
-                selected={fecha}
-                onChange={(date) => setFecha(date)}
-                showTimeSelect
-                timeIntervals={5}
-                dateFormat="Pp"
-                className="input-field"
-                locale={es}
-                placeholderText="Selecciona una fecha y hora"
-              />
+              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
             </div>
-
             <div className="campo">
               <label>Película:</label>
-              <select
-                value={peliculaId}
-                onChange={(e) => setPeliculaId(e.target.value)}
-                className="input-field"
-              >
+              <select value={peliculaId} onChange={(e) => setPeliculaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una película</option>
                 {peliculas.map((pelicula) => (
-                  <option key={pelicula.id} value={pelicula.id}>
-                    {pelicula.titulo}
-                  </option>
+                  <option key={pelicula.id} value={pelicula.id}>{pelicula.titulo}</option>
                 ))}
               </select>
             </div>
-
             <div className="campo">
               <label>Sala:</label>
-              <select
-                value={salaId}
-                onChange={(e) => setSalaId(e.target.value)}
-                className="input-field"
-              >
+              <select value={salaId} onChange={(e) => setSalaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una sala</option>
                 {salas.map((sala) => (
-                  <option key={sala.id} value={sala.id}>
-                    {sala.nombre} (Capacidad: {sala.capacidad})
-                  </option>
+                  <option key={sala.id} value={sala.id}>{sala.nombre} (Capacidad: {sala.capacidad})</option>
                 ))}
               </select>
             </div>
-
             {mensajeGuardado && <div className="popup-mensaje">{mensajeGuardado}</div>}
-
-            <button
-              onClick={handleCrearSesion}
-              className="btn"
-              disabled={!isFormValid}
-            >
-              Crear Sesión
-            </button>
+            <button onClick={handleCrearSesion} className="btn" disabled={!fecha || !peliculaId || !salaId}>Crear Sesión</button>
           </div>
         </>
       )}
 
-      {/* Vista: Lista de sesiones */}
       {vistaActiva === 'lista' && (
         <>
           <h3>Listado de Sesiones</h3>
+          <div className="campo">
+            <label>Selecciona una película:</label>
+            <select value={peliculaFiltroId} onChange={(e) => { setPeliculaFiltroId(e.target.value); setSalaFiltroId(''); setSelectedSesion(null); setMostrarDistribucion(false); }} className="input-field">
+              <option value="">Seleccione una película</option>
+              {peliculas.map((pelicula) => (
+                <option key={pelicula.id} value={pelicula.id}>{pelicula.titulo}</option>
+              ))}
+            </select>
+          </div>
 
-          {sesiones.length === 0 ? (
-            <p>No hay sesiones programadas.</p>
-          ) : (
-            <>
-              <label>Selecciona una sesión:</label>
-              <select
-                value={selectedSesion ? selectedSesion.id : ''}
-                onChange={(e) => {
-                  const selected = sesiones.find(s => s.id === Number(e.target.value));
-                  setSelectedSesion(selected || null);
-                }}
-                className="input-field"
-              >
-                <option value="">Seleccione una sesión</option>
-                {sesiones.map((sesion) => (
-                  <option key={sesion.id} value={sesion.id}>
-                    {formatDate(new Date(sesion.fecha))} - {sesion.peliculaTitulo} en {sesion.salaNombre}
-                  </option>
+          {peliculaFiltroId && (
+            <div className="campo">
+              <label>Selecciona una sala:</label>
+              <select value={salaFiltroId} onChange={(e) => { setSalaFiltroId(e.target.value); setSelectedSesion(null); setMostrarDistribucion(false); }} className="input-field">
+                <option value="">Seleccione una sala</option>
+                {salasConSesionesDePelicula.map((sala) => (
+                  <option key={sala.id} value={sala.id}>{sala.nombre}</option>
                 ))}
               </select>
+            </div>
+          )}
 
-              {selectedSesion && (
-                <div className="botones">
-                  <button onClick={() => navigate(`/editar-sesion/${selectedSesion.id}`)}>Editar</button>
-                  <button onClick={() => handleEliminarSesion(selectedSesion.id)}>Eliminar</button>
-                </div>
-              )}
-            </>
+          {peliculaFiltroId && salaFiltroId && sesionesFiltradas.length > 0 && (
+            <div className="campo">
+              <label>Selecciona una sesión:</label>
+              <select value={selectedSesion ? selectedSesion.id : ''} onChange={async (e) => {
+                const selected = sesionesFiltradas.find(s => s.id === Number(e.target.value));
+                setSelectedSesion(selected || null);
+                setMostrarDistribucion(false);
+                if (selected) {
+                  try {
+                    const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selected.id}/${selected.salaId}`);
+                    setButacasSesion(res.data);
+                  } catch (error) {
+                    console.error('Error al cargar las butacas:', error);
+                  }
+                }
+              }} className="input-field">
+                <option value="">Seleccione una sesión</option>
+                {sesionesFiltradas.map((sesion) => (
+                  <option key={sesion.id} value={sesion.id}>{formatDate(new Date(sesion.fecha))}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {selectedSesion && (
+            <div className="botones">
+              <button onClick={() => navigate(`/editar-sesion/${selectedSesion.id}`)}>Editar</button>
+              <button onClick={() => handleEliminarSesion(selectedSesion.id)}>Eliminar</button>
+              <button onClick={async () => {
+                try {
+                  const salaRes = await axios.get(`${Config.urlBackend}/butacas/sala/${selectedSesion.salaId}`);
+                  setSalaDetalle(salaRes.data);
+                  setMostrarDistribucion(prev => !prev);
+                } catch (error) {
+                  console.error('Error al cargar la sala:', error);
+                }
+              }}>
+                {mostrarDistribucion ? 'Ocultar distribución' : 'Distribución de sala'}
+              </button>
+            </div>
+          )}
+
+          {mostrarDistribucion && salaDetalle && (
+            <div>
+              <div className="seatplan__cinema-screen txt-center uppercase">
+                <span>Pantalla</span>
+              </div>
+
+              <div className="sala-grid">
+                {Array.from({ length: salaDetalle.filas }).map((_, filaIndex) => {
+                  const fila = filaIndex + 1;
+                  return Array.from({ length: salaDetalle.columnas + 1 }).map((_, colIndex) => {
+                    // Insertamos el pasillo visualmente al centro
+                    const mitad = Math.floor(salaDetalle.columnas / 2);
+                    if (colIndex === mitad) {
+                      return <div className="pasillo" key={`pasillo-${filaIndex}-${colIndex}`} />;
+                    }
+
+                    // Si pasamos la mitad, corremos el índice una unidad para evitar superposición con pasillo
+                    const columna = colIndex > mitad ? colIndex : colIndex + 1;
+                    const indexButaca = (filaIndex * salaDetalle.columnas) + (columna - 1);
+                    const butaca = butacasSesion[indexButaca];
+
+                    return (
+                      <div
+                        key={`butaca-${filaIndex}-${columna}`}
+                        className={`butaca ${butaca?.ocupada ? 'butaca-ocupada' : ''}`}
+                      >
+                        <div className="butaca-contenedor">
+                          <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
+                          <img
+                            src={butaca?.ocupada ? iconoNocheck : iconoCheck}
+                            alt={butaca?.ocupada ? 'Ocupada' : 'Libre'}
+                            className="icono-check"
+                          />
+                        </div>
+                      </div>
+                    );
+                  });
+                })}
+              </div>
+            </div>
           )}
         </>
       )}

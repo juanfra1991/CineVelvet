@@ -46,7 +46,7 @@ export default function Dashboard() {
             <button
               key={item.name}
               onClick={() => navigate(item.path)}
-              className={`menu-button flex-button ${window.location.pathname === item.path ? 'active' : ''}`}
+              className={`menu-button btn-selected flex-button ${window.location.pathname === item.path ? 'active' : ''}`}
             >
               {item.name}
             </button>

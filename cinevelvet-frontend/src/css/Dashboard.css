@@ -98,31 +98,42 @@
 
 .dashboard-nav {
   display: flex;
-  gap: 1vw;
 }
+
+.center{
+  text-align: start;
+}
+
 
 .menu-button,
 .dashboard-nav button {
-background-color: #970000c2;
-    color: rgb(255, 255, 255);
+
     padding: 1vw 1.5vw;
     border: none;
     border-radius: 8px;
     text-align: center;
-    font-weight: bold;
     cursor: pointer;
-    border-radius: 0.5vw;
     transition: background-color 0.3s ease;
+    justify-content: center;
+
+}
+
+.btn-unselected{
+  background-color: #bdc3c7;
+  color: #000;
+
+}
+
+.btn-selected{
+  background-color: #970000c2;
+  color: rgb(255, 255, 255);
 }
 
 .radius{
   border-radius: 6px;
 }
 
-.menu-button:hover,
-.dashboard-nav button:hover {
-  background-color: #222222;
-}
+
 
 .menu-button.active,
 .dashboard-nav button.active {

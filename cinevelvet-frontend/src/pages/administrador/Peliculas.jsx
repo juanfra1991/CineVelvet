@@ -7,14 +7,15 @@ import '../../css/Peliculas.css';
 import '../../css/Home.css';
 import '../../css/Dashboard.css';
 import logoCinema from '../../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 
 const Peliculas = () => {
   const [peliculas, setPeliculas] = useState([]);
   const [selectedPelicula, setSelectedPelicula] = useState(null);
   const [mensajeGuardado, setMensajeGuardado] = useState('');
+  const [vistaActiva, setVistaActiva] = useState('crear');
   const navigate = useNavigate();
 
-  // Obtener las películas
   const fetchPeliculas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/peliculas`);
@@ -24,16 +25,13 @@ const Peliculas = () => {
     }
   };
 
-  // Publicar / Ocultar película
   const handleTogglePublicar = async (id) => {
     try {
       const res = await axios.patch(`${Config.urlBackend}/peliculas/${id}/publicar`);
-
       const updatedPelicula = res.data;
       setPeliculas(peliculas.map(pelicula =>
         pelicula.id === id ? updatedPelicula : pelicula
       ));
-
       setSelectedPelicula(updatedPelicula);
       setMensajeGuardado("Estado de publicación actualizado exitosamente.");
       setTimeout(() => setMensajeGuardado(""), 3000);
@@ -56,68 +54,82 @@ const Peliculas = () => {
   return (
     <div className="peliculas-admin-container">
       <header className="home-header">
-        <div className="header-background"></div>
+        <div className="header-background">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+            <FiArrowLeftCircle size={24} />
+          </button>
+        </div>
         <div className="header-content">
-          <img
-            className='logo'
-            src={logoCinema}
-            alt="Cinema Logo"
-            onClick={() => navigate('/')}
-            style={{ cursor: 'pointer' }}
-          />
-          <div>
-            <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-              Velvet Cinema
-            </h1>
-          </div>
+          <img className='logo' src={logoCinema} alt="Cinema Logo" />
+          <h1 className='title'>Velvet Cinema</h1>
         </div>
       </header>
+
       <h2 className='h2'>Gestión de Películas</h2>
-      <hr />
 
-      <h5>Crear Nueva Película</h5>
-      <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
-        Crear Nueva Película
-      </button>
-
-      <hr />
-
-      <h5>Listado de Películas Disponibles</h5>
-      <div className="campo">
-        <label htmlFor="select-pelicula">Selecciona una película:</label>
-        <Select
-          id="select-pelicula"
-          value={selectedPelicula ? { value: selectedPelicula.id, label: selectedPelicula.titulo } : null}
-          onChange={(selectedOption) => {
-            const selected = peliculas.find(pelicula => pelicula.id === selectedOption.value);
-            setSelectedPelicula(selected || null);
-          }}
-          options={opcionesPeliculas}
-          placeholder="Busca una película..."
-          isSearchable
-        />
+      {/* Navegación entre vistas */}
+      <div className='dashboard-nav'>
+        <button
+          className={`flex-button ${vistaActiva === 'crear' ? 'btn-selected' : 'btn-unselected'}`}
+          onClick={() => setVistaActiva('crear')}
+        >
+          Crear Película
+        </button>
+        <button
+          className={`flex-button ${vistaActiva === 'lista' ? 'btn-selected' : 'btn-unselected'}`}
+          onClick={() => setVistaActiva('lista')}
+        >
+          Lista de Películas
+        </button>
       </div>
-      {mensajeGuardado && (
-        <div className="popup-mensaje">
-          {mensajeGuardado}
-        </div>
-      )}
-      {selectedPelicula && (
-        <div className="botones">
 
-          <button onClick={() => navigate(`/editar-pelicula/${selectedPelicula.id}`)}>Editar</button>
-          <button onClick={() => handleTogglePublicar(selectedPelicula.id)}>
-            {selectedPelicula.publicada ? 'Ocultar' : 'Publicar'}
+      {/* Vista: Crear Película */}
+      {vistaActiva === 'crear' && (
+        <div className="crear-container">
+          <h3>Crear Nueva Película</h3>
+          <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
+            Ir al Formulario
           </button>
         </div>
       )}
-      <div className='boton-comprar-container'>
-        <button onClick={() => navigate(`/dashboard`)} className="boton-comprar">
-         Cerrar
-      </button>
+
+      {/* Vista: Listado de Películas */}
+      {vistaActiva === 'lista' && (
+        <div>
+          <h3>Listado de Películas</h3>
+
+          <div className="campo">
+            <label htmlFor="select-pelicula">Selecciona una película:</label>
+            <Select
+              id="select-pelicula"
+              value={selectedPelicula ? { value: selectedPelicula.id, label: selectedPelicula.titulo } : null}
+              onChange={(selectedOption) => {
+                const selected = peliculas.find(pelicula => pelicula.id === selectedOption.value);
+                setSelectedPelicula(selected || null);
+              }}
+              options={opcionesPeliculas}
+              placeholder="Busca una película..."
+              isSearchable
+            />
+          </div>
+
+          {mensajeGuardado && (
+            <div className="popup-mensaje">
+              {mensajeGuardado}
+            </div>
+          )}
+
+          {selectedPelicula && (
+            <div className="botones">
+              <button onClick={() => navigate(`/editar-pelicula/${selectedPelicula.id}`)}>Editar</button>
+              <button onClick={() => handleTogglePublicar(selectedPelicula.id)}>
+                {selectedPelicula.publicada ? 'Ocultar' : 'Publicar'}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
-      </div>
-      
   );
 };
 

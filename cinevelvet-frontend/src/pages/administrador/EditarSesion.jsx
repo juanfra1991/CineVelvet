@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Config } from '../../api/Config';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import logoCinema from '../../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 
@@ -50,6 +52,9 @@ const EditarSesion = () => {
     }
   };
 
+  const peliculaSeleccionada = peliculas.find(p => p.id === Number(peliculaId));
+  const salaSeleccionada = salas.find(s => s.id === Number(salaId));
+
   useEffect(() => {
     fetchSesion();
     fetchPeliculas();
@@ -63,7 +68,7 @@ const EditarSesion = () => {
         pelicula: { id: peliculaId },
         sala: { id: salaId },
       };
-  
+
       await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
       setMensajeGuardado("Sesión actualizada correctamente.");
       setTimeout(() => setMensajeGuardado(""), 3000);
@@ -77,12 +82,25 @@ const EditarSesion = () => {
   if (!sesion) return <div>Cargando sesión...</div>;
 
   return (
-    <div className="sesiones-admin-container">
+    <div className="sesiones-admin-container home-container">
+      <header className="home-header">
+        <div className="header-background">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+            <FiArrowLeftCircle size={24} />
+          </button>
+        </div>
+        <div className="header-content">
+          <img className='logo' src={logoCinema} alt="Cinema Logo" />
+          <h1 className='title'>Velvet Cinema</h1>
+        </div>
+      </header>
+
       <h2>Editar Sesión</h2>
 
-      <button onClick={() => navigate('/sesiones')} className="back-button">
-        <i className="fas fa-arrow-left"></i> Volver
-      </button>
+      <p className='center'><strong>Película: {peliculaSeleccionada ? peliculaSeleccionada.titulo : 'Cargando...'}</strong></p>
+      <p className='center'><strong>Sala: {salaSeleccionada ? salaSeleccionada.nombre : 'Cargando...'}</strong></p>
+      <p className='center'><strong>Fecha: {fecha ? fecha.toLocaleString('es-ES') : 'Cargando...'}</strong></p>
+      <hr></hr>
 
       <div className="formulario-editar">
         <div className="campo">
@@ -98,22 +116,7 @@ const EditarSesion = () => {
             placeholderText="Selecciona una fecha y hora"
           />
         </div>
-
-        <div className="campo">
-          <label>Película:</label>
-          <select
-            value={peliculaId}
-            onChange={(e) => setPeliculaId(e.target.value)}
-            className="input-field"
-          >
-            {peliculas.map((pelicula) => (
-              <option key={pelicula.id} value={pelicula.id}>
-                {pelicula.titulo}
-              </option>
-            ))}
-          </select>
-        </div>
-
+        
         <div className="campo">
           <label>Sala:</label>
           <select
