@@ -156,8 +156,6 @@ public class PeliculaController {
         }
     }
 
-
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePelicula(@PathVariable Long id) {
         return peliculaRepository.findById(id).map(pelicula -> {
