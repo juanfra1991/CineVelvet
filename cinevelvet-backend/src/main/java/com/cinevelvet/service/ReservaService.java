@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class ReservaService {
 
     private final ReservaRepository reservaRepository;
+    private final EntradaRepository entradaRepository;
     private final ClienteRepository clienteRepository;
     private final ButacaRepository butacaRepository;
     private final SesionRepository sesionRepository;
@@ -85,5 +86,23 @@ public class ReservaService {
         Sesion sesion = sesionRepository.findById(sesionId)
                 .orElseThrow(() -> new RuntimeException("Sesión no encontrada con ID: " + sesionId));
         return reservaRepository.findBySesion(sesion);
+    }
+
+    public void eliminarEntradasPorReservaYButacas(Long reservaId, List<Long> butacasId) {
+        Reserva reserva = reservaRepository.findById(reservaId).orElse(null);
+        if (reserva == null) return;
+
+        List<Entrada> entradasAEliminar = reserva.getEntradas().stream()
+                .filter(e -> butacasId.contains(e.getButaca().getId()))
+                .toList();
+
+        entradaRepository.deleteAll(entradasAEliminar);
+        reserva.getEntradas().removeAll(entradasAEliminar);
+
+        if (reserva.getEntradas().isEmpty()) {
+            reservaRepository.delete(reserva);
+        } else {
+            reservaRepository.save(reserva);
+        }
     }
 }

@@ -10,6 +10,7 @@ CREATE TABLE pelicula (
     fecha_estreno DATE NOT NULL,
     genero VARCHAR(50),
     edades VARCHAR(150),
+    trailer VARCHAR(150),
     portada VARCHAR(1000),
     publicada BOOLEAN DEFAULT FALSE
 );

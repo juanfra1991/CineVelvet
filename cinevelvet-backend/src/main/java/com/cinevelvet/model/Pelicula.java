@@ -37,6 +37,9 @@ public class Pelicula {
     @Column(length = 1000)
     private String portada;
 
+    @Column(length = 150)
+    private String trailer;
+
     @Column(nullable = false)
     private boolean publicada = false;
 }

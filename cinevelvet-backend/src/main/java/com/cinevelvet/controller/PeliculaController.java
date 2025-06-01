@@ -67,7 +67,7 @@ public class PeliculaController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Pelicula> createPelicula(@RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("duracion") String duracion, @RequestParam("fechaEstreno") String fechaEstreno, @RequestParam("genero") String genero, @RequestParam("edades") String edades, @RequestParam("portada") MultipartFile portada) {
+    public ResponseEntity<Pelicula> createPelicula(@RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("duracion") String duracion, @RequestParam("fechaEstreno") String fechaEstreno, @RequestParam("genero") String genero, @RequestParam("edades") String edades, @RequestParam("trailer") String trailer, @RequestParam("portada") MultipartFile portada) {
         try {
             // Crea la carpeta si no existe
             File directorio = new File(uploadDir);
@@ -90,6 +90,7 @@ public class PeliculaController {
             pelicula.setGenero(genero);
             pelicula.setEdades(edades);
             pelicula.setPortada(nombreArchivo);
+            pelicula.setTrailer(trailer);
 
             Pelicula nuevaPelicula = peliculaRepository.save(pelicula);
             return ResponseEntity.created(URI.create("/api/peliculas/" + nuevaPelicula.getId())).body(nuevaPelicula);
@@ -110,6 +111,7 @@ public class PeliculaController {
             @RequestParam("fechaEstreno") String fechaEstreno,
             @RequestParam("genero") String genero,
             @RequestParam("edades") String edades,
+            @RequestParam("trailer") String trailer,
             @RequestParam(value = "portada", required = false) MultipartFile portada) {
 
         Optional<Pelicula> optionalPelicula = peliculaRepository.findById(id);
@@ -143,6 +145,7 @@ public class PeliculaController {
             pelicula.setFechaEstreno(fecha);
             pelicula.setGenero(genero);
             pelicula.setEdades(edades);
+            pelicula.setTrailer(trailer);
 
             Pelicula peliculaEditada = peliculaRepository.save(pelicula);
             return ResponseEntity.ok(peliculaEditada);

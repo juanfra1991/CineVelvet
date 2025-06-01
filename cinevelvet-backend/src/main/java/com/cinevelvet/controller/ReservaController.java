@@ -66,6 +66,15 @@ public class ReservaController {
         return ResponseEntity.ok(reservas);
     }
 
+    @DeleteMapping("/entradas")
+    public ResponseEntity<Void> eliminarEntradasPorReservaYButacas(
+            @RequestParam Long reservaId,
+            @RequestParam List<Long> butacasId
+    ) {
+        reservaService.eliminarEntradasPorReservaYButacas(reservaId, butacasId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/{id}/pdf")
     public ResponseEntity<byte[]> descargarPDF(@PathVariable Long id) {
 
