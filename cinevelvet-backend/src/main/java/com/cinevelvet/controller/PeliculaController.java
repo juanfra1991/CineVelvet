@@ -21,12 +21,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/peliculas")
 @CrossOrigin
 public class PeliculaController {
 
+    private static final Logger logger = Logger.getLogger(PeliculaController.class.getName());
     private final PeliculaRepository peliculaRepository;
 
     @Value("${upload.dir}")
@@ -65,7 +67,7 @@ public class PeliculaController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Pelicula> createPelicula(@RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("duracion") String duracion, @RequestParam("fechaEstreno") String fechaEstreno, @RequestParam("genero") String genero, @RequestParam("edades") String edades, @RequestParam("portada") MultipartFile portada) {
+    public ResponseEntity<Pelicula> createPelicula(@RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("duracion") String duracion, @RequestParam("fechaEstreno") String fechaEstreno, @RequestParam("genero") String genero, @RequestParam("edades") String edades, @RequestParam("trailer") String trailer, @RequestParam("portada") MultipartFile portada) {
         try {
             // Crea la carpeta si no existe
             File directorio = new File(uploadDir);
@@ -77,9 +79,8 @@ public class PeliculaController {
             Path destino = Paths.get(uploadDir, nombreArchivo);
             Files.copy(portada.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
 
-            String fechaEntrada = fechaEstreno.replace("-", "/");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(fechaEntrada);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = sdf.parse(fechaEstreno);
 
             Pelicula pelicula = new Pelicula();
             pelicula.setTitulo(titulo);
@@ -89,6 +90,7 @@ public class PeliculaController {
             pelicula.setGenero(genero);
             pelicula.setEdades(edades);
             pelicula.setPortada(nombreArchivo);
+            pelicula.setTrailer(trailer);
 
             Pelicula nuevaPelicula = peliculaRepository.save(pelicula);
             return ResponseEntity.created(URI.create("/api/peliculas/" + nuevaPelicula.getId())).body(nuevaPelicula);
@@ -109,11 +111,12 @@ public class PeliculaController {
             @RequestParam("fechaEstreno") String fechaEstreno,
             @RequestParam("genero") String genero,
             @RequestParam("edades") String edades,
+            @RequestParam("trailer") String trailer,
             @RequestParam(value = "portada", required = false) MultipartFile portada) {
 
         Optional<Pelicula> optionalPelicula = peliculaRepository.findById(id);
 
-        if (!optionalPelicula.isPresent()) {
+        if (optionalPelicula.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
@@ -133,9 +136,8 @@ public class PeliculaController {
                 pelicula.setPortada(nombreArchivo);
             }
 
-            String fechaEntrada = fechaEstreno.replace("-", "/");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(fechaEntrada);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = sdf.parse(fechaEstreno);
 
             pelicula.setTitulo(titulo);
             pelicula.setDescripcion(descripcion);
@@ -143,15 +145,16 @@ public class PeliculaController {
             pelicula.setFechaEstreno(fecha);
             pelicula.setGenero(genero);
             pelicula.setEdades(edades);
+            pelicula.setTrailer(trailer);
 
             Pelicula peliculaEditada = peliculaRepository.save(pelicula);
             return ResponseEntity.ok(peliculaEditada);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }

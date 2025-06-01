@@ -222,6 +222,7 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
               <label>Selecciona una sesión:</label>
               <select value={selectedSesion ? selectedSesion.id : ''} onChange={async (e) => {
                 const selected = sesionesFiltradas.find(s => s.id === Number(e.target.value));
+                console.log('Sesión seleccionada:', selected);
                 setSelectedSesion(selected || null);
                 setMostrarDistribucion(false);
                 if (selected) {
