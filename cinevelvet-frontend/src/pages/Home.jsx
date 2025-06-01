@@ -58,6 +58,7 @@ const Home = () => {
     };
 
     return (
+
         <div className="home-container">
             <header className="home-header">
                 <div className="header-background header-content">
@@ -129,19 +130,28 @@ const Home = () => {
             <Modal
                 isOpen={modalAbierto}
                 onRequestClose={cerrarModal}
-                contentLabel="Descripción de la película"
-                className="popup-mensaje"
+                contentLabel="Tráiler de la película"
+                className="custom-modal"
                 overlayClassName="custom-overlay"
                 ariaHideApp={false}
+                shouldFocusAfterRender={true}
             >
                 {peliculaSeleccionada && (
                     <div>
-                        <h2 className="h2">{peliculaSeleccionada.titulo}</h2>
-                        <p>{peliculaSeleccionada.descripcion}</p>
+                        <div className="video-responsive">
+                            <iframe
+                                src={`https://www.youtube.com/embed/${new URL(peliculaSeleccionada.trailer).searchParams.get("v")}?rel=0`}
+                                title="Trailer"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+
                         <button className="btn" onClick={cerrarModal}>Cerrar</button>
                     </div>
                 )}
             </Modal>
+
         </div>
     );
 };

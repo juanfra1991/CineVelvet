@@ -54,7 +54,8 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -126,7 +127,112 @@ html, body {
   grid-template-columns: 1fr;
   gap: 20px;
 }
+.admin-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 3;
+  padding: 8px;
+  transition: color 0.2s ease;
+}
 
+.admin-icon:hover {
+  color: #ffcc00;
+}
+
+/* ==== Estilo para el fondo del modal ==== */
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ==== Contenedor del modal estilo mensaje ==== */
+.popup-mensaje {
+  background-color: #800000;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadein 0.3s ease-in;
+  max-width: 500px;
+  width: 90%;
+}
+/* ==== Animación de aparición ==== */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ==== Botón de cierre del modal ==== */
+.popup-mensaje button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: white;
+  color: #800000;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.popup-mensaje button:hover {
+  background-color: #222222;
+  color: white;
+}
+
+
+.custom-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto; 
+}
+
+.video-responsive {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+  z-index: 2;
+}
 .pelicula-card {
   background: white;
   border-radius: 10px;
@@ -182,8 +288,8 @@ html, body {
 
 @media (min-width: 1024px) {
   .pelicula-card img {
-    width: 250px;
-    height: 350px;
+    width: 200px;
+    height: 280px;
   }
 
   .pelicula-info {
@@ -237,76 +343,46 @@ html, body {
     width: 200px;
     height: 280px;
   }
+  .video-responsive {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  
 }
-
-.admin-icon {
+.video-responsive iframe {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: none;
-  color: white;
-  cursor: pointer;
-  z-index: 3;
-  padding: 8px;
-  transition: color 0.2s ease;
+  pointer-events: auto;
+  touch-action: manipulation;
+  z-index: 2;
 }
-
-.admin-icon:hover {
-  color: #ffcc00;
-}
-
-/* ==== Estilo para el fondo del modal ==== */
 .custom-overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
-
-/* ==== Contenedor del modal estilo mensaje ==== */
-.popup-mensaje {
-  background-color: #2ecc71;
-  color: white;
+.custom-modal {
+  background: white;
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  animation: fadein 0.3s ease-in;
-  max-width: 500px;
+  border-radius: 12px;
+  max-width: 800px;
   width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1001;
+  pointer-events: auto; 
 }
 
-/* ==== Animación de aparición ==== */
-@keyframes fadein {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-/* ==== Botón de cierre del modal ==== */
-.popup-mensaje button {
-  margin-top: 15px;
-  padding: 10px 16px;
-  background-color: white;
-  color: #2ecc71;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
 
-.popup-mensaje button:hover {
-  background-color: #222222;
-  color: white;
-}
