@@ -113,6 +113,30 @@ const Sesiones = () => {
   const sesionesFiltradas = sesiones.filter(s =>
     s.peliculaId === Number(peliculaFiltroId) && s.salaId === Number(salaFiltroId)
   );
+const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
+  const confirmar = window.confirm(`¿Deseas ${ocupada ? 'liberar' : 'ocupar'} esta butaca?`);
+  if (!confirmar) return;
+
+  try {
+    if (ocupada) {
+      // Eliminar la reserva
+      await axios.delete(`${Config.urlBackend}/reservas/${reservaId}`);
+    } else {
+      // Crear una reserva (esto es opcional y depende de tu lógica)
+      await axios.post(`${Config.urlBackend}/reservas`, {
+        sesionId: selectedSesion.id,
+        butacaId: butacaId,
+        usuarioId: 1 // o el que corresponda según login
+      });
+    }
+
+    // Actualizar las butacas de la sesión
+    const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
+    setButacasSesion(res.data);
+  } catch (error) {
+    console.error('Error al cambiar el estado de la butaca:', error);
+  }
+};
 
   return (
     <div className="sesiones-admin-container home-container">
@@ -260,6 +284,10 @@ const Sesiones = () => {
                       <div
                         key={`butaca-${filaIndex}-${columna}`}
                         className={`butaca ${butaca?.ocupada ? 'butaca-ocupada' : ''}`}
+                        onClick={() => {
+                          if (butaca) toggleOcupacionButaca(butaca.id, butaca.ocupada);
+                        }}
+                        title={`Fila ${fila} - Butaca ${columna} (${butaca?.ocupada ? 'Ocupada' : 'Libre'})`}
                       >
                         <div className="butaca-contenedor">
                           <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
@@ -270,6 +298,7 @@ const Sesiones = () => {
                           />
                         </div>
                       </div>
+
                     );
                   });
                 })}

@@ -12,6 +12,48 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.btn-info {
+  background: none;
+  border: none;
+  margin-left: 8px;
+  cursor: pointer;
+  color: #333;
+}
+
+.portada-container {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.portada-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.play-icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.portada-container:hover .play-icon-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -212,4 +254,59 @@ html, body {
 
 .admin-icon:hover {
   color: #ffcc00;
+}
+
+/* ==== Estilo para el fondo del modal ==== */
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ==== Contenedor del modal estilo mensaje ==== */
+.popup-mensaje {
+  background-color: #2ecc71;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadein 0.3s ease-in;
+  max-width: 500px;
+  width: 90%;
+}
+
+/* ==== Animación de aparición ==== */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==== Botón de cierre del modal ==== */
+.popup-mensaje button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: white;
+  color: #2ecc71;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.popup-mensaje button:hover {
+  background-color: #222222;
+  color: white;
 }
