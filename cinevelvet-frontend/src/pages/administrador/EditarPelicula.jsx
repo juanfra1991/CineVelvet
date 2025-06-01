@@ -17,6 +17,7 @@ export default function EditarPelicula() {
     fechaEstreno: '',
     genero: '',
     edades: '',
+    trailer: '',
     portada: '',
   });
   const [mensajeGuardado, setMensajeGuardado] = useState("");
@@ -35,30 +36,31 @@ export default function EditarPelicula() {
   const isFormValid = Object.values(form).every(value => String(value).trim() !== '');
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("titulo", form.titulo);
-  formData.append("descripcion", form.descripcion);
-  formData.append("duracion", form.duracion);
-  formData.append("fechaEstreno", form.fechaEstreno);
-  formData.append("genero", form.genero);
-  formData.append("edades", form.edades);
+    const formData = new FormData();
+    formData.append("titulo", form.titulo);
+    formData.append("descripcion", form.descripcion);
+    formData.append("duracion", form.duracion);
+    formData.append("fechaEstreno", form.fechaEstreno);
+    formData.append("genero", form.genero);
+    formData.append("edades", form.edades);
+    formData.append("trailer", form.trailer);
 
-  if (form.portada && form.portada instanceof File) {
-    formData.append("portada", form.portada);
-  }
+    if (form.portada && form.portada instanceof File) {
+      formData.append("portada", form.portada);
+    }
 
-  try {
-    await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
-    setMensajeGuardado("Cambios guardados correctamente.");
-    setTimeout(() => setMensajeGuardado(""), 3000);
-  } catch (error) {
-    console.error('Error al editar la película:', error);
-    setMensajeGuardado("Error al guardar los cambios.");
-    setTimeout(() => setMensajeGuardado(""), 3000);
-  }
-};
+    try {
+      await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
+      setMensajeGuardado("Cambios guardados correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+    } catch (error) {
+      console.error('Error al editar la película:', error);
+      setMensajeGuardado("Error al guardar los cambios.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+    }
+  };
 
 
   return (
@@ -140,6 +142,15 @@ export default function EditarPelicula() {
             <option key={e} value={e}>{e}</option>
           ))}
         </select>
+
+        <label>Trailer:</label>
+        <input
+          type="text"
+          name="trailer"
+          value={form.trailer}
+          onChange={handleChange}
+          className="input-field"
+        />
 
         <label>Imagen de portada:</label>
         <input

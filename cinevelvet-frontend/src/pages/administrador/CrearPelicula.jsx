@@ -15,6 +15,7 @@ const Peliculas = () => {
     fechaEstreno: '',
     genero: '',
     edades: '',
+    trailer: '',
     portada: '',
   });
 
@@ -47,6 +48,7 @@ const Peliculas = () => {
     formData.append("fechaEstreno", form.fechaEstreno);
     formData.append("genero", form.genero);
     formData.append("edades", form.edades);
+    formData.append("trailer", form.trailer);
     formData.append("portada", form.portada);
 
     try {
@@ -63,6 +65,7 @@ const Peliculas = () => {
         fechaEstreno: '',
         genero: '',
         edades: '',
+        trailer: '',
         portada: '',
       });
     } catch (error) {
@@ -153,6 +156,15 @@ const Peliculas = () => {
           </option>
         ))}
       </select>
+
+      <label>Trailer:</label>
+      <input
+        type="text"
+        name="trailer"
+        value={form.trailer}
+        onChange={handleChange}
+        className="input-field"
+      />
 
       <label>Imagen de portada:</label>
       <input
