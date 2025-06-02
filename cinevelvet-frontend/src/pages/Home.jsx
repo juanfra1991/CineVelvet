@@ -94,7 +94,8 @@ const Home = () => {
                 {peliculas.slice(0, indicePeliculas).map((pelicula) => (
                     <div key={pelicula.id} className="pelicula-card">
                         <div className="portada-container" onClick={() => abrirModal(pelicula)}>
-                            <img src={`${Config.urlAssets}/portadas/${pelicula.portada}`} alt={pelicula.titulo} />
+                            <img src={`data:image/jpeg;base64,${pelicula.portada}`} alt={pelicula.titulo} />
+
                             <div className="play-icon-overlay">
                                 <FiPlay size={36} />
                             </div>

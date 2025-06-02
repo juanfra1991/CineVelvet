@@ -1,11 +1,11 @@
 -- Inserción de 6 películas
 INSERT INTO pelicula (titulo, descripcion, duracion, fecha_estreno, genero, edades, trailer, portada, publicada) VALUES
-('Matrix', 'Un hacker descubre una realidad alternativa.', 136, '1997-12-19', 'Ciencia Ficción', 'No recomendada para menores de 16 años', 'https://www.youtube.com/watch?v=m8e-FF8MsqU', 'matrix.jpg', TRUE),
-('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, '1997-12-19', 'Romance', 'Apta para todos los públicos', 'https://www.youtube.com/watch?v=2e-eXJ6HgkQ', 'titanic.jpg', TRUE),
-('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, '1994-06-24', 'Animación', 'Apta para todos los públicos', 'https://www.youtube.com/watch?v=7TavVZMewpY', 'rey_leon.jpg', TRUE),
-('Avatar', 'Una aventura en el mundo de Pandora.', 162, '2009-12-18', 'Fantasía', 'No recomendada para menores de 12 años', 'https://www.youtube.com/watch?v=5PSNL1qE6VY', 'avatar.jpg', TRUE),
-('Parásitos', 'Una crítica social en forma de thriller.', 132, '2019-05-30', 'Drama', 'No recomendada para menores de 16 años', 'https://www.youtube.com/watch?v=5xH0HfJHsaY', 'parasitos.jpg', TRUE),
-('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, '2014-11-07', 'Ciencia Ficción', 'No recomendada para menores de 12 años', 'https://www.youtube.com/watch?v=zSWdZVtXT7E', 'interstellar.jpg', TRUE);
+('Matrix', 'Un hacker descubre una realidad alternativa.', 136, '1997-12-19', 'Ciencia Ficción', 'No recomendada para menores de 16 años', 'https://www.youtube.com/watch?v=m8e-FF8MsqU', null, TRUE),
+('Titanic', 'Historia de amor a bordo de un transatlántico.', 195, '1997-12-19', 'Romance', 'Apta para todos los públicos', 'https://www.youtube.com/watch?v=2e-eXJ6HgkQ', null, TRUE),
+('El Rey León', 'El viaje de Simba hacia su destino como rey.', 88, '1994-06-24', 'Animación', 'Apta para todos los públicos', 'https://www.youtube.com/watch?v=7TavVZMewpY', null, TRUE),
+('Avatar', 'Una aventura en el mundo de Pandora.', 162, '2009-12-18', 'Fantasía', 'No recomendada para menores de 12 años', 'https://www.youtube.com/watch?v=5PSNL1qE6VY', null, TRUE),
+('Parásitos', 'Una crítica social en forma de thriller.', 132, '2019-05-30', 'Drama', 'No recomendada para menores de 16 años', 'https://www.youtube.com/watch?v=5xH0HfJHsaY', null, TRUE),
+('Interstellar', 'Viaje interestelar para salvar la humanidad.', 169, '2014-11-07', 'Ciencia Ficción', 'No recomendada para menores de 12 años', 'https://www.youtube.com/watch?v=zSWdZVtXT7E', null, TRUE);
 
 
 -- Inserción de 6 salas

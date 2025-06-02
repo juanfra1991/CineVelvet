@@ -11,7 +11,7 @@ CREATE TABLE pelicula (
     genero VARCHAR(50),
     edades VARCHAR(150),
     trailer VARCHAR(150),
-    portada VARCHAR(1000),
+    portada MEDIUMTEXT,
     publicada BOOLEAN DEFAULT FALSE
 );
 
