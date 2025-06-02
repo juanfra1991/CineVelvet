@@ -19,10 +19,6 @@ public class MainActivity extends BridgeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             View decorView = getWindow().getDecorView();
             decorView.setOnApplyWindowInsetsListener((v, insets) -> {
