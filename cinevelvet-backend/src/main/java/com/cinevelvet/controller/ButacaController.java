@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,7 +37,7 @@ public class ButacaController {
     public List<ButacaDTO> getAllButacas() {
         return butacaRepository.findAll()
                 .stream()
-                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now())))
+                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now()), null))
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +47,7 @@ public class ButacaController {
                 .orElseThrow(() -> new RuntimeException("Sala no encontrada"));
 
         List<ButacaDTO> butacas = sala.getButacas().stream()
-                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now())))
+                .map(butaca -> convertToDTO(butaca, false, butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now()), null))
                 .toList();
 
         return new SalaDTO(
@@ -74,21 +75,22 @@ public class ButacaController {
 
     @GetMapping("/disponibles/{sesionId}/{salaId}")
     public List<ButacaDTO> getButacasDisponibles(@PathVariable Long sesionId, @PathVariable Long salaId) {
-        Sesion sesion = sesionRepository.findById(sesionId)
-                .orElseThrow(() -> new RuntimeException("Sesión no encontrada con ID: " + sesionId));
+        // Obtener todas las entradas para la sesión
+        List<Entrada> entradas = entradaRepository.findByReserva_Sesion_Id(sesionId);
 
-        List<Entrada> entradas = entradaRepository.findByReserva_Sesion_Id(sesion.getId());
-        List<Butaca> butacasOcupadas = entradas.stream()
-                .map(Entrada::getButaca)
-                .toList();
+        // Mapear las entradas por butaca para recuperar el reservaId correspondiente
+        Map<Butaca, Long> butacaReservaMap = entradas.stream()
+                .collect(Collectors.toMap(Entrada::getButaca, entrada -> entrada.getReserva().getId()));
 
         List<Butaca> todasButacas = butacaRepository.findBySalaId(salaId);
 
         return todasButacas.stream()
                 .map(butaca -> {
-                    boolean ocupada = butacasOcupadas.contains(butaca);
+                    boolean ocupada = butacaReservaMap.containsKey(butaca);
                     boolean bloqueada = butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(LocalDateTime.now());
-                    return convertToDTO(butaca, ocupada, bloqueada);
+                    Long reservaId = ocupada ? butacaReservaMap.get(butaca) : null;
+
+                    return convertToDTO(butaca, ocupada, bloqueada, reservaId);
                 })
                 .collect(Collectors.toList());
     }
@@ -115,14 +117,16 @@ public class ButacaController {
         return ResponseEntity.ok("Butacas bloqueadas por 5 minutos.");
     }
 
-    private ButacaDTO convertToDTO(Butaca butaca, boolean ocupada, boolean bloqueada) {
-        ButacaDTO dto = new ButacaDTO();
-        dto.setId(butaca.getId());
-        dto.setFila(butaca.getFila());
-        dto.setButaca(butaca.getButaca());
-        dto.setOcupada(ocupada);
-        dto.setBloqueada(bloqueada);
-        dto.setUsuarioId(butaca.getUsuarioId());
-        return dto;
+    private ButacaDTO convertToDTO(Butaca butaca, boolean ocupada, boolean bloqueada, Long reservaId) {
+        return new ButacaDTO(
+                butaca.getId(),
+                butaca.getFila(),
+                butaca.getButaca(),
+                ocupada,
+                bloqueada,
+                butaca.getUsuarioId(),
+                reservaId
+        );
     }
+
 }

@@ -69,9 +69,9 @@ public class ReservaController {
     @DeleteMapping("/entradas")
     public ResponseEntity<Void> eliminarEntradasPorReservaYButacas(
             @RequestParam Long reservaId,
-            @RequestParam List<Long> butacasId
+            @RequestParam Long butacaId
     ) {
-        reservaService.eliminarEntradasPorReservaYButacas(reservaId, butacasId);
+        reservaService.eliminarEntradaPorReservaYButaca(reservaId, butacaId);
         return ResponseEntity.noContent().build();
     }
 
