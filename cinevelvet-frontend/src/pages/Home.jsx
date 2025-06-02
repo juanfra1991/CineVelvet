@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
 import axios from 'axios';
 import logoCinema from '../assets/logoCine.jpg';
-import { FiSettings, FiPlay } from 'react-icons/fi';
+import { FiSettings, FiPlay, FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
 import '../css/Home.css';
 import '../css/Sesiones.css';
@@ -14,6 +14,8 @@ const Home = () => {
     const [sesionesPorPelicula, setSesionesPorPelicula] = useState({});
     const [modalAbierto, setModalAbierto] = useState(false);
     const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
+    const [indicePeliculas, setIndicePeliculas] = useState(4);
+    const [cargando, setCargando] = useState(false);
 
     useEffect(() => {
         Modal.setAppElement('#root');
@@ -34,6 +36,15 @@ const Home = () => {
             console.error("Error al cargar las películas:", error);
         }
     };
+
+    const cargarMasPeliculas = () => {
+        setCargando(true);
+        setTimeout(() => {
+            setIndicePeliculas(prev => prev + 4);
+            setCargando(false);
+        }, 500);
+    };
+
 
     const fetchSesionesPorPelicula = async (peliculaId) => {
         try {
@@ -57,6 +68,16 @@ const Home = () => {
         setModalAbierto(false);
     };
 
+    const transformarEnlaceEmbed = (url) => {
+        if (!url) return null;
+        const videoIdMatch = url.match(/(?:\?v=|\.be\/)([^&]+)/);
+        if (videoIdMatch && videoIdMatch[1]) {
+            return `https://www.youtube.com/embed/${videoIdMatch[1]}`;
+        }
+        return url;
+    };
+
+
     return (
 
         <div className="home-container">
@@ -71,83 +92,92 @@ const Home = () => {
             </header>
 
             <div className="peliculas-list">
-                {peliculas.length > 0 ? (
-                    peliculas.map(pelicula => (
-                        <div key={pelicula.id} className="pelicula-card">
-                            <div className="portada-container" onClick={() => abrirModal(pelicula)}>
-                                <img
-                                    src={`${Config.urlAssets}/portadas/${pelicula.portada}`}
-                                    alt={pelicula.titulo}
-                                />
-                                <div className="play-icon-overlay">
-                                    <FiPlay size={36} />
-                                </div>
-                            </div>
+                {peliculas.slice(0, indicePeliculas).map((pelicula) => (
+                    <div key={pelicula.id} className="pelicula-card">
+                        <div className="portada-container" onClick={() => abrirModal(pelicula)}>
+                            <img src={`data:image/jpeg;base64,${pelicula.portada}`} alt={pelicula.titulo} />
 
-                            <div className="pelicula-info">
-                                <h2>{pelicula.titulo}</h2>
-                                <p>{pelicula.duracion} min | {pelicula.genero} | {pelicula.edades}</p>
-
-                                <div className="sesiones">
-                                    {sesionesPorPelicula[pelicula.id] ? (
-                                        sesionesPorPelicula[pelicula.id].length > 0 ? (
-                                            Object.entries(
-                                                sesionesPorPelicula[pelicula.id].reduce((acc, sesion) => {
-                                                    if (!acc[sesion.strFecha]) acc[sesion.strFecha] = [];
-                                                    acc[sesion.strFecha].push(sesion);
-                                                    return acc;
-                                                }, {})
-                                            ).map(([strFecha, sesiones], index) => (
-                                                <div key={index} className="sesion-item">
-                                                    <span className="sesion-fecha">{strFecha}</span>
-                                                    <div className="sesion-horas">
-                                                        {sesiones.map((sesion, i) => (
-                                                            <button
-                                                                key={i}
-                                                                onClick={() => navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`)}
-                                                            >
-                                                                {sesion.strHora}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            ))
-                                        ) : (
-                                            <p>No hay sesiones disponibles</p>
-                                        )
-                                    ) : (
-                                        <p>Cargando sesiones...</p>
-                                    )}
-                                </div>
+                            <div className="play-icon-overlay">
+                                <FiPlay size={36} />
                             </div>
                         </div>
-                    ))
-                ) : (
-                    <p>No hay películas disponibles</p>
+
+                        <div className="pelicula-info">
+                            <h2>{pelicula.titulo}</h2>
+                            <p>{pelicula.duracion} min | {pelicula.genero} | {pelicula.edades}</p>
+
+                            <div className="sesiones">
+                                {sesionesPorPelicula[pelicula.id] ? (
+                                    sesionesPorPelicula[pelicula.id].length > 0 ? (
+                                        Object.entries(
+                                            sesionesPorPelicula[pelicula.id].reduce((acc, sesion) => {
+                                                if (!acc[sesion.strFecha]) acc[sesion.strFecha] = [];
+                                                acc[sesion.strFecha].push(sesion);
+                                                return acc;
+                                            }, {})
+                                        ).map(([strFecha, sesiones], index) => (
+                                            <div key={index} className="sesion-item">
+                                                <span className="sesion-fecha">{strFecha}</span>
+                                                <div className="sesion-horas">
+                                                    {sesiones.map((sesion, i) => (
+                                                        <button key={i} onClick={() => navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`)}>
+                                                            {sesion.strHora}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p>No hay sesiones disponibles</p>
+                                    )
+                                ) : (
+                                    <p>Cargando sesiones...</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+                {cargando && (
+                    <div className="loader">
+                        <div className="spinner"></div>
+                    </div>
+                )}
+
+                {!cargando && indicePeliculas < peliculas.length && (
+                    <button onClick={cargarMasPeliculas} className="cargar-mas">
+                        Cargar más películas
+                    </button>
                 )}
             </div>
 
             <Modal
                 isOpen={modalAbierto}
                 onRequestClose={cerrarModal}
-                contentLabel="Tráiler de la película"
-                className="custom-modal"
+                contentLabel="Descripción de la película"
+                className="popup-mensaje-modal"
                 overlayClassName="custom-overlay"
-                ariaHideApp={false}
-                shouldFocusAfterRender={true}
-            >
+                ariaHideApp={false}>
                 {peliculaSeleccionada && (
                     <div>
-                        <div className="video-responsive">
+                        <h2>{peliculaSeleccionada.titulo}</h2>
+                        {peliculaSeleccionada.trailer ? (
                             <iframe
-                                src={`https://www.youtube.com/embed/${new URL(peliculaSeleccionada.trailer).searchParams.get("v")}?rel=0`}
-                                title="Trailer"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                                width="100%"
+                                height="400"
+                                src={transformarEnlaceEmbed(peliculaSeleccionada.trailer)}
+                                title="Tráiler"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
-                            ></iframe>
-                        </div>
+                            />
+                        ) : (
+                            <p className="aviso-trailer">Esta película no tiene tráiler disponible.</p>
+                        )}
 
-                        <button className="btn" onClick={cerrarModal}>Cerrar</button>
+                        <button className="cerrar-icono" onClick={cerrarModal}>
+                            <FiX size={24} />
+                        </button>
                     </div>
                 )}
             </Modal>

@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +31,6 @@ public class PeliculaController {
 
     private static final Logger logger = Logger.getLogger(PeliculaController.class.getName());
     private final PeliculaRepository peliculaRepository;
-
-    @Value("${upload.dir}")
-    private String uploadDir;
 
     public PeliculaController(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
@@ -67,17 +65,20 @@ public class PeliculaController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Pelicula> createPelicula(@RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("duracion") String duracion, @RequestParam("fechaEstreno") String fechaEstreno, @RequestParam("genero") String genero, @RequestParam("edades") String edades, @RequestParam("trailer") String trailer, @RequestParam("portada") MultipartFile portada) {
-        try {
-            // Crea la carpeta si no existe
-            File directorio = new File(uploadDir);
-            if (!directorio.exists()) {
-                directorio.mkdirs();
-            }
+    public ResponseEntity<Pelicula> createPelicula(
+            @RequestParam("titulo") String titulo,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("duracion") String duracion,
+            @RequestParam("fechaEstreno") String fechaEstreno,
+            @RequestParam("genero") String genero,
+            @RequestParam("edades") String edades,
+            @RequestParam("trailer") String trailer,
+            @RequestParam("portada") MultipartFile portada) {
 
-            String nombreArchivo = portada.getOriginalFilename();
-            Path destino = Paths.get(uploadDir, nombreArchivo);
-            Files.copy(portada.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
+        try {
+            // Convertir la imagen a base64
+            byte[] bytes = portada.getBytes();
+            String base64Portada = Base64.getEncoder().encodeToString(bytes);
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = sdf.parse(fechaEstreno);
@@ -89,7 +90,7 @@ public class PeliculaController {
             pelicula.setFechaEstreno(fecha);
             pelicula.setGenero(genero);
             pelicula.setEdades(edades);
-            pelicula.setPortada(nombreArchivo);
+            pelicula.setPortada(base64Portada);
             pelicula.setTrailer(trailer);
 
             Pelicula nuevaPelicula = peliculaRepository.save(pelicula);
@@ -123,17 +124,10 @@ public class PeliculaController {
         Pelicula pelicula = optionalPelicula.get();
 
         try {
-            // Crea la carpeta si no existe
-            File directorio = new File(uploadDir);
-            if (!directorio.exists()) {
-                directorio.mkdirs();
-            }
-
             if (portada != null && !portada.isEmpty()) {
-                String nombreArchivo = portada.getOriginalFilename();
-                Path destino = Paths.get(uploadDir, nombreArchivo);
-                Files.copy(portada.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
-                pelicula.setPortada(nombreArchivo);
+                byte[] bytes = portada.getBytes();
+                String base64Portada = Base64.getEncoder().encodeToString(bytes);
+                pelicula.setPortada(base64Portada);
             }
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -158,6 +152,7 @@ public class PeliculaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePelicula(@PathVariable Long id) {

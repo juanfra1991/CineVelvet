@@ -113,30 +113,30 @@ const Sesiones = () => {
   const sesionesFiltradas = sesiones.filter(s =>
     s.peliculaId === Number(peliculaFiltroId) && s.salaId === Number(salaFiltroId)
   );
-const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
-  const confirmar = window.confirm(`¿Deseas ${ocupada ? 'liberar' : 'ocupar'} esta butaca?`);
-  if (!confirmar) return;
 
-  try {
-    if (ocupada) {
-      // Eliminar la reserva
-      await axios.delete(`${Config.urlBackend}/reservas/${reservaId}`);
-    } else {
-      // Crear una reserva (esto es opcional y depende de tu lógica)
-      await axios.post(`${Config.urlBackend}/reservas`, {
-        sesionId: selectedSesion.id,
-        butacaId: butacaId,
-        usuarioId: 1 // o el que corresponda según login
+  const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
+    console.log('Toggling ocupación de butaca:', butacaId, 'Ocupada:', ocupada, 'Reserva ID:', reservaId);
+    if (!ocupada) return;
+    const confirmar = window.confirm('¿Deseas liberar esta butaca?');
+    if (!confirmar) return;
+
+    try {
+      await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
+        params: {
+          reservaId,
+          butacaId
+        }
       });
-    }
 
-    // Actualizar las butacas de la sesión
-    const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
-    setButacasSesion(res.data);
-  } catch (error) {
-    console.error('Error al cambiar el estado de la butaca:', error);
-  }
-};
+      // Refrescar las butacas
+      const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
+      setButacasSesion(res.data);
+    } catch (error) {
+      console.error('Error al liberar la butaca:', error);
+    }
+  };
+
+
 
   return (
     <div className="sesiones-admin-container home-container">
@@ -165,10 +165,6 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
           <h3 className='margin'>Crear Nueva Sesión</h3>
           <div className="formulario-editar">
             <div className="campo">
-              <label>Fecha de la sesión:</label>
-              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
-            </div>
-            <div className="campo">
               <label>Película:</label>
               <select value={peliculaId} onChange={(e) => setPeliculaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una película</option>
@@ -185,6 +181,10 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
                   <option key={sala.id} value={sala.id}>{sala.nombre} (Capacidad: {sala.capacidad})</option>
                 ))}
               </select>
+            </div>
+            <div className="campo">
+              <label>Fecha de la sesión:</label>
+              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
             </div>
             {mensajeGuardado && <div className="popup-mensaje">{mensajeGuardado}</div>}
             <button onClick={handleCrearSesion} className="btn" disabled={!fecha || !peliculaId || !salaId}>Crear Sesión</button>
@@ -285,10 +285,8 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
                       <div
                         key={`butaca-${filaIndex}-${columna}`}
                         className={`butaca ${butaca?.ocupada ? 'butaca-ocupada' : ''}`}
-                        onClick={() => {
-                          if (butaca) toggleOcupacionButaca(butaca.id, butaca.ocupada);
-                        }}
-                        title={`Fila ${fila} - Butaca ${columna} (${butaca?.ocupada ? 'Ocupada' : 'Libre'})`}
+                        onClick={() => toggleOcupacionButaca(butaca.id, butaca.ocupada, butaca.reservaId)}
+                        title={butaca.ocupada ? `Ocupada (Reserva ID: ${butaca.reservaId})` : 'Libre'}
                       >
                         <div className="butaca-contenedor">
                           <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
@@ -299,7 +297,6 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
                           />
                         </div>
                       </div>
-
                     );
                   });
                 })}

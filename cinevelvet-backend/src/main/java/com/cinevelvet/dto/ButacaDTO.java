@@ -12,6 +12,7 @@ public class ButacaDTO {
     private boolean ocupada;
     private boolean bloqueada;
     private String usuarioId;
+    private Long reservaId;
 
     public ButacaDTO() {
     }

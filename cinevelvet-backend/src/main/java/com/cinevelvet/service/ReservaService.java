@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -88,16 +89,19 @@ public class ReservaService {
         return reservaRepository.findBySesion(sesion);
     }
 
-    public void eliminarEntradasPorReservaYButacas(Long reservaId, List<Long> butacasId) {
+    public void eliminarEntradaPorReservaYButaca(Long reservaId, Long butacaId) {
         Reserva reserva = reservaRepository.findById(reservaId).orElse(null);
         if (reserva == null) return;
 
-        List<Entrada> entradasAEliminar = reserva.getEntradas().stream()
-                .filter(e -> butacasId.contains(e.getButaca().getId()))
-                .toList();
+        // Buscar la entrada asociada a esa butaca
+        Optional<Entrada> entradaAEliminar = reserva.getEntradas().stream()
+                .filter(e -> e.getButaca().getId().equals(butacaId))
+                .findFirst();
 
-        entradaRepository.deleteAll(entradasAEliminar);
-        reserva.getEntradas().removeAll(entradasAEliminar);
+        if (!entradaAEliminar.isPresent()) return;
+
+        entradaRepository.delete(entradaAEliminar.get());
+        reserva.getEntradas().remove(entradaAEliminar.get());
 
         if (reserva.getEntradas().isEmpty()) {
             reservaRepository.delete(reserva);
@@ -105,4 +109,5 @@ public class ReservaService {
             reservaRepository.save(reserva);
         }
     }
+
 }

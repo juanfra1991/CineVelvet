@@ -83,7 +83,7 @@ public class PDFService {
             doc.add(table);
 
             // Añadir QR
-            BarcodeQRCode qrCode = new BarcodeQRCode("https://cinevelvet.com/reserva/" + reserva.getId(), 100, 100, null);
+            BarcodeQRCode qrCode = new BarcodeQRCode("https://cine.entradas.com/cine/aguilas/mult-el-hornillo/informacion", 100, 100, null);
             Image qrImage = qrCode.getImage();
             qrImage.setAlignment(Element.ALIGN_CENTER);
             qrImage.scalePercent(125);

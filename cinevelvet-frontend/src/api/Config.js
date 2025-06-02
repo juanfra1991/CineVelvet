@@ -2,7 +2,6 @@
 
 // API_URL local
 export const API_URL = 'http://localhost:8080/api';
-export const URL_ASSETS = 'http://localhost:8080/assets';
 // API_URL emulador fisico
 //export const API_URL = 'http://192.168.0.13:8080/api';
 // API_URL emulador virtual
@@ -44,7 +43,6 @@ export const edades = [
 
 export const Config = {
     urlBackend: API_URL,
-    urlAssets: URL_ASSETS,
     generos: generos,
     edades: edades
 };
