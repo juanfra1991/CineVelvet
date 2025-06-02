@@ -165,10 +165,6 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
           <h3 className='margin'>Crear Nueva Sesión</h3>
           <div className="formulario-editar">
             <div className="campo">
-              <label>Fecha de la sesión:</label>
-              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
-            </div>
-            <div className="campo">
               <label>Película:</label>
               <select value={peliculaId} onChange={(e) => setPeliculaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una película</option>
@@ -185,6 +181,10 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
                   <option key={sala.id} value={sala.id}>{sala.nombre} (Capacidad: {sala.capacidad})</option>
                 ))}
               </select>
+            </div>
+            <div className="campo">
+              <label>Fecha de la sesión:</label>
+              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
             </div>
             {mensajeGuardado && <div className="popup-mensaje">{mensajeGuardado}</div>}
             <button onClick={handleCrearSesion} className="btn" disabled={!fecha || !peliculaId || !salaId}>Crear Sesión</button>
@@ -299,7 +299,6 @@ const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
                           />
                         </div>
                       </div>
-
                     );
                   });
                 })}

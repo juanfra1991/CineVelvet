@@ -36,7 +36,7 @@ const EditarSesion = () => {
 
   const fetchPeliculas = async () => {
     try {
-      const res = await axios.get(`${Config.urlBackend}/peliculas`);
+      const res = await axios.get(`${Config.urlBackend}/peliculas/publicadas`);
       setPeliculas(res.data);
     } catch (error) {
       console.error('Error al obtener las películas:', error);

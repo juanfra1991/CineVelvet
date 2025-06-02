@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
 import axios from 'axios';
 import logoCinema from '../assets/logoCine.jpg';
-import { FiSettings, FiPlay } from 'react-icons/fi';
+import { FiSettings, FiPlay, FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
 import '../css/Home.css';
 import '../css/Sesiones.css';
@@ -52,10 +52,21 @@ const Home = () => {
         setModalAbierto(true);
     };
 
+
     const cerrarModal = () => {
         setPeliculaSeleccionada(null);
         setModalAbierto(false);
     };
+
+    const transformarEnlaceEmbed = (url) => {
+        if (!url) return null;
+        const videoIdMatch = url.match(/(?:\?v=|\.be\/)([^&]+)/);
+        if (videoIdMatch && videoIdMatch[1]) {
+            return `https://www.youtube.com/embed/${videoIdMatch[1]}`;
+        }
+        return url;
+    };
+
 
     return (
         <div className="home-container">
@@ -130,18 +141,35 @@ const Home = () => {
                 isOpen={modalAbierto}
                 onRequestClose={cerrarModal}
                 contentLabel="Descripción de la película"
-                className="popup-mensaje"
+                className="popup-mensaje-modal"
                 overlayClassName="custom-overlay"
                 ariaHideApp={false}
             >
                 {peliculaSeleccionada && (
                     <div>
-                        <h2 className="h2">{peliculaSeleccionada.titulo}</h2>
-                        <p>{peliculaSeleccionada.descripcion}</p>
-                        <button className="btn" onClick={cerrarModal}>Cerrar</button>
+                        <h2>{peliculaSeleccionada.titulo}</h2>
+                        {peliculaSeleccionada.trailer ? (
+                            <iframe
+                                width="100%"
+                                height="400"
+                                src={transformarEnlaceEmbed(peliculaSeleccionada.trailer)}
+                                title="Tráiler"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        ) : (
+                            <p className="aviso-trailer">Esta película no tiene tráiler disponible.</p>
+                        )}
+
+                        <button className="cerrar-icono" onClick={cerrarModal}>
+                            <FiX size={24} />
+                        </button>
                     </div>
                 )}
             </Modal>
+
+
         </div>
     );
 };
