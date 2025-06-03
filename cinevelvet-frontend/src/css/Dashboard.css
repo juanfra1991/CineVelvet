@@ -118,6 +118,10 @@
 
 }
 
+.gap{
+  gap: 10px;
+}
+
 .btn-unselected{
   background-color: #bdc3c7;
   color: #000;

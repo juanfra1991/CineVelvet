@@ -4,6 +4,7 @@ import '../../css/Home.css';
 import logoCinema from '../../assets/logoCine.jpg';
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
+import { FiXCircle } from "react-icons/fi";
 import '../../css/Administrador.css';
 
 const Administrador = () => {
@@ -52,23 +53,24 @@ const Administrador = () => {
     return (
 
         <div className="admin-container home-container">
-            <header className="home-header">
-                            <div className="header-background"></div>
-                            <div className="header-content">
-                                <img
-                                    className='logo'
-                                    src={logoCinema}
-                                    alt="Cinema Logo"
-                                    onClick={() => navigate('/')}
-                                    style={{ cursor: 'pointer' }}
-                                />
-                                <div>
-                                    <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-                                        Velvet Cinema
-                                    </h1>
-                                </div>
-                            </div>
-                        </header>
+            <header className="home-header" style={{ position: 'relative' }}>
+  <div className="header-background"></div>
+
+  <button
+    className="btn-cerrar-header admin-icon"
+    onClick={() => navigate('/')}
+    title="Volver al inicio"
+  >
+    <FiXCircle size={28} color="white" />
+  </button>
+
+  <div className="header-content">
+    <img className='logo' src={logoCinema} alt="Cinema Logo" />
+    <h1 className='title'>Velvet Cinema</h1>
+  </div>
+</header>
+
+
             <h2>Acceso Administrador</h2>
             <input
                 type="text"
@@ -84,11 +86,11 @@ const Administrador = () => {
             />
             <div>
                 <label className="label-recuerdame">Recuerdame
-                <input
-                    type="checkbox"
-                    checked={recordar}
-                    onChange={() => setRecordar(!recordar)}
-                />
+                    <input
+                        type="checkbox"
+                        checked={recordar}
+                        onChange={() => setRecordar(!recordar)}
+                    />
                 </label>
             </div>
 

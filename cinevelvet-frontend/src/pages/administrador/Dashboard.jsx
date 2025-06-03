@@ -29,19 +29,19 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="home-container">
+    <div className="peliculas-admin-container">
       <aside>
         <header className="home-header">
-          <div className="header-background"></div>
-          <div className="header-content">
-            <img className='logo' src={logoCinema} alt="Cinema Logo" />
-            <div>
-              <h1 className='title'>Velvet Cinema</h1>
-            </div>
-          </div>
-        </header>
+        <div className="header-background header-content">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+            <FiLogOut size={24} />
+          </button>
+          <img className='logo' src={logoCinema} alt="Cinema Logo" />
+          <h1 className='title'>Velvet Cinema</h1>
+        </div>
+      </header>
         <h2 className="dashboard-title">Panel Administrador</h2>
-        <nav className="dashboard-nav ">
+        <nav className="dashboard-nav gap">
           {menuItems.map((item) => (
             <button
               key={item.name}
@@ -52,9 +52,6 @@ export default function Dashboard() {
             </button>
           ))}
         </nav>
-        <div className="boton-comprar-container">
-                <button className="boton-comprar" onClick={handleLogout}>Cerrar Sesión</button>
-            </div>
       </aside>
     </div>
   );

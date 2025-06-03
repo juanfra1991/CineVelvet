@@ -7,7 +7,11 @@ import '../../css/Home.css';
 import { FiArrowLeftCircle } from "react-icons/fi";
 import logoCinema from '../../assets/logoCine.jpg';
 
+
 const Peliculas = () => {
+
+  const navigate = useNavigate();
+  
   const [form, setForm] = useState({
     titulo: '',
     descripcion: '',
@@ -57,7 +61,10 @@ const Peliculas = () => {
       });
 
       setMensajeGuardado("Película creada correctamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
+      setTimeout(() => {
+        setMensajeGuardado("");
+      }, 2000);
+
       setForm({
         titulo: '',
         descripcion: '',
@@ -175,7 +182,7 @@ const Peliculas = () => {
       />
 
       {mensajeGuardado && (
-        <div className="popup-mensaje">
+        <div className="popup-mensaje-peliculas">
           {mensajeGuardado}
         </div>
       )}

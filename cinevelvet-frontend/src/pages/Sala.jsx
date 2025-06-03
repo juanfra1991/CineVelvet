@@ -7,6 +7,7 @@ import butacaImg from '../assets/butaca.svg';
 import iconoCheck from '../assets/iconoCheck.svg';
 import iconoNocheck from '../assets/iconoNocheck.svg';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 import { Config } from '../api/Config';
 
 const Sala = () => {
@@ -22,6 +23,8 @@ const Sala = () => {
     const [sesionExpirada, setSesionExpirada] = useState(false);
     const [butacaOcupada, setButacaOcupada] = useState('');
     const usuarioID = localStorage.getItem('usuarioId');
+
+    const PRECIO_ENTRADA = 3.5;
 
 
     useEffect(() => {
@@ -127,20 +130,15 @@ const Sala = () => {
     return (
         <div className="home-container">
             <header className="home-header">
-                <div className="header-background"></div>
+                <div className="header-background">
+                    <button className="admin-icon" onClick={() => navigate(-1)} title="Cerrar Sesión">
+                        <FiArrowLeftCircle size={24} />
+                    </button>
+
+                </div>
                 <div className="header-content">
-                    <img
-                        className='logo'
-                        src={logoCinema}
-                        alt="Cinema Logo"
-                        onClick={() => navigate('/')}
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <div>
-                        <h1 className='title' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-                            Velvet Cinema
-                        </h1>
-                    </div>
+                    <img className='logo' src={logoCinema} alt="Cinema Logo" />
+                    <h1 className='title'>Velvet Cinema</h1>
                 </div>
             </header>
 
@@ -250,9 +248,8 @@ const Sala = () => {
                 <br />
                 <p className='font'>*No incluye gastos adicionales.</p>
                 <div>
-                    <img src={`/assets/payment/payment_creditcards_entradas.svg`} className='margenes' alt="Tarjeta de crédito" width="68" />
-                    <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" width="68" />
-                    <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" width="68" />
+                    <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" width="55" />
+                    <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" width="55" />
                 </div>
             </div>
             {mensajeErrorButaca && (
@@ -279,6 +276,16 @@ const Sala = () => {
                     </div>
                 </div>
             )}
+
+            {butacasSeleccionadas.length > 0 && (
+                <div className="resumen-compra">
+
+                    <div className="total-precio">
+                        {butacasSeleccionadas.length} entrada{butacasSeleccionadas.length > 1 ? 's' : ''} × 3,50 € = {(butacasSeleccionadas.length * 3.5).toFixed(2).replace('.', ',')} €
+                    </div>
+                </div>
+            )}
+
 
             <div className="boton-comprar-container">
                 <button

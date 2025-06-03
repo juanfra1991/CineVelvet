@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Config } from '../../api/Config';
 import { useNavigate } from 'react-router-dom';
 import logoCinema from '../../assets/logoCine.jpg';
-import { FiArrowLeftCircle } from "react-icons/fi";
+import { FiArrowLeftCircle, FiX } from "react-icons/fi";
 import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 import '../../css/Home.css';
@@ -30,6 +30,13 @@ const Sesiones = () => {
   const [butacasSesion, setButacasSesion] = useState([]);
   const [mostrarDistribucion, setMostrarDistribucion] = useState(false);
   const [salaDetalle, setSalaDetalle] = useState(null);
+
+  // Modales
+  const [modalEliminarVisible, setModalEliminarVisible] = useState(false);
+  const [sesionAEliminar, setSesionAEliminar] = useState(null);
+  const [modalMensajeVisible, setModalMensajeVisible] = useState(false);
+  const [modalMensajeTexto, setModalMensajeTexto] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -65,6 +72,11 @@ const Sesiones = () => {
       console.error('Error al obtener las sesiones:', error);
     }
   };
+  const resetFormulario = () => {
+    setFecha(null);
+    setPeliculaId('');
+    setSalaId('');
+  };
 
   const handleCrearSesion = async () => {
     if (!fecha || !peliculaId || !salaId) {
@@ -73,30 +85,57 @@ const Sesiones = () => {
       return;
     }
 
-    try {
-      await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
-      setMensajeGuardado("Sesión creada correctamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-      setFecha(null);
-      setPeliculaId('');
-      setSalaId('');
-      fetchSesiones();
-    } catch (error) {
-      console.error('Error al crear la sesión:', error);
-      setMensajeGuardado("Error al crear la sesión.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
+    // Verificar si ya existe una sesión con los mismos datos
+    const sesionExistente = sesiones.find(s =>
+      s.salaId === Number(salaId) &&
+      new Date(s.fecha).getTime() === fecha.getTime()
+    );
+
+    if (sesionExistente) {
+      setModalMensajeTexto("Ya hay una pelicula programada para esta hora");
+      setModalMensajeVisible(true);
+      return;
     }
+
+    try {
+  await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
+
+  resetFormulario();
+  fetchSesiones();
+
+  // Mostrar el modal de confirmación
+  setModalMensajeTexto("Sesión creada correctamente.");
+  setModalMensajeVisible(true);
+
+  setTimeout(() => {
+    setModalMensajeVisible(false);
+  }, 2500);
+
+} catch (error) {
+  console.error('Error al crear la sesión:', error);
+  setModalMensajeTexto("Error al crear la sesión.");
+  setModalMensajeVisible(true);
+}
   };
 
-  const handleEliminarSesion = async (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar esta sesión?')) {
-      try {
-        await axios.delete(`${Config.urlBackend}/sesiones/${id}`);
-        fetchSesiones();
-        setSelectedSesion(null);
-      } catch (error) {
-        console.error('Error al eliminar la sesión:', error);
-      }
+
+  const confirmarEliminarSesion = (id) => {
+    setSesionAEliminar(id);
+    setModalEliminarVisible(true);
+  };
+
+  const handleEliminarConfirmado = async () => {
+    if (!sesionAEliminar) return;
+
+    try {
+      await axios.delete(`${Config.urlBackend}/sesiones/${sesionAEliminar}`);
+      fetchSesiones();
+      setSelectedSesion(null);
+    } catch (error) {
+      console.error('Error al eliminar la sesión:', error);
+    } finally {
+      setModalEliminarVisible(false);
+      setSesionAEliminar(null);
     }
   };
 
@@ -115,20 +154,15 @@ const Sesiones = () => {
   );
 
   const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
-    console.log('Toggling ocupación de butaca:', butacaId, 'Ocupada:', ocupada, 'Reserva ID:', reservaId);
     if (!ocupada) return;
     const confirmar = window.confirm('¿Deseas liberar esta butaca?');
     if (!confirmar) return;
 
     try {
       await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
-        params: {
-          reservaId,
-          butacaId
-        }
+        params: { reservaId, butacaId }
       });
 
-      // Refrescar las butacas
       const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
       setButacasSesion(res.data);
     } catch (error) {
@@ -136,23 +170,19 @@ const Sesiones = () => {
     }
   };
 
-
-
   return (
     <div className="sesiones-admin-container home-container">
-      <div>
-        <header className="home-header">
-          <div className="header-background header-content">
-            <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
-              <FiArrowLeftCircle size={24} />
-            </button>
-            <img className='logo' src={logoCinema} alt="Cinema Logo" />
-            <div>
-              <h1 className='title'>Velvet Cinema</h1>
-            </div>
-          </div>
-        </header>
-      </div>
+      {/* HEADER */}
+      <header className="home-header">
+        <div className="header-background header-content">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+            <FiArrowLeftCircle size={24} />
+          </button>
+          <img className='logo' src={logoCinema} alt="Cinema Logo" />
+          <h1 className='title'>Velvet Cinema</h1>
+        </div>
+      </header>
+
       <h2 className="titulo">Gestión de Sesiones</h2>
 
       <div className='dashboard-nav'>
@@ -162,14 +192,14 @@ const Sesiones = () => {
 
       {vistaActiva === 'crear' && (
         <>
-          <h3 className='margin'>Crear Nueva Sesión</h3>
+          <hr />
           <div className="formulario-editar">
             <div className="campo">
               <label>Película:</label>
               <select value={peliculaId} onChange={(e) => setPeliculaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una película</option>
-                {peliculas.map((pelicula) => (
-                  <option key={pelicula.id} value={pelicula.id}>{pelicula.titulo}</option>
+                {peliculas.map(p => (
+                  <option key={p.id} value={p.id}>{p.titulo}</option>
                 ))}
               </select>
             </div>
@@ -177,16 +207,16 @@ const Sesiones = () => {
               <label>Sala:</label>
               <select value={salaId} onChange={(e) => setSalaId(e.target.value)} className="input-field">
                 <option value="">Seleccione una sala</option>
-                {salas.map((sala) => (
-                  <option key={sala.id} value={sala.id}>{sala.nombre} (Capacidad: {sala.capacidad})</option>
+                {salas.map(s => (
+                  <option key={s.id} value={s.id}>{s.nombre} (Capacidad: {s.capacidad})</option>
                 ))}
               </select>
             </div>
             <div className="campo">
               <label>Fecha de la sesión:</label>
-              <DatePicker selected={fecha} onChange={(date) => setFecha(date)} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
+              <DatePicker selected={fecha} onChange={setFecha} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
             </div>
-            {mensajeGuardado && <div className="popup-mensaje">{mensajeGuardado}</div>}
+            {mensajeGuardado && <div className="popup-mensaje-peliculas">{mensajeGuardado}</div>}
             <button onClick={handleCrearSesion} className="btn" disabled={!fecha || !peliculaId || !salaId}>Crear Sesión</button>
           </div>
         </>
@@ -194,24 +224,25 @@ const Sesiones = () => {
 
       {vistaActiva === 'lista' && (
         <>
-          <h3>Listado de Sesiones</h3>
+          <hr />
+
           <div className="campo">
-            <label>Selecciona una película:</label>
+            <label>Película:</label>
             <select value={peliculaFiltroId} onChange={(e) => { setPeliculaFiltroId(e.target.value); setSalaFiltroId(''); setSelectedSesion(null); setMostrarDistribucion(false); }} className="input-field">
               <option value="">Seleccione una película</option>
-              {peliculas.map((pelicula) => (
-                <option key={pelicula.id} value={pelicula.id}>{pelicula.titulo}</option>
+              {peliculas.map(p => (
+                <option key={p.id} value={p.id}>{p.titulo}</option>
               ))}
             </select>
           </div>
 
           {peliculaFiltroId && (
             <div className="campo">
-              <label>Selecciona una sala:</label>
+              <label>Sala:</label>
               <select value={salaFiltroId} onChange={(e) => { setSalaFiltroId(e.target.value); setSelectedSesion(null); setMostrarDistribucion(false); }} className="input-field">
                 <option value="">Seleccione una sala</option>
-                {salasConSesionesDePelicula.map((sala) => (
-                  <option key={sala.id} value={sala.id}>{sala.nombre}</option>
+                {salasConSesionesDePelicula.map(s => (
+                  <option key={s.id} value={s.id}>{s.nombre}</option>
                 ))}
               </select>
             </div>
@@ -219,10 +250,9 @@ const Sesiones = () => {
 
           {peliculaFiltroId && salaFiltroId && sesionesFiltradas.length > 0 && (
             <div className="campo">
-              <label>Selecciona una sesión:</label>
-              <select value={selectedSesion ? selectedSesion.id : ''} onChange={async (e) => {
+              <label>Sesión:</label>
+              <select value={selectedSesion?.id || ''} onChange={async (e) => {
                 const selected = sesionesFiltradas.find(s => s.id === Number(e.target.value));
-                console.log('Sesión seleccionada:', selected);
                 setSelectedSesion(selected || null);
                 setMostrarDistribucion(false);
                 if (selected) {
@@ -235,8 +265,8 @@ const Sesiones = () => {
                 }
               }} className="input-field">
                 <option value="">Seleccione una sesión</option>
-                {sesionesFiltradas.map((sesion) => (
-                  <option key={sesion.id} value={sesion.id}>{formatDate(new Date(sesion.fecha))}</option>
+                {sesionesFiltradas.map(s => (
+                  <option key={s.id} value={s.id}>{formatDate(new Date(s.fecha))}</option>
                 ))}
               </select>
             </div>
@@ -245,11 +275,11 @@ const Sesiones = () => {
           {selectedSesion && (
             <div className="botones">
               <button onClick={() => navigate(`/editar-sesion/${selectedSesion.id}`)}>Editar</button>
-              <button onClick={() => handleEliminarSesion(selectedSesion.id)}>Eliminar</button>
+              <button onClick={() => confirmarEliminarSesion(selectedSesion.id)}>Eliminar</button>
               <button onClick={async () => {
                 try {
-                  const salaRes = await axios.get(`${Config.urlBackend}/butacas/sala/${selectedSesion.salaId}`);
-                  setSalaDetalle(salaRes.data);
+                  const res = await axios.get(`${Config.urlBackend}/butacas/sala/${selectedSesion.salaId}`);
+                  setSalaDetalle(res.data);
                   setMostrarDistribucion(prev => !prev);
                 } catch (error) {
                   console.error('Error al cargar la sala:', error);
@@ -265,36 +295,20 @@ const Sesiones = () => {
               <div className="seatplan__cinema-screen txt-center uppercase">
                 <span>Pantalla</span>
               </div>
-
               <div className="sala-grid">
                 {Array.from({ length: salaDetalle.filas }).map((_, filaIndex) => {
                   const fila = filaIndex + 1;
                   return Array.from({ length: salaDetalle.columnas + 1 }).map((_, colIndex) => {
-                    // Insertamos el pasillo visualmente al centro
                     const mitad = Math.floor(salaDetalle.columnas / 2);
-                    if (colIndex === mitad) {
-                      return <div className="pasillo" key={`pasillo-${filaIndex}-${colIndex}`} />;
-                    }
-
-                    // Si pasamos la mitad, corremos el índice una unidad para evitar superposición con pasillo
+                    if (colIndex === mitad) return <div className="pasillo" key={`pasillo-${filaIndex}-${colIndex}`} />;
                     const columna = colIndex > mitad ? colIndex : colIndex + 1;
                     const indexButaca = (filaIndex * salaDetalle.columnas) + (columna - 1);
                     const butaca = butacasSesion[indexButaca];
-
                     return (
-                      <div
-                        key={`butaca-${filaIndex}-${columna}`}
-                        className={`butaca ${butaca?.ocupada ? 'butaca-ocupada' : ''}`}
-                        onClick={() => toggleOcupacionButaca(butaca.id, butaca.ocupada, butaca.reservaId)}
-                        title={butaca.ocupada ? `Ocupada (Reserva ID: ${butaca.reservaId})` : 'Libre'}
-                      >
+                      <div key={`butaca-${filaIndex}-${columna}`} className={`butaca ${butaca?.ocupada ? 'butaca-ocupada' : ''}`} onClick={() => toggleOcupacionButaca(butaca.id, butaca.ocupada, butaca.reservaId)} title={butaca.ocupada ? `Ocupada (Reserva ID: ${butaca.reservaId})` : 'Libre'}>
                         <div className="butaca-contenedor">
                           <img src={butacaImg} alt={`Butaca F${fila}B${columna}`} className="butaca-img" />
-                          <img
-                            src={butaca?.ocupada ? iconoNocheck : iconoCheck}
-                            alt={butaca?.ocupada ? 'Ocupada' : 'Libre'}
-                            className="icono-check"
-                          />
+                          <img src={butaca?.ocupada ? iconoNocheck : iconoCheck} alt={butaca?.ocupada ? 'Ocupada' : 'Libre'} className="icono-check" />
                         </div>
                       </div>
                     );
@@ -305,6 +319,63 @@ const Sesiones = () => {
           )}
         </>
       )}
+
+      {modalEliminarVisible && (
+        <div className="custom-overlay">
+          <div className="popup-mensaje-modal">
+            <h3 style={{ color: 'white' }}>¿Estás seguro de que deseas eliminar esta sesión?</h3>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+              <button
+                onClick={handleEliminarConfirmado}
+                style={{
+                  backgroundColor: '#d9534f',
+                  padding: '10px 20px',
+                  borderRadius: '6px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                Aceptar
+              </button>
+              <button
+                onClick={() => setModalEliminarVisible(false)}
+                className='btn-unselected'
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {modalMensajeVisible && (
+        <div className="custom-overlay">
+          <div className="popup-mensaje-modal">
+            <div>
+              <button
+                onClick={() => setModalMensajeVisible(false)}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                aria-label="Cerrar"
+              >
+                <FiX size={24} color="white" />
+              </button>
+            </div>
+            <h3 style={{ color: 'white', textAlign: 'center', marginTop: '40px' }}>
+        {modalMensajeTexto}
+      </h3>
+          
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 };

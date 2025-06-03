@@ -10,9 +10,9 @@ import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 
 const EditarSesion = () => {
+
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [sesion, setSesion] = useState(null);
   const [peliculas, setPeliculas] = useState([]);
   const [salas, setSalas] = useState([]);
@@ -20,6 +20,9 @@ const EditarSesion = () => {
   const [peliculaId, setPeliculaId] = useState('');
   const [salaId, setSalaId] = useState('');
   const [mensajeGuardado, setMensajeGuardado] = useState('');
+  const [otrasSesiones, setOtrasSesiones] = useState([]);
+  const peliculaSeleccionada = peliculas.find(p => p.id === Number(peliculaId));
+  const salaSeleccionada = salas.find(s => s.id === Number(salaId));
 
   const fetchSesion = async () => {
     try {
@@ -52,32 +55,66 @@ const EditarSesion = () => {
     }
   };
 
-  const peliculaSeleccionada = peliculas.find(p => p.id === Number(peliculaId));
-  const salaSeleccionada = salas.find(s => s.id === Number(salaId));
+  const fetchSesionesExistentes = async () => {
+    try {
+      const res = await axios.get(`${Config.urlBackend}/sesiones/futuras`);
+      // Filtramos para excluir la sesión actual
+      const filtradas = res.data.filter(s => s.id !== Number(id));
+      setOtrasSesiones(filtradas);
+    } catch (error) {
+      console.error('Error al obtener sesiones existentes:', error);
+    }
+  };
+
 
   useEffect(() => {
     fetchSesion();
     fetchPeliculas();
     fetchSalas();
+    fetchSesionesExistentes();
   }, []);
 
-  const handleActualizarSesion = async () => {
-    try {
-      const sesionActualizada = {
-        fecha: fecha.toISOString(),
-        pelicula: { id: peliculaId },
-        sala: { id: salaId },
-      };
 
-      await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
-      setMensajeGuardado("Sesión actualizada correctamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    } catch (error) {
-      console.error('Error al actualizar la sesión:', error);
-      setMensajeGuardado("Error al actualizar la sesión.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    }
-  };
+const handleActualizarSesion = async () => {
+  if (!fecha || !salaId || !peliculaId) {
+    setMensajeGuardado("Debes completar todos los campos.");
+    setTimeout(() => setMensajeGuardado(""), 3000);
+    return;
+  }
+
+  // Verificar si ya hay otra sesión en esa sala a la misma hora
+  const conflicto = otrasSesiones.some(s =>
+    s.salaId === Number(salaId) &&
+    new Date(s.fecha).getTime() === new Date(fecha).getTime()
+  );
+
+  if (conflicto) {
+    setMensajeGuardado("Ya hay otra sesión en esa sala a la misma hora.");
+    setTimeout(() => setMensajeGuardado(""), 3000);
+    return;
+  }
+
+  try {
+    const sesionActualizada = {
+      fecha: fecha.toISOString(),
+      pelicula: { id: peliculaId },
+      sala: { id: salaId },
+    };
+
+    await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
+
+    setMensajeGuardado("Sesión actualizada correctamente.");
+    setTimeout(() => {
+      setMensajeGuardado("");
+      navigate(-1); // volver atrás si quieres
+    }, 2500);
+  } catch (error) {
+    console.error('Error al actualizar la sesión:', error);
+    setMensajeGuardado("Error al actualizar la sesión.");
+    setTimeout(() => setMensajeGuardado(""), 3000);
+  }
+};
+
 
   if (!sesion) return <div>Cargando sesión...</div>;
 
@@ -116,7 +153,7 @@ const EditarSesion = () => {
             placeholderText="Selecciona una fecha y hora"
           />
         </div>
-        
+
         <div className="campo">
           <label>Sala:</label>
           <select
@@ -132,7 +169,7 @@ const EditarSesion = () => {
           </select>
         </div>
         {mensajeGuardado && (
-          <div className="popup-mensaje">
+          <div className="popup-mensaje-peliculas">
             {mensajeGuardado}
           </div>
         )}

@@ -28,6 +28,22 @@ const Home = () => {
         });
     }, [peliculas]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight;
+
+            if (scrollTop + windowHeight >= fullHeight - 100 && !cargando && indicePeliculas < peliculas.length) {
+                cargarMasPeliculas();
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [cargando, indicePeliculas, peliculas.length]);
+
+
     const fetchPeliculas = async () => {
         try {
             const response = await axios.get(`${Config.urlBackend}/peliculas/publicadas`);
@@ -42,7 +58,7 @@ const Home = () => {
         setTimeout(() => {
             setIndicePeliculas(prev => prev + 4);
             setCargando(false);
-        }, 500);
+        }, 1000);
     };
 
 
@@ -104,6 +120,7 @@ const Home = () => {
 
                         <div className="pelicula-info">
                             <h2>{pelicula.titulo}</h2>
+                            <p>{pelicula.descripcion}</p>
                             <p>{pelicula.duracion} min | {pelicula.genero} | {pelicula.edades}</p>
 
                             <div className="sesiones">
@@ -139,15 +156,8 @@ const Home = () => {
                 ))}
 
                 {cargando && (
-                    <div className="loader">
-                        <div className="spinner"></div>
+                    <div className="loader spinner">
                     </div>
-                )}
-
-                {!cargando && indicePeliculas < peliculas.length && (
-                    <button onClick={cargarMasPeliculas} className="cargar-mas">
-                        Cargar más películas
-                    </button>
                 )}
             </div>
 
@@ -182,6 +192,10 @@ const Home = () => {
                 )}
             </Modal>
 
+            <footer className="contacto-footer">
+                <h5>Contacto</h5>
+                <p>¿Tienes alguna duda o sugerencia? Escríbenos a: <a href="mailto:cinemavelvet2025@gmail.com">cinemavelvet2025@gmail.com</a></p>
+            </footer>
         </div>
     );
 };

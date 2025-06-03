@@ -70,7 +70,7 @@
 .campo input:focus,
 .campo textarea:focus,
 .campo select:focus {
-  border-color: #3498db;
+  border-color: #800000;
   outline: none;
 }
 
@@ -83,13 +83,12 @@ textarea {
     max-width: 1400px;
   }}
 .btn {
-  background-color: #3498db;
+  background-color: #800000;
   color: white;
   padding: 1vw 2vw;
   border: none;
-  border-radius: 0.5vw;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1vw;
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
@@ -112,7 +111,7 @@ textarea {
 }
 
 .input-field:focus {
-  border-color: #3498db;
+  border-color: #800000;
   outline: none;
 }
 
@@ -120,6 +119,10 @@ textarea {
   display: flex;
   gap: 1vw;
   margin-top: 2vw;
+}
+
+.margin-bottom{
+  margin-bottom: 20px
 }
 
 .botones button {
@@ -148,7 +151,7 @@ hr {
 
 }
 
-.popup-mensaje {
+.popup-mensaje-peliculas {
   background-color: #800000;
   color: white;
   padding: 12px 20px;
@@ -158,9 +161,22 @@ hr {
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadein 0.3s ease-in;
+  margin-top: 10px;
 }
+
 
 @keyframes fadein {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.mensaje-centrado {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

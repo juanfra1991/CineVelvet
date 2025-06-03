@@ -396,3 +396,23 @@
     height: 40px;
     line-height: 40px;
 }
+
+.resumen-compra {
+  text-align: end;
+  margin: 20px 0 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.resumen-compra .precio-unitario {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.resumen-compra .total-precio {
+  font-weight: bold;
+  font-size: 12px;
+  color: #666;
+
+}

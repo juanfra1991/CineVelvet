@@ -34,7 +34,7 @@ const Peliculas = () => {
       ));
       setSelectedPelicula(updatedPelicula);
       setMensajeGuardado("Estado de publicación actualizado exitosamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
+      setTimeout(() => setMensajeGuardado(""), 50000);
     } catch (error) {
       console.error('Error al cambiar el estado de publicación:', error);
       setMensajeGuardado("Hubo un error al actualizar el estado de la película.");
@@ -52,7 +52,7 @@ const Peliculas = () => {
   }));
 
   return (
-    <div className="peliculas-admin-container">
+    <div className="peliculas-admin-container ">
       <header className="home-header">
         <div className="header-background">
           <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
@@ -86,7 +86,7 @@ const Peliculas = () => {
       {/* Vista: Crear Película */}
       {vistaActiva === 'crear' && (
         <div className="crear-container">
-          <h3>Crear Nueva Película</h3>
+          <hr/>
           <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
             Ir al Formulario
           </button>
@@ -96,7 +96,7 @@ const Peliculas = () => {
       {/* Vista: Listado de Películas */}
       {vistaActiva === 'lista' && (
         <div>
-          <h3>Listado de Películas</h3>
+          <hr/>
 
           <div className="campo">
             <label htmlFor="select-pelicula">Selecciona una película:</label>
@@ -114,7 +114,7 @@ const Peliculas = () => {
           </div>
 
           {mensajeGuardado && (
-            <div className="popup-mensaje">
+            <div className="popup-mensaje-peliculas">
               {mensajeGuardado}
             </div>
           )}

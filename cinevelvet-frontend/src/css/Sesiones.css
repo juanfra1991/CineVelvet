@@ -50,7 +50,7 @@ select {
 
 .input-field:focus,
 select:focus {
-  border-color: #3498db;
+  border-color: #800000;
   outline: none;
 }
 
@@ -59,7 +59,7 @@ select:focus {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 500;
-  background-color: #3498db;
+  background-color: #800000;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -68,7 +68,7 @@ select:focus {
 }
 
 .btn:hover {
-  background-color: #2980b9;
+  background-color: #800000;
 }
 
 .error {
@@ -96,7 +96,10 @@ select:focus {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadein 0.3s ease-in;
 }
+.margin-right{
+  margin-right: 15px;
 
+}
 .popup-mensaje button {
   margin-top: 12px;
   padding: 10px 16px;

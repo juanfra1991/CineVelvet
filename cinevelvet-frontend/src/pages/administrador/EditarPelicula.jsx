@@ -52,14 +52,18 @@ export default function EditarPelicula() {
     }
 
     try {
-      await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
-      setMensajeGuardado("Cambios guardados correctamente.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    } catch (error) {
-      console.error('Error al editar la película:', error);
-      setMensajeGuardado("Error al guardar los cambios.");
-      setTimeout(() => setMensajeGuardado(""), 3000);
-    }
+  await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
+  setMensajeGuardado("Cambios guardados correctamente.");
+  setTimeout(() => {
+    setMensajeGuardado("");
+    navigate(-1); 
+  }, 2000);
+} catch (error) {
+  console.error('Error al editar la película:', error);
+  setMensajeGuardado("Error al guardar los cambios.");
+  setTimeout(() => setMensajeGuardado(""), 3000);
+}
+
   };
 
 
@@ -161,7 +165,7 @@ export default function EditarPelicula() {
         />
 
         {mensajeGuardado && (
-          <div className="popup-mensaje">{mensajeGuardado}</div>
+          <div className="popup-mensaje-peliculas">{mensajeGuardado}</div>
         )}
 
         <button className="btn" type="submit" disabled={!isFormValid}>
