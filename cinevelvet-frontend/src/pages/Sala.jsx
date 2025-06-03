@@ -23,8 +23,7 @@ const Sala = () => {
     const [sesionExpirada, setSesionExpirada] = useState(false);
     const [butacaOcupada, setButacaOcupada] = useState('');
     const usuarioID = localStorage.getItem('usuarioId');
-
-    const PRECIO_ENTRADA = 3.5;
+    const [maximoButacasSuperado, setMaximoButacasSuperado] = useState(false);
 
 
     useEffect(() => {
@@ -69,14 +68,20 @@ const Sala = () => {
 
     const toggleSeleccion = (fila, columna) => {
         const yaSeleccionada = butacasSeleccionadas.some(b => b.fila === fila && b.columna === columna);
+
         if (yaSeleccionada) {
             setButacasSeleccionadas(prev =>
                 prev.filter(b => !(b.fila === fila && b.columna === columna))
             );
         } else {
+            if (butacasSeleccionadas.length >= 10) {
+                setMaximoButacasSuperado(true);
+                return;
+            }
             setButacasSeleccionadas(prev => [...prev, { fila, columna }]);
         }
     };
+
 
     const mostrarButacasSeleccionadas = butacasSeleccionadas.length
         ? `${butacasSeleccionadas.length} butacas, (${butacasSeleccionadas.map(b => `Fila ${b.fila}, Butaca ${b.columna}`).join(' | ')})`
@@ -281,7 +286,15 @@ const Sala = () => {
                 <div className="resumen-compra">
 
                     <div className="total-precio">
-                        {butacasSeleccionadas.length} entrada{butacasSeleccionadas.length > 1 ? 's' : ''} × 3,50 € = {(butacasSeleccionadas.length * 3.5).toFixed(2).replace('.', ',')} €
+                        {butacasSeleccionadas.length} entrada{butacasSeleccionadas.length > 1 ? 's' : ''} × 5,00 € = {(butacasSeleccionadas.length * 5).toFixed(2).replace('.', ',')} €
+                    </div>
+                </div>
+            )}
+            {maximoButacasSuperado && (
+                <div className="popup-overlay">
+                    <div className="popup-mensaje">
+                        <p>Has superado el máximo de 10 entradas permitidas.</p>
+                        <button onClick={() => setMaximoButacasSuperado(false)}>Cerrar</button>
                     </div>
                 </div>
             )}

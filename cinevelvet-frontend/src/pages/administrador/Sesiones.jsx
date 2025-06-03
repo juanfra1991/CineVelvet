@@ -14,6 +14,8 @@ import '../../css/Sala.css';
 import butacaImg from '../../assets/butaca.svg';
 import iconoCheck from '../../assets/iconoCheck.svg';
 import iconoNocheck from '../../assets/iconoNocheck.svg';
+import { setHours, setMinutes } from 'date-fns';
+
 
 const Sesiones = () => {
   const [peliculas, setPeliculas] = useState([]);
@@ -36,6 +38,9 @@ const Sesiones = () => {
   const [sesionAEliminar, setSesionAEliminar] = useState(null);
   const [modalMensajeVisible, setModalMensajeVisible] = useState(false);
   const [modalMensajeTexto, setModalMensajeTexto] = useState('');
+  const [modalEliminarButacaVisible, setModalEliminarButacaVisible] = useState(false);
+  const [butacaAEliminar, setButacaAEliminar] = useState(null);
+
 
 
   const navigate = useNavigate();
@@ -98,24 +103,24 @@ const Sesiones = () => {
     }
 
     try {
-  await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
+      await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
 
-  resetFormulario();
-  fetchSesiones();
+      resetFormulario();
+      fetchSesiones();
 
-  // Mostrar el modal de confirmación
-  setModalMensajeTexto("Sesión creada correctamente.");
-  setModalMensajeVisible(true);
+      // Mostrar el modal de confirmación
+      setModalMensajeTexto("Sesión creada correctamente.");
+      setModalMensajeVisible(true);
 
-  setTimeout(() => {
-    setModalMensajeVisible(false);
-  }, 2500);
+      setTimeout(() => {
+        setModalMensajeVisible(false);
+      }, 2500);
 
-} catch (error) {
-  console.error('Error al crear la sesión:', error);
-  setModalMensajeTexto("Error al crear la sesión.");
-  setModalMensajeVisible(true);
-}
+    } catch (error) {
+      console.error('Error al crear la sesión:', error);
+      setModalMensajeTexto("Error al crear la sesión.");
+      setModalMensajeVisible(true);
+    }
   };
 
 
@@ -155,8 +160,9 @@ const Sesiones = () => {
 
   const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
     if (!ocupada) return;
-    const confirmar = window.confirm('¿Deseas liberar esta butaca?');
-    if (!confirmar) return;
+
+    setButacaAEliminar({ butacaId, reservaId });
+    setModalEliminarButacaVisible(true);
 
     try {
       await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
@@ -169,6 +175,28 @@ const Sesiones = () => {
       console.error('Error al liberar la butaca:', error);
     }
   };
+
+  const handleEliminarButacaConfirmado = async () => {
+    if (!butacaAEliminar) return;
+
+    try {
+      await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
+        params: {
+          reservaId: butacaAEliminar.reservaId,
+          butacaId: butacaAEliminar.butacaId
+        }
+      });
+
+      const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
+      setButacasSesion(res.data);
+    } catch (error) {
+      console.error('Error al liberar la butaca:', error);
+    } finally {
+      setModalEliminarButacaVisible(false);
+      setButacaAEliminar(null);
+    }
+  };
+
 
   return (
     <div className="sesiones-admin-container home-container">
@@ -214,8 +242,25 @@ const Sesiones = () => {
             </div>
             <div className="campo">
               <label>Fecha de la sesión:</label>
-              <DatePicker selected={fecha} onChange={setFecha} showTimeSelect timeIntervals={5} dateFormat="Pp" className="input-field" locale={es} placeholderText="Selecciona una fecha y hora" />
+              <DatePicker
+                selected={fecha}
+                onChange={setFecha}
+                showTimeSelect
+                timeIntervals={15}
+                  minDate={new Date()}
+                dateFormat="Pp"
+                className="input-field"
+                locale={es}
+                placeholderText="Selecciona una fecha y hora"
+                minTime={setHours(setMinutes(new Date(), 45), 15)}
+                maxTime={setHours(setMinutes(new Date(), 30), 22)}
+              />
             </div>
+            {modalMensajeVisible && (
+              <div className="popup-mensaje-peliculas">
+                {modalMensajeTexto}
+              </div>
+            )}
             {mensajeGuardado && <div className="popup-mensaje-peliculas">{mensajeGuardado}</div>}
             <button onClick={handleCrearSesion} className="btn" disabled={!fecha || !peliculaId || !salaId}>Crear Sesión</button>
           </div>
@@ -348,33 +393,36 @@ const Sesiones = () => {
         </div>
       )}
 
-      {modalMensajeVisible && (
+      {modalEliminarButacaVisible && (
         <div className="custom-overlay">
           <div className="popup-mensaje-modal">
-            <div>
+            <h3 style={{ color: 'white' }}>¿Deseas liberar esta butaca?</h3>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
               <button
-                onClick={() => setModalMensajeVisible(false)}
+                onClick={handleEliminarButacaConfirmado}
                 style={{
-                  position: 'absolute',
-                  top: '10px',
-                  right: '10px',
-                  background: 'none',
-                  border: 'none',
+                  backgroundColor: '#d9534f',
+                  padding: '10px 20px',
+                  borderRadius: '6px',
+                  fontWeight: 'bold',
                   cursor: 'pointer'
                 }}
-                aria-label="Cerrar"
               >
-                <FiX size={24} color="white" />
+                Aceptar
+              </button>
+              <button
+                onClick={() => {
+                  setModalEliminarButacaVisible(false);
+                  setButacaAEliminar(null);
+                }}
+                className='btn-unselected'
+              >
+                Cancelar
               </button>
             </div>
-            <h3 style={{ color: 'white', textAlign: 'center', marginTop: '40px' }}>
-        {modalMensajeTexto}
-      </h3>
-          
           </div>
         </div>
       )}
-
 
     </div>
   );
