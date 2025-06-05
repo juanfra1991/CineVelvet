@@ -52,20 +52,18 @@ export default function EditarPelicula() {
     }
 
     try {
-  await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
-  setMensajeGuardado("Cambios guardados correctamente.");
-  setTimeout(() => {
-    setMensajeGuardado("");
-    navigate(-1); 
-  }, 2000);
-} catch (error) {
-  console.error('Error al editar la película:', error);
-  setMensajeGuardado("Error al guardar los cambios.");
-  setTimeout(() => setMensajeGuardado(""), 3000);
-}
-
+      await axios.put(`${Config.urlBackend}/peliculas/${id}`, formData);
+      setMensajeGuardado("Cambios guardados correctamente.");
+      setTimeout(() => {
+        setMensajeGuardado("");
+        navigate(-1);
+      }, 3000);
+    } catch (error) {
+      console.error('Error al editar la película:', error);
+      setMensajeGuardado("Error al guardar los cambios.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+    }
   };
-
 
   return (
     <div className="peliculas-admin-container">

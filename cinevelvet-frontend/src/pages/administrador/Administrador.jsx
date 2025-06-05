@@ -54,22 +54,21 @@ const Administrador = () => {
 
         <div className="admin-container home-container">
             <header className="home-header" style={{ position: 'relative' }}>
-  <div className="header-background"></div>
+                <div className="header-background"></div>
 
-  <button
-    className="btn-cerrar-header admin-icon"
-    onClick={() => navigate('/')}
-    title="Volver al inicio"
-  >
-    <FiXCircle size={28} color="white" />
-  </button>
+                <button
+                    className="btn-cerrar-header admin-icon"
+                    onClick={() => navigate('/')}
+                    title="Volver al inicio"
+                >
+                    <FiXCircle size={28} color="white" />
+                </button>
 
-  <div className="header-content">
-    <img className='logo' src={logoCinema} alt="Cinema Logo" />
-    <h1 className='title'>Velvet Cinema</h1>
-  </div>
-</header>
-
+                <div className="header-content">
+                    <img className='logo' src={logoCinema} alt="Cinema Logo" />
+                    <h1 className='title'>Velvet Cinema</h1>
+                </div>
+            </header>
 
             <h2>Acceso Administrador</h2>
             <input

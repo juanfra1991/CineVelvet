@@ -1,16 +1,17 @@
 package com.cinevelvet.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Reserva {
 
     @Id
@@ -26,7 +27,8 @@ public class Reserva {
     private Sesion sesion;
 
     @OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Entrada> entradas = new ArrayList<>();
+    @JsonManagedReference
+    private List<Entrada> entradas;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_sesion")

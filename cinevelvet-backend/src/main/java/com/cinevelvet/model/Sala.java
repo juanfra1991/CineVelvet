@@ -1,8 +1,9 @@
 package com.cinevelvet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -31,5 +32,6 @@ public class Sala {
     private List<Butaca> butacas;
 
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Sesion> sesiones;
 }

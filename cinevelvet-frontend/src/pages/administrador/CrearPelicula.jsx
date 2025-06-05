@@ -7,11 +7,10 @@ import '../../css/Home.css';
 import { FiArrowLeftCircle } from "react-icons/fi";
 import logoCinema from '../../assets/logoCine.jpg';
 
-
 const Peliculas = () => {
 
   const navigate = useNavigate();
-  
+
   const [form, setForm] = useState({
     titulo: '',
     descripcion: '',
@@ -63,7 +62,7 @@ const Peliculas = () => {
       setMensajeGuardado("Película creada correctamente.");
       setTimeout(() => {
         setMensajeGuardado("");
-      }, 2000);
+      }, 3000);
 
       setForm({
         titulo: '',

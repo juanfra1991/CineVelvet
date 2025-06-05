@@ -16,7 +16,6 @@ import iconoCheck from '../../assets/iconoCheck.svg';
 import iconoNocheck from '../../assets/iconoNocheck.svg';
 import { setHours, setMinutes } from 'date-fns';
 
-
 const Sesiones = () => {
   const [peliculas, setPeliculas] = useState([]);
   const [salas, setSalas] = useState([]);
@@ -40,9 +39,6 @@ const Sesiones = () => {
   const [modalMensajeTexto, setModalMensajeTexto] = useState('');
   const [modalEliminarButacaVisible, setModalEliminarButacaVisible] = useState(false);
   const [butacaAEliminar, setButacaAEliminar] = useState(null);
-
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,15 +86,21 @@ const Sesiones = () => {
       return;
     }
 
-    // Verificar si ya existe una sesión con los mismos datos
+    // Verifica si ya existe una sesión con los mismos datos
     const sesionExistente = sesiones.find(s =>
       s.salaId === Number(salaId) &&
-      new Date(s.fecha).getTime() === fecha.getTime()
+      normalizarFecha(s.fecha) === normalizarFecha(fecha)
     );
 
     if (sesionExistente) {
-      setModalMensajeTexto("Ya hay una pelicula programada para esta hora");
+      setModalMensajeTexto("Ya hay una película programada para esta hora.");
       setModalMensajeVisible(true);
+
+      // Ocultar el mensaje después de 3 segundos (3000 ms)
+      setTimeout(() => {
+        setModalMensajeVisible(false);
+      }, 3000);
+
       return;
     }
 
@@ -122,7 +124,6 @@ const Sesiones = () => {
       setModalMensajeVisible(true);
     }
   };
-
 
   const confirmarEliminarSesion = (id) => {
     setSesionAEliminar(id);
@@ -150,6 +151,13 @@ const Sesiones = () => {
     });
   };
 
+  const normalizarFecha = (fecha) => {
+    const f = new Date(fecha);
+    f.setSeconds(0);
+    f.setMilliseconds(0);
+    return f.getTime();
+  };
+
   const salasConSesionesDePelicula = salas.filter(sala =>
     sesiones.some(s => s.peliculaId === Number(peliculaFiltroId) && s.salaId === sala.id)
   );
@@ -165,10 +173,6 @@ const Sesiones = () => {
     setModalEliminarButacaVisible(true);
 
     try {
-      await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
-        params: { reservaId, butacaId }
-      });
-
       const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
       setButacasSesion(res.data);
     } catch (error) {
@@ -196,7 +200,6 @@ const Sesiones = () => {
       setButacaAEliminar(null);
     }
   };
-
 
   return (
     <div className="sesiones-admin-container home-container">
@@ -247,7 +250,7 @@ const Sesiones = () => {
                 onChange={setFecha}
                 showTimeSelect
                 timeIntervals={15}
-                  minDate={new Date()}
+                minDate={new Date()}
                 dateFormat="Pp"
                 className="input-field"
                 locale={es}
@@ -270,7 +273,6 @@ const Sesiones = () => {
       {vistaActiva === 'lista' && (
         <>
           <hr />
-
           <div className="campo">
             <label>Película:</label>
             <select value={peliculaFiltroId} onChange={(e) => { setPeliculaFiltroId(e.target.value); setSalaFiltroId(''); setSelectedSesion(null); setMostrarDistribucion(false); }} className="input-field">
@@ -364,66 +366,36 @@ const Sesiones = () => {
           )}
         </>
       )}
-
       {modalEliminarVisible && (
         <div className="custom-overlay">
           <div className="popup-mensaje-modal">
-            <h3 style={{ color: 'white' }}>¿Estás seguro de que deseas eliminar esta sesión?</h3>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-              <button
-                onClick={handleEliminarConfirmado}
-                style={{
-                  backgroundColor: '#d9534f',
-                  padding: '10px 20px',
-                  borderRadius: '6px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-              >
+            <h3 className="modal-titulo">¿Estás seguro de que deseas eliminar esta sesión?</h3>
+            <div className="modal-botones">
+              <button onClick={handleEliminarConfirmado} className="btn-aceptar">
                 Aceptar
               </button>
-              <button
-                onClick={() => setModalEliminarVisible(false)}
-                className='btn-unselected'
-              >
+              <button onClick={() => setModalEliminarVisible(false)} className="btn-unselected">
                 Cancelar
               </button>
             </div>
           </div>
         </div>
       )}
-
       {modalEliminarButacaVisible && (
         <div className="custom-overlay">
           <div className="popup-mensaje-modal">
-            <h3 style={{ color: 'white' }}>¿Deseas liberar esta butaca?</h3>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-              <button
-                onClick={handleEliminarButacaConfirmado}
-                style={{
-                  backgroundColor: '#d9534f',
-                  padding: '10px 20px',
-                  borderRadius: '6px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-              >
+            <h3 className="modal-titulo">¿Deseas liberar esta butaca?</h3>
+            <div className="modal-botones">
+              <button onClick={handleEliminarButacaConfirmado} className="btn-aceptar">
                 Aceptar
               </button>
-              <button
-                onClick={() => {
-                  setModalEliminarButacaVisible(false);
-                  setButacaAEliminar(null);
-                }}
-                className='btn-unselected'
-              >
+              <button onClick={() => { setModalEliminarButacaVisible(false); setButacaAEliminar(null); }} className='btn-unselected'>
                 Cancelar
               </button>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 };

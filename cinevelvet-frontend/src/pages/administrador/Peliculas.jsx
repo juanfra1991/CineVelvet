@@ -33,8 +33,8 @@ const Peliculas = () => {
         pelicula.id === id ? updatedPelicula : pelicula
       ));
       setSelectedPelicula(updatedPelicula);
-      setMensajeGuardado("Estado de publicación actualizado exitosamente.");
-      setTimeout(() => setMensajeGuardado(""), 50000);
+      setMensajeGuardado("Estado de publicación actualizado correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     } catch (error) {
       console.error('Error al cambiar el estado de publicación:', error);
       setMensajeGuardado("Hubo un error al actualizar el estado de la película.");
@@ -86,7 +86,7 @@ const Peliculas = () => {
       {/* Vista: Crear Película */}
       {vistaActiva === 'crear' && (
         <div className="crear-container">
-          <hr/>
+          <hr />
           <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
             Ir al Formulario
           </button>
@@ -96,7 +96,7 @@ const Peliculas = () => {
       {/* Vista: Listado de Películas */}
       {vistaActiva === 'lista' && (
         <div>
-          <hr/>
+          <hr />
 
           <div className="campo">
             <label htmlFor="select-pelicula">Selecciona una película:</label>

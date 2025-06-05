@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
 import axios from 'axios';
+import { Capacitor } from '@capacitor/core';
 import logoCinema from '../assets/logoCine.jpg';
 import { FiSettings, FiPlay, FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
@@ -16,7 +17,8 @@ const Home = () => {
     const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
     const [indicePeliculas, setIndicePeliculas] = useState(4);
     const [cargando, setCargando] = useState(false);
-
+    const platform = Capacitor.getPlatform();
+    const mostrarBotonAdmin = platform !== 'ios' && platform !== 'android';
     useEffect(() => {
         Modal.setAppElement('#root');
         fetchPeliculas();
@@ -43,7 +45,6 @@ const Home = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [cargando, indicePeliculas, peliculas.length]);
 
-
     const fetchPeliculas = async () => {
         try {
             const response = await axios.get(`${Config.urlBackend}/peliculas/publicadas`);
@@ -60,7 +61,6 @@ const Home = () => {
             setCargando(false);
         }, 1000);
     };
-
 
     const fetchSesionesPorPelicula = async (peliculaId) => {
         try {
@@ -93,15 +93,15 @@ const Home = () => {
         return url;
     };
 
-
     return (
-
         <div className="home-container">
             <header className="home-header">
                 <div className="header-background header-content">
-                    <button className="admin-icon" onClick={() => navigate('/administrador')}>
-                        <FiSettings size={24} />
-                    </button>
+                    {mostrarBotonAdmin && (
+                        <button className="admin-icon" onClick={() => navigate('/administrador')}>
+                            <FiSettings size={24} />
+                        </button>
+                    )}
                     <img className='logo' src={logoCinema} alt="Cinema Logo" />
                     <h1 className='title'>Velvet Cinema</h1>
                 </div>

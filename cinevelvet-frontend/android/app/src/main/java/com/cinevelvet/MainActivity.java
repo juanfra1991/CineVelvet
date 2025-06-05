@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsets.Type;
 
-import androidx.core.content.ContextCompat;
-
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {
@@ -28,8 +26,7 @@ public class MainActivity extends BridgeActivity {
             });
         }
 
-        int colorSuperior = ContextCompat.getColor(this, com.getcapacitor.android.R.color.colorCinemaVelvet);
-
+        int colorSuperior = Color.WHITE;
         int colorInferior = Color.WHITE;
 
         GradientDrawable gradient = new GradientDrawable(
@@ -37,7 +34,15 @@ public class MainActivity extends BridgeActivity {
                 new int[]{colorSuperior, colorInferior}
         );
 
-        // Establece el fondo en la vista raíz
         getWindow().getDecorView().setBackground(gradient);
+
+        // Cambiar color barra superior y poner iconos oscuros
+        getWindow().setStatusBarColor(colorSuperior);
+        // Ajustar visibilidad del texto de la barra de estado para que sea negro
+        View decorView = getWindow().getDecorView();
+        int flags = decorView.getSystemUiVisibility();
+        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        decorView.setSystemUiVisibility(flags);
     }
+
 }

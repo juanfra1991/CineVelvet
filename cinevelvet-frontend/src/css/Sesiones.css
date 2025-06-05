@@ -96,10 +96,11 @@ select:focus {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadein 0.3s ease-in;
 }
-.margin-right{
-  margin-right: 15px;
 
+.margin-right {
+  margin-right: 15px;
 }
+
 .popup-mensaje button {
   margin-top: 12px;
   padding: 10px 16px;
@@ -132,4 +133,22 @@ select:focus {
 .flex-botones {
   justify-content: center;
   display: flex;
+}
+
+.modal-titulo {
+  color: white !important;
+}
+
+.modal-botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-aceptar {
+  background-color: #d9534f;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
 }

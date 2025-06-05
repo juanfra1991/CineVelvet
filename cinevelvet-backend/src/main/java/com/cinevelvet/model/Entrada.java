@@ -1,10 +1,8 @@
 package com.cinevelvet.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -19,6 +17,7 @@ public class Entrada {
 
     @ManyToOne
     @JoinColumn(name = "reserva_id")
+    @JsonBackReference
     private Reserva reserva;
 
     @OneToOne

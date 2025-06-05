@@ -25,7 +25,6 @@ const Sala = () => {
     const usuarioID = localStorage.getItem('usuarioId');
     const [maximoButacasSuperado, setMaximoButacasSuperado] = useState(false);
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -49,7 +48,6 @@ const Sala = () => {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [salaId, sesionId]);
 
@@ -82,7 +80,6 @@ const Sala = () => {
         }
     };
 
-
     const mostrarButacasSeleccionadas = butacasSeleccionadas.length
         ? `${butacasSeleccionadas.length} butacas, (${butacasSeleccionadas.map(b => `Fila ${b.fila}, Butaca ${b.columna}`).join(' | ')})`
         : 'por favor, selecciona las butacas deseadas';
@@ -113,7 +110,6 @@ const Sala = () => {
                     `${Config.urlBackend}/butacas/bloquear?usuarioId=${usuarioID}`,
                     idsSeleccionados
                 );
-
                 navigate('/reservas', {
                     state: {
                         sesionId,
@@ -146,12 +142,10 @@ const Sala = () => {
                     <h1 className='title'>Velvet Cinema</h1>
                 </div>
             </header>
-
             <p><strong>Velvet Cinema</strong></p>
             <div className="info-pelicula">
                 <p><strong>Película:</strong> {sesion.peliculaTitulo}, {sesion.strFechaLarga} {sesion.strHora}, {sala.nombre}</p>
             </div>
-
             <div>
                 <div>
                     <strong>Selección de butacas:</strong>{' '}
@@ -161,7 +155,6 @@ const Sala = () => {
                         <span>{butacasSeleccionadas.length} butacas</span>
                     )}
                 </div>
-
                 {butacasSeleccionadas.length > 0 && (
                     <div style={{ marginTop: '0.5em' }}>
                         {butacasSeleccionadas
@@ -177,7 +170,6 @@ const Sala = () => {
                     </div>
                 )}
             </div>
-
             <div className="leyenda-butacas">
                 <div className="leyenda-item">
                     <div className="butaca-contenedor-leyenda">
@@ -201,11 +193,9 @@ const Sala = () => {
                     <span>Butaca bloqueada</span>
                 </div>
             </div>
-
             <div className='seatplan__cinema-screen txt-center uppercase'>
                 <span>Pantalla</span>
             </div>
-
             <div className="sala-grid">
                 {Array.from({ length: sala.filas }).flatMap((_, filaIndex) => {
                     const fila = filaIndex + 1;
@@ -244,7 +234,6 @@ const Sala = () => {
                             </div>
                         );
                     }
-
                     return rowElements;
                 })}
             </div>
@@ -253,6 +242,7 @@ const Sala = () => {
                 <br />
                 <p className='font'>*No incluye gastos adicionales.</p>
                 <div>
+                    <img src={`/assets/payment/payment_creditcards.svg`} className='margenes' alt="Tarjeta de crédito" width="55" />
                     <img src={`/assets/payment/payment_paypal.svg`} className='margenes' alt="PayPal" width="55" />
                     <img src={`/assets/payment/payment_bizum.svg`} className='margenes' alt="Bizum" width="55" />
                 </div>
@@ -265,14 +255,12 @@ const Sala = () => {
                     </div>
                 </div>
             )}
-
             {butacaOcupada && <div className="popup-overlay">
                 <div className="popup-mensaje">
                     <p>La selección de butacas está ocupada por otro usuario.</p>
                     <button onClick={() => window.location.reload()}>Cerrar</button>
                 </div>
             </div>}
-
             {sesionExpirada && (
                 <div className="popup-overlay">
                     <div className="popup-mensaje">
@@ -281,7 +269,6 @@ const Sala = () => {
                     </div>
                 </div>
             )}
-
             {butacasSeleccionadas.length > 0 && (
                 <div className="resumen-compra">
 
@@ -298,8 +285,6 @@ const Sala = () => {
                     </div>
                 </div>
             )}
-
-
             <div className="boton-comprar-container">
                 <button
                     onClick={handleComprarClick}
@@ -310,8 +295,6 @@ const Sala = () => {
                 </button>
 
             </div>
-
-
         </div>
     );
 };
