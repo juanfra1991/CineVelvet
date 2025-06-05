@@ -108,7 +108,7 @@ public class PDFService {
             doc.add(total);
 
             // Añadir QR
-            BarcodeQRCode qrCode = new BarcodeQRCode("https://cine.entradas.com/cine/aguilas/mult-el-hornillo/informacion", 100, 100, null);
+            BarcodeQRCode qrCode = new BarcodeQRCode("https://cine.entradas.com/cine/aguilas/mult-el-hornillo/informacion", 150, 150, null);
             Image qrImage = qrCode.getImage();
             qrImage.scalePercent(50);
             qrImage.setAlignment(Image.ALIGN_RIGHT);
