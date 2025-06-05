@@ -1,12 +1,16 @@
 /* Administrador.css */
 .admin-container {
   padding: 20px;
+  padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  padding-left: calc(20px + env(safe-area-inset-left));
+  padding-right: calc(20px + env(safe-area-inset-right));
   background-color: #f5f5f5;
   margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .admin-container h2 {

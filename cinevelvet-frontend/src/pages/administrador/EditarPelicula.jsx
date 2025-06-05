@@ -67,7 +67,6 @@ export default function EditarPelicula() {
 
   return (
     <div className="peliculas-admin-container">
-
       <header className="home-header">
         <div className="header-background header-content">
           <button className="admin-icon" onClick={() => window.history.back()} title="Atras">
@@ -79,7 +78,6 @@ export default function EditarPelicula() {
           </div>
         </div>
       </header>
-
       <h2 className='h2'>Editar Película</h2>
       <hr />
 

@@ -95,7 +95,6 @@ const Peliculas = () => {
         </div>
       </header>
       <h2 className='h2'>Crear Nueva Película</h2>
-
       <hr />
 
       <label>Título:</label>

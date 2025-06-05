@@ -52,7 +52,7 @@ const Peliculas = () => {
   }));
 
   return (
-    <div className="peliculas-admin-container ">
+    <div className="peliculas-admin-container">
       <header className="home-header">
         <div className="header-background">
           <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
@@ -65,8 +65,7 @@ const Peliculas = () => {
         </div>
       </header>
 
-      <h2 className='h2'>Gestión de Películas</h2>
-
+      <h2 className="titulo">Gestión de Películas</h2>
       {/* Navegación entre vistas */}
       <div className='dashboard-nav'>
         <button

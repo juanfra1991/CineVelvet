@@ -20,7 +20,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="peliculas-admin-container">
+    <div className="home-container">
       <aside>
         <header className="home-header">
           <div className="header-background header-content">
