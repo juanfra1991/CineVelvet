@@ -2,20 +2,14 @@ package com.cinevelvet.controller;
 
 import com.cinevelvet.model.Pelicula;
 import com.cinevelvet.repository.PeliculaRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
@@ -152,7 +146,6 @@ public class PeliculaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePelicula(@PathVariable Long id) {

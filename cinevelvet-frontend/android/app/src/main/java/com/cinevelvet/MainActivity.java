@@ -1,15 +1,11 @@
 package com.cinevelvet;
 
-import android.graphics.Color;
 import android.graphics.Insets;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsets.Type;
-
-import androidx.core.content.ContextCompat;
 
 import com.getcapacitor.BridgeActivity;
 
@@ -27,17 +23,10 @@ public class MainActivity extends BridgeActivity {
                 return WindowInsets.CONSUMED;
             });
         }
-
-        int colorSuperior = ContextCompat.getColor(this, com.getcapacitor.android.R.color.colorCinemaVelvet);
-
-        int colorInferior = Color.WHITE;
-
-        GradientDrawable gradient = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{colorSuperior, colorInferior}
-        );
-
-        // Establece el fondo en la vista raíz
-        getWindow().getDecorView().setBackground(gradient);
+        // Ajustar visibilidad del texto de la barra de estado para que sea negro
+        View decorView = getWindow().getDecorView();
+        int flags = decorView.getSystemUiVisibility();
+        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        decorView.setSystemUiVisibility(flags);
     }
 }

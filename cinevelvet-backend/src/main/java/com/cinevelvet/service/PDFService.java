@@ -22,22 +22,26 @@ public class PDFService {
 
             Document doc = new Document();
             ByteArrayOutputStream out = new ByteArrayOutputStream();
-            PdfWriter.getInstance(doc, out);
+
+            // Crear PdfWriter UNA SOLA VEZ y registrar el evento antes de abrir el doc
+            PdfWriter writer = PdfWriter.getInstance(doc, out);
+            writer.setPageEvent(new FooterEvent());
+
             doc.open();
 
             // Añadir el logo
-            String logoPath = Objects.requireNonNull(getClass().getClassLoader().getResource("images/logoCine.jpg")).getPath();
+            String logoPath = Objects.requireNonNull(getClass().getClassLoader().getResource("images/cabecera_pdf.png")).getPath();
             Image logo = Image.getInstance(logoPath);
-            logo.scaleToFit(200, 100);
-            logo.setAlignment(Element.ALIGN_RIGHT);
+            float maxWidth = doc.getPageSize().getWidth() - doc.leftMargin() - doc.rightMargin();
+            logo.scaleToFit(maxWidth, 150);
+            logo.setAlignment(Image.ALIGN_CENTER);
             doc.add(logo);
 
             // Formato de fecha
             SimpleDateFormat sdfReserva = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             SimpleDateFormat sdfSesion = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-            // Título y detalles del cliente
-            doc.add(new Paragraph("🎟️ Entrada Velvet Cinema", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
+            doc.add(new Paragraph("Entrada Velvet Cinema", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
             doc.add(new Paragraph(" "));
 
             Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
@@ -52,51 +56,72 @@ public class PDFService {
             doc.add(formattedLine("Fecha sesión: ", sdfSesion.format(reserva.getSesion().getFecha()), boldFont, normalFont));
             doc.add(new Paragraph(" "));
 
-            // Crear la tabla con estilo
+            // Crear tabla con estilo
             PdfPTable table = new PdfPTable(2);
             table.setWidths(new int[]{1, 1});
             table.setSpacingBefore(10f);
             table.setSpacingAfter(10f);
             table.setWidthPercentage(100);
 
-            // Cabeceras
-            Font cabeceraFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+            BaseColor headerColor = new BaseColor(230, 230, 250);
+            BaseColor borderColor = new BaseColor(180, 180, 180);
+            Font cabeceraFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);
+            Font filaFont = FontFactory.getFont(FontFactory.HELVETICA, 11, BaseColor.DARK_GRAY);
+
             PdfPCell cell = new PdfPCell(new Phrase("Fila", cabeceraFont));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell.setPadding(8f);
+            cell.setBackgroundColor(headerColor);
+            cell.setBorderColor(borderColor);
+            cell.setPadding(10f);
             table.addCell(cell);
 
             cell = new PdfPCell(new Phrase("Butaca", cabeceraFont));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell.setPadding(8f);
+            cell.setBackgroundColor(headerColor);
+            cell.setBorderColor(borderColor);
+            cell.setPadding(10f);
             table.addCell(cell);
 
-            // Datos
-            Font filaFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
             for (Entrada entrada : reserva.getEntradas()) {
-                table.addCell(new PdfPCell(new Phrase(String.valueOf(entrada.getButaca().getFila()), filaFont)));
-                table.addCell(new PdfPCell(new Phrase(String.valueOf(entrada.getButaca().getButaca()), filaFont)));
+                PdfPCell filaCell = new PdfPCell(new Phrase(String.valueOf(entrada.getButaca().getFila()), filaFont));
+                filaCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                filaCell.setBorderColor(borderColor);
+                filaCell.setPadding(8f);
+                table.addCell(filaCell);
+
+                PdfPCell butacaCell = new PdfPCell(new Phrase(String.valueOf(entrada.getButaca().getButaca()), filaFont));
+                butacaCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                butacaCell.setBorderColor(borderColor);
+                butacaCell.setPadding(8f);
+                table.addCell(butacaCell);
             }
 
             doc.add(table);
 
-            // Añadir QR
-            BarcodeQRCode qrCode = new BarcodeQRCode("https://cine.entradas.com/cine/aguilas/mult-el-hornillo/informacion", 100, 100, null);
-            Image qrImage = qrCode.getImage();
-            qrImage.setAlignment(Element.ALIGN_CENTER);
-            qrImage.scalePercent(125);
-            doc.add(new Paragraph(" "));
-            doc.add(new Paragraph("Código QR", boldFont));
-            doc.add(qrImage);
+            // Precio total
+            final double PRECIO_ENTRADA = 5.0;
+            double precioTotal = reserva.getEntradas().size() * PRECIO_ENTRADA;
+            Font precioFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);
+            Paragraph total = new Paragraph("💶 Precio total: " + String.format("%.2f", precioTotal) + " €", precioFont);
+            total.setAlignment(Element.ALIGN_RIGHT);
+            total.setSpacingBefore(10f);
+            doc.add(total);
 
-            // Añadir cláusula LOPD
+            // Añadir QR
+            BarcodeQRCode qrCode = new BarcodeQRCode("https://cine.entradas.com/cine/aguilas/mult-el-hornillo/informacion", 150, 150, null);
+            Image qrImage = qrCode.getImage();
+            qrImage.scalePercent(50);
+            qrImage.setAlignment(Image.ALIGN_RIGHT);
+
+            PdfPTable qrTable = new PdfPTable(1);
+            qrTable.setWidthPercentage(100);
+            PdfPCell qrCell = new PdfPCell(qrImage);
+            qrCell.setBorder(Rectangle.NO_BORDER);
+            qrCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            qrTable.addCell(qrCell);
+
             doc.add(new Paragraph(" "));
-            Font lopdFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 8, BaseColor.DARK_GRAY);
-            Paragraph lopd = new Paragraph("En cumplimiento de la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales, le informamos que sus datos han sido utilizados únicamente para la gestión de su reserva y no serán cedidos a terceros.", lopdFont);
-            lopd.setAlignment(Element.ALIGN_JUSTIFIED);
-            doc.add(lopd);
+            doc.add(qrTable);
 
             doc.close();
             return out.toByteArray();
@@ -114,5 +139,36 @@ public class PDFService {
         paragraph.add(labelChunk);
         paragraph.add(valueChunk);
         return paragraph;
+    }
+
+    private static class FooterEvent extends PdfPageEventHelper {
+        private final Font contactoFont = FontFactory.getFont(FontFactory.HELVETICA, 9, BaseColor.DARK_GRAY);
+        private final Font lopdFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 8, BaseColor.DARK_GRAY);
+
+        @Override
+        public void onEndPage(PdfWriter writer, Document document) {
+            PdfPTable footer = new PdfPTable(1);
+            footer.setTotalWidth(520);
+            footer.setWidthPercentage(100);
+
+            PdfPCell contactoCell = new PdfPCell(new Phrase("¿Tienes alguna duda o sugerencia? Escríbenos a: cinemavelvet2025@gmail.com", contactoFont));
+            contactoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            contactoCell.setBorder(Rectangle.NO_BORDER);
+            contactoCell.setPaddingBottom(5f);
+            footer.addCell(contactoCell);
+
+            PdfPCell lopdCell = new PdfPCell(new Phrase(
+                    "En cumplimiento de la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales, "
+                            + "le informamos que sus datos han sido utilizados únicamente para la gestión de su reserva y no serán cedidos a terceros.",
+                    lopdFont));
+            lopdCell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+            lopdCell.setBorder(Rectangle.NO_BORDER);
+            lopdCell.setPaddingLeft(20f);
+            lopdCell.setPaddingRight(20f);
+            footer.addCell(lopdCell);
+
+            // Posición desde abajo
+            footer.writeSelectedRows(0, -1, 36, 60, writer.getDirectContent());
+        }
     }
 }

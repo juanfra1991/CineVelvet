@@ -13,15 +13,6 @@ export default function Dashboard() {
     { name: "Sesiones", path: "/sesiones" },
   ];
 
-  const handleLogout = () => {
-    navigate("/");
-  };
-
-  const handleAnotherAction = () => {
-    // Lógica para el nuevo botón
-    console.log("Nuevo botón clickeado");
-  };
-
   useEffect(() => {
     if (window.location.pathname === "/administrador") {
       navigate(menuItems[0].path);
@@ -29,17 +20,17 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="peliculas-admin-container">
+    <div className="home-container">
       <aside>
         <header className="home-header">
-        <div className="header-background header-content">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
-            <FiLogOut size={24} />
-          </button>
-          <img className='logo' src={logoCinema} alt="Cinema Logo" />
-          <h1 className='title'>Velvet Cinema</h1>
-        </div>
-      </header>
+          <div className="header-background header-content">
+            <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+              <FiLogOut size={24} />
+            </button>
+            <img className='logo' src={logoCinema} alt="Cinema Logo" />
+            <h1 className='title'>Velvet Cinema</h1>
+          </div>
+        </header>
         <h2 className="dashboard-title">Panel Administrador</h2>
         <nav className="dashboard-nav gap">
           {menuItems.map((item) => (

@@ -1,5 +1,6 @@
 package com.cinevelvet.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,6 @@ public class Sesion {
 
     @ManyToOne
     @JoinColumn(name = "sala_id")
+    @JsonBackReference
     private Sala sala;
 }

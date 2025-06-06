@@ -5,22 +5,22 @@ import '../css/Sala.css';
 import '../css/Home.css';
 import { Config } from '../api/Config';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 import { FiClock } from 'react-icons/fi';
-
 
 const Reservas = () => {
   const location = useLocation();
   const { sesionId, butacasSeleccionadas } = location.state || {};
   const [butacasSeleccionadasState] = useState(butacasSeleccionadas || []);
-
   const [sesion, setSesiones] = useState([]);
   const [butacas, setButacas] = useState([]);
   const [cliente, setCliente] = useState({ nombre: '', email: '', telefono: '' });
   const [mensajeGuardado, setMensajeGuardado] = useState("");
+  const [mensajeError, setMensajeError] = useState("");
   const [contador, setContador] = useState(null);
   const [comprando, setComprando] = useState(false);
   const [mostrandoLoader, setMostrandoLoader] = useState(false);
-  const [tiempoRestante, setTiempoRestante] = useState(300);
+  const [tiempoRestante, setTiempoRestante] = useState(240);
   const [mostrarPopupTiempo, setMostrarPopupTiempo] = useState(false);
 
   const navigate = useNavigate();
@@ -47,20 +47,20 @@ const Reservas = () => {
 
   useEffect(() => {
     if (contador !== 5) return;
-  
+
     // Mostrar mensaje inmediatamente
     setMensajeGuardado("Compra realizada correctamente. Serás redirigido en unos segundos...");
-  
+
     // Mostrar loader después de 3 segundos
     const mostrarLoaderTimer = setTimeout(() => {
       setMostrandoLoader(true);
     }, 3000);
-  
+
     // Redirigir después de 8 segundos (3 + 5)
     const redirigirTimer = setTimeout(() => {
       navigate('/');
     }, 8000);
-  
+
     return () => {
       clearTimeout(mostrarLoaderTimer);
       clearTimeout(redirigirTimer);
@@ -83,7 +83,17 @@ const Reservas = () => {
 
     return () => clearInterval(timer);
   }, [contador]);
-  
+
+  useEffect(() => {
+    if (!mensajeError) return;
+
+    const timer = setTimeout(() => {
+      setMensajeError("");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [mensajeError]);
+
   const crearReserva = async (data) => {
     setComprando(true);
     try {
@@ -94,7 +104,7 @@ const Reservas = () => {
       console.error('Error al crear la reserva', error);
     }
   };
-  
+
   const descargarPDF = async (reservaId) => {
     try {
       const response = await axios.get(`${Config.urlBackend}/reservas/${reservaId}/pdf`, {
@@ -121,9 +131,22 @@ const Reservas = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMensajeError("");
 
     if (butacasSeleccionadas.length === 0) {
-      alert('Por favor, selecciona al menos una butaca.');
+      setMensajeError("Por favor, selecciona al menos una butaca.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cliente.email)) {
+      setMensajeError("Por favor, introduce un email válido.");
+      return;
+    }
+
+    const telefonoLimpio = cliente.telefono.replace(/\D/g, '');
+    if (telefonoLimpio.length < 9) {
+      setMensajeError("Por favor, introduce un número de teléfono válido.");
       return;
     }
 
@@ -139,18 +162,21 @@ const Reservas = () => {
   return (
     <div className="home-container">
       {mostrandoLoader && (
-      <div className="loader-overlay">
-        <div className="loader"></div>
-        <p>Redirigiendo al inicio...</p>
-      </div>
-    )}
+        <div className="loader-overlay">
+          <div className="loader"></div>
+          <p>Redirigiendo al inicio...</p>
+        </div>
+      )}
       <header className="home-header">
-        <div className="header-background"></div>
+        <div className="header-background">
+          <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
+            <FiArrowLeftCircle size={24} />
+          </button>
+
+        </div>
         <div className="header-content">
           <img className='logo' src={logoCinema} alt="Cinema Logo" />
-          <div>
-            <h1 className='title'>Velvet Cinema</h1>
-          </div>
+          <h1 className='title'>Velvet Cinema</h1>
         </div>
       </header>
       <p><strong>Velvet Cinema</strong></p>
@@ -195,9 +221,10 @@ const Reservas = () => {
             required
           />
         </div>
-        {mensajeGuardado && (
-          <div className="popup-mensaje">
-            {mensajeGuardado}
+        {(mensajeError || mensajeGuardado) && (
+          <div className="popup-mensaje-peliculas">
+            {mensajeError && mensajeError}
+            {mensajeGuardado && mensajeGuardado}
           </div>
         )}
         <div className="boton-comprar-container">
@@ -211,9 +238,9 @@ const Reservas = () => {
       </form>
       {mostrarPopupTiempo && (
         <div className="popup-overlay">
-          <div className="popup-mensaje">
+          <div className="popup-mensaje-peliculas">
             <p>Parece que el tiempo se ha agotado, por favor, selecciona tus butacas de nuevo.</p>
-            <button onClick={() => navigate(-1)}>Repetir compra</button>
+            <button className="boton-repetir-compra" onClick={() => navigate(-1)}>Repetir compra</button>
           </div>
         </div>
       )}

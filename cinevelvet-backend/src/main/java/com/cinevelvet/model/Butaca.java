@@ -1,9 +1,9 @@
 package com.cinevelvet.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.time.LocalDateTime;
 
@@ -22,9 +22,10 @@ public class Butaca {
     private Sala sala;
 
     private int fila;
+
     private int butaca;
+
     private LocalDateTime bloqueadaHasta;
 
     private String usuarioId;
-
 }

@@ -33,8 +33,8 @@ const Peliculas = () => {
         pelicula.id === id ? updatedPelicula : pelicula
       ));
       setSelectedPelicula(updatedPelicula);
-      setMensajeGuardado("Estado de publicación actualizado exitosamente.");
-      setTimeout(() => setMensajeGuardado(""), 50000);
+      setMensajeGuardado("Estado de publicación actualizado correctamente.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
     } catch (error) {
       console.error('Error al cambiar el estado de publicación:', error);
       setMensajeGuardado("Hubo un error al actualizar el estado de la película.");
@@ -52,10 +52,10 @@ const Peliculas = () => {
   }));
 
   return (
-    <div className="peliculas-admin-container ">
+    <div className="peliculas-admin-container">
       <header className="home-header">
         <div className="header-background">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Atrás">
             <FiArrowLeftCircle size={24} />
           </button>
         </div>
@@ -65,8 +65,7 @@ const Peliculas = () => {
         </div>
       </header>
 
-      <h2 className='h2'>Gestión de Películas</h2>
-
+      <h2 className="titulo">Gestión de Películas</h2>
       {/* Navegación entre vistas */}
       <div className='dashboard-nav'>
         <button
@@ -86,7 +85,7 @@ const Peliculas = () => {
       {/* Vista: Crear Película */}
       {vistaActiva === 'crear' && (
         <div className="crear-container">
-          <hr/>
+          <hr />
           <button onClick={() => navigate('/crear-pelicula')} className="crear-button">
             Ir al Formulario
           </button>
@@ -96,7 +95,7 @@ const Peliculas = () => {
       {/* Vista: Listado de Películas */}
       {vistaActiva === 'lista' && (
         <div>
-          <hr/>
+          <hr />
 
           <div className="campo">
             <label htmlFor="select-pelicula">Selecciona una película:</label>

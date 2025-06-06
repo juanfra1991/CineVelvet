@@ -12,7 +12,8 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #f5f5f5;
@@ -24,7 +25,6 @@ html, body {
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
-
 
 @media (min-width: 1024px) {
   .home-container {
@@ -83,10 +83,11 @@ html, body {
   grid-template-columns: 1fr;
   gap: 20px;
 }
+
 .admin-icon {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   background: transparent;
   border: none;
   color: white;
@@ -124,6 +125,7 @@ html, body {
   max-width: 500px;
   width: 90%;
 }
+
 /* ==== Animación de aparición ==== */
 @keyframes fadein {
   from {
@@ -135,7 +137,6 @@ html, body {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 /* ==== Botón de cierre del modal ==== */
@@ -156,7 +157,6 @@ html, body {
   color: white;
 }
 
-
 .custom-modal {
   background: white;
   padding: 20px;
@@ -167,7 +167,7 @@ html, body {
   overflow-y: auto;
   position: relative;
   z-index: 1001;
-  pointer-events: auto; 
+  pointer-events: auto;
 }
 
 .video-responsive {
@@ -189,6 +189,7 @@ html, body {
   touch-action: manipulation;
   z-index: 2;
 }
+
 .pelicula-card {
   background: white;
   border-radius: 10px;
@@ -289,6 +290,37 @@ html, body {
 }
 
 @media (max-width: 768px) {
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top: 5px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+  }
+
+  .loader {
+    position: fixed;
+    top: 50% !important;
+    left: 42% !important;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+@media (max-width: 768px) {
 
   .pelicula-card {
     flex-direction: column;
@@ -299,34 +331,37 @@ html, body {
     width: 200px;
     height: 280px;
   }
-  .video-responsive {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  
-}
-.video-responsive iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  pointer-events: auto;
-  touch-action: manipulation;
-  z-index: 2;
-}
 
-/* En tu CSS (por ejemplo, Sesiones.css o Home.css) */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  /* 16:9 aspect ratio */
-  padding-top: 25px;
-  height: 0;
-}}
+  .video-responsive {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+  }
+
+  .video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: auto;
+    touch-action: manipulation;
+    z-index: 2;
+  }
+
+  /* En tu CSS (por ejemplo, Sesiones.css o Home.css) */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    padding-top: 25px;
+    height: 0;
+  }
+}
 
 .video-container iframe {
   position: absolute;
@@ -376,7 +411,24 @@ html, body {
   color: white;
   padding: 10px;
   max-width: 800px;
-  width: 90%;
+  width: 75%;
+  border-radius: 10px;
+  outline: none;
+  z-index: 1001;
+}
+
+.popup-portada-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: #800000;
+  color: white;
+  padding: 10px;
+  max-width: 800px;
+  width: 80%;
   border-radius: 10px;
   outline: none;
   z-index: 1001;
@@ -394,8 +446,8 @@ html, body {
 
 .cerrar-icono {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   background: transparent;
   border: none;
   color: #fff;
@@ -408,67 +460,71 @@ html, body {
 }
 
 .cargar-mas {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 15px;
-    font-size: 16px;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 15px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .loader {
-    position: fixed;
-    top: 50%;
-    left: 42%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #555;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #ccc;
-    border-top: 5px solid #000;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+  from {
+    transform: rotate(0deg);
+  }
 
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .contacto-footer {
   background-color: #9a9595;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
-    border: 1px solid #444;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
 }
 
 .contacto-footer a {
-    color: #800000;
-    text-decoration: none;
+  color: #800000;
+  text-decoration: none;
 }
 
 .contacto-footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

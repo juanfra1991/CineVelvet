@@ -29,9 +29,9 @@ const EditarSesion = () => {
       const res = await axios.get(`${Config.urlBackend}/sesiones/${id}`);
       const data = res.data;
       setSesion(data);
+      setPeliculaId(data.peliculaId.toString());
+      setSalaId(data.salaId.toString());
       setFecha(new Date(data.fecha));
-      setPeliculaId(data.peliculaId);
-      setSalaId(data.salaId);
     } catch (error) {
       console.error('Error al obtener la sesión:', error);
     }
@@ -66,7 +66,6 @@ const EditarSesion = () => {
     }
   };
 
-
   useEffect(() => {
     fetchSesion();
     fetchPeliculas();
@@ -74,47 +73,47 @@ const EditarSesion = () => {
     fetchSesionesExistentes();
   }, []);
 
+  const handleActualizarSesion = async () => {
+    console.log({ fecha, salaId, peliculaId });
 
-const handleActualizarSesion = async () => {
-  if (!fecha || !salaId || !peliculaId) {
-    setMensajeGuardado("Debes completar todos los campos.");
-    setTimeout(() => setMensajeGuardado(""), 3000);
-    return;
-  }
+    if (!fecha || !salaId || !peliculaId) {
+      setMensajeGuardado("Debes completar todos los campos.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+      return;
+    }
 
-  // Verificar si ya hay otra sesión en esa sala a la misma hora
-  const conflicto = otrasSesiones.some(s =>
-    s.salaId === Number(salaId) &&
-    new Date(s.fecha).getTime() === new Date(fecha).getTime()
-  );
+    // Verifica si ya hay otra sesión en esa sala a la misma hora
+    const conflicto = otrasSesiones.some(s =>
+      s.salaId === Number(salaId) &&
+      new Date(s.fecha).getTime() === new Date(fecha).getTime()
+    );
 
-  if (conflicto) {
-    setMensajeGuardado("Ya hay otra sesión en esa sala a la misma hora.");
-    setTimeout(() => setMensajeGuardado(""), 3000);
-    return;
-  }
+    if (conflicto) {
+      setMensajeGuardado("Ya hay otra sesión en esa sala a la misma hora.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+      return;
+    }
 
-  try {
-    const sesionActualizada = {
-      fecha: fecha.toISOString(),
-      pelicula: { id: peliculaId },
-      sala: { id: salaId },
-    };
+    try {
+      const sesionActualizada = {
+        fecha: fecha.toISOString(),
+        pelicula: { id: peliculaId },
+        sala: { id: salaId },
+      };
 
-    await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
+      await axios.put(`${Config.urlBackend}/sesiones/${id}`, sesionActualizada);
 
-    setMensajeGuardado("Sesión actualizada correctamente.");
-    setTimeout(() => {
-      setMensajeGuardado("");
-      navigate(-1); // volver atrás si quieres
-    }, 2500);
-  } catch (error) {
-    console.error('Error al actualizar la sesión:', error);
-    setMensajeGuardado("Error al actualizar la sesión.");
-    setTimeout(() => setMensajeGuardado(""), 3000);
-  }
-};
-
+      setMensajeGuardado("Sesión actualizada correctamente.");
+      setTimeout(() => {
+        setMensajeGuardado("");
+        navigate(-1);
+      }, 3000);
+    } catch (error) {
+      console.error('Error al actualizar la sesión:', error);
+      setMensajeGuardado("Error al actualizar la sesión.");
+      setTimeout(() => setMensajeGuardado(""), 3000);
+    }
+  };
 
   if (!sesion) return <div>Cargando sesión...</div>;
 
@@ -122,7 +121,7 @@ const handleActualizarSesion = async () => {
     <div className="sesiones-admin-container home-container">
       <header className="home-header">
         <div className="header-background">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Atrás">
             <FiArrowLeftCircle size={24} />
           </button>
         </div>
@@ -134,9 +133,18 @@ const handleActualizarSesion = async () => {
 
       <h2>Editar Sesión</h2>
 
-      <p className='center'><strong>Película: {peliculaSeleccionada ? peliculaSeleccionada.titulo : 'Cargando...'}</strong></p>
-      <p className='center'><strong>Sala: {salaSeleccionada ? salaSeleccionada.nombre : 'Cargando...'}</strong></p>
-      <p className='center'><strong>Fecha: {fecha ? fecha.toLocaleString('es-ES') : 'Cargando...'}</strong></p>
+      <p className='center'><strong>Película: {sesion?.peliculaTitulo || 'Cargando...'}</strong></p>
+      <p className='center'><strong>Sala: {sesion?.salaNombre || 'Cargando...'}</strong></p>
+      <p className='center'><strong>Fecha: {fecha ? fecha.toLocaleString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      })
+        : 'Cargando...'}
+      </strong></p>
       <hr></hr>
 
       <div className="formulario-editar">
