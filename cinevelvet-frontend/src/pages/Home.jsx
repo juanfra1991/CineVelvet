@@ -165,7 +165,7 @@ const Home = () => {
                 isOpen={modalAbierto}
                 onRequestClose={cerrarModal}
                 contentLabel="Descripción de la película"
-                className="popup-mensaje-modal"
+                className="popup-portada-modal"
                 overlayClassName="custom-overlay"
                 ariaHideApp={false}>
                 {peliculaSeleccionada && (

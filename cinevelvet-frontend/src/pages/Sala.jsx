@@ -132,7 +132,7 @@ const Sala = () => {
         <div className="home-container">
             <header className="home-header">
                 <div className="header-background">
-                    <button className="admin-icon" onClick={() => navigate(-1)} title="Cerrar Sesión">
+                    <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
                         <FiArrowLeftCircle size={24} />
                     </button>
 

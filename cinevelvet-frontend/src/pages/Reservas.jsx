@@ -5,6 +5,7 @@ import '../css/Sala.css';
 import '../css/Home.css';
 import { Config } from '../api/Config';
 import logoCinema from '../assets/logoCine.jpg';
+import { FiArrowLeftCircle } from "react-icons/fi";
 import { FiClock } from 'react-icons/fi';
 
 const Reservas = () => {
@@ -167,12 +168,15 @@ const Reservas = () => {
         </div>
       )}
       <header className="home-header">
-        <div className="header-background"></div>
+        <div className="header-background">
+          <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
+            <FiArrowLeftCircle size={24} />
+          </button>
+
+        </div>
         <div className="header-content">
           <img className='logo' src={logoCinema} alt="Cinema Logo" />
-          <div>
-            <h1 className='title'>Velvet Cinema</h1>
-          </div>
+          <h1 className='title'>Velvet Cinema</h1>
         </div>
       </header>
       <p><strong>Velvet Cinema</strong></p>

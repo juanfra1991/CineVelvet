@@ -206,7 +206,7 @@ const Sesiones = () => {
       {/* HEADER */}
       <header className="home-header">
         <div className="header-background header-content">
-          <button className="admin-icon" onClick={() => window.history.back()} title="Cerrar Sesión">
+          <button className="admin-icon" onClick={() => window.history.back()} title="Atrás">
             <FiArrowLeftCircle size={24} />
           </button>
           <img className='logo' src={logoCinema} alt="Cinema Logo" />
