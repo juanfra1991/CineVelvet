@@ -46,8 +46,6 @@
   background-color: #970000c2;
 }
 
-
-
 .admin-container label {
   font-size: 14px;
   color: #555;
@@ -83,5 +81,5 @@
   cursor: pointer;
   padding: 0 10px;
   display: flex;
-justify-content: flex-end;
+  justify-content: flex-end;
 }
