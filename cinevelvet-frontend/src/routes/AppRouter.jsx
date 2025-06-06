@@ -7,7 +7,6 @@ import Administrador from '../pages/administrador/Administrador';
 import Dashboard from '../pages/administrador/InicioAdministrador';
 import Peliculas from '../pages/administrador/Peliculas';
 import EditarPelicula from '../pages/administrador/EditarPelicula';
-import CrearPelicula from '../pages/administrador/CrearPelicula';
 import Sesiones from '../pages/administrador/Sesiones';
 import EditarSesion from '../pages/administrador/EditarSesion';
 import Informacion from '../pages/Informacion';
@@ -23,7 +22,6 @@ export default function AppRouter() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/peliculas" element={<Peliculas />} />
       <Route path="/editar-pelicula/:id" element={<EditarPelicula />} />
-      <Route path="/crear-pelicula" element={<CrearPelicula />} />
       <Route path="/sesiones" element={<Sesiones />} />
       <Route path="/editar-sesion/:id" element={<EditarSesion />} />
       <Route path="/informacion" element={<Informacion />} />
