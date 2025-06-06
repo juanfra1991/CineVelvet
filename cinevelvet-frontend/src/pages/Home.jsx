@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Config } from '../api/Config';
 import axios from 'axios';
+import HeaderConTabs from '../components/HeaderConTabs';
 import logoCinema from '../assets/logoCine.jpg';
 import { FiSettings, FiPlay, FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
@@ -97,15 +98,8 @@ const Home = () => {
     return (
 
         <div className="home-container">
-            <header className="home-header">
-                <div className="header-background header-content">
-                    <button className="admin-icon" onClick={() => navigate('/administrador')}>
-                        <FiSettings size={24} />
-                    </button>
-                    <img className='logo' src={logoCinema} alt="Cinema Logo" />
-                    <h1 className='title'>Velvet Cinema</h1>
-                </div>
-            </header>
+            <HeaderConTabs />
+
 
             <div className="peliculas-list">
                 {peliculas.slice(0, indicePeliculas).map((pelicula) => (

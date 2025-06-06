@@ -91,11 +91,17 @@ const Sesiones = () => {
     }
 
     // Verificar si ya existe una sesión con los mismos datos
-    const sesionExistente = sesiones.find(s =>
-      s.salaId === Number(salaId) &&
-      new Date(s.fecha).getTime() === fecha.getTime()
-    );
+  // Verifica si ya existe una sesión con los mismos datos
+    const sesionExistente = sesiones.find(s => {
+  console.log("s.fecha en sesiones:", s.fecha);
+  console.log("fecha seleccionada:", fecha);
+  console.log("getTime comparados:", new Date(s.fecha).getTime(), fecha.getTime());
+  console.log("Comparando salaId:", s.salaId, Number(salaId));
 
+  return s.salaId === Number(salaId) &&
+         new Date(s.fecha).getTime() === fecha.getTime();
+});
+    console.log(sesionExistente)
     if (sesionExistente) {
       setModalMensajeTexto("Ya hay una pelicula programada para esta hora");
       setModalMensajeVisible(true);
@@ -164,16 +170,7 @@ const Sesiones = () => {
     setButacaAEliminar({ butacaId, reservaId });
     setModalEliminarButacaVisible(true);
 
-    try {
-      await axios.delete(`${Config.urlBackend}/reservas/entradas`, {
-        params: { reservaId, butacaId }
-      });
-
-      const res = await axios.get(`${Config.urlBackend}/butacas/disponibles/${selectedSesion.id}/${selectedSesion.salaId}`);
-      setButacasSesion(res.data);
-    } catch (error) {
-      console.error('Error al liberar la butaca:', error);
-    }
+    
   };
 
   const handleEliminarButacaConfirmado = async () => {
