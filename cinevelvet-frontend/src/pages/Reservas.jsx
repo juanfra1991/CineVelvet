@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../css/Sala.css';
 import '../css/Home.css';
 import { Config } from '../api/Config';
+import HeaderTabs from '../components/HeaderTabs';
 import logoCinema from '../assets/logoCine.jpg';
 import { FiArrowLeftCircle } from "react-icons/fi";
 import { FiClock } from 'react-icons/fi';
@@ -167,18 +168,8 @@ const Reservas = () => {
           <p>Redirigiendo al inicio...</p>
         </div>
       )}
-      <header className="home-header">
-        <div className="header-background">
-          <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
-            <FiArrowLeftCircle size={24} />
-          </button>
+      <HeaderTabs />
 
-        </div>
-        <div className="header-content">
-          <img className='logo' src={logoCinema} alt="Cinema Logo" />
-          <h1 className='title'>Velvet Cinema</h1>
-        </div>
-      </header>
       <p><strong>Velvet Cinema</strong></p>
       <div className="info-pelicula">
         <p><strong>Película: </strong> {sesion.peliculaTitulo}, {sesion.strFechaLarga} {sesion.strHora}, {sesion.salaNombre}</p>

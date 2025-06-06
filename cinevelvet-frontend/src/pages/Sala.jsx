@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Sala.css';
 import '../css/Home.css';
+import HeaderTabs from '../components/HeaderTabs';
 import butacaImg from '../assets/butaca.svg';
 import iconoCheck from '../assets/iconoCheck.svg';
 import iconoNocheck from '../assets/iconoNocheck.svg';
@@ -130,18 +131,8 @@ const Sala = () => {
 
     return (
         <div className="home-container">
-            <header className="home-header">
-                <div className="header-background">
-                    <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
-                        <FiArrowLeftCircle size={24} />
-                    </button>
+                       <HeaderTabs/>
 
-                </div>
-                <div className="header-content">
-                    <img className='logo' src={logoCinema} alt="Cinema Logo" />
-                    <h1 className='title'>Velvet Cinema</h1>
-                </div>
-            </header>
             <p><strong>Velvet Cinema</strong></p>
             <div className="info-pelicula">
                 <p><strong>Película:</strong> {sesion.peliculaTitulo}, {sesion.strFechaLarga} {sesion.strHora}, {sala.nombre}</p>

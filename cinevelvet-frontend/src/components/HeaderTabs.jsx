@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Capacitor } from '@capacitor/core';
-import { FiSettings } from 'react-icons/fi';
+import { FiArrowLeftCircle } from 'react-icons/fi';
 import logoCinema from '../assets/logoCine.jpg';
 import '../css/HeaderConTabs.css';
 
@@ -19,12 +19,8 @@ const HeaderConTabs = () => {
             <header className="home-header">
                 <div className="header-background header-content">
                     {mostrarBotonAdmin && (
-                        <button
-                            className="admin-icon"
-                            onClick={() => navigate('/administrador')}
-                            title="Ir al panel de administración"
-                        >
-                            <FiSettings size={24} />
+                        <button className="admin-icon" onClick={() => navigate(-1)} title="Atrás">
+                            <FiArrowLeftCircle size={24} />
                         </button>
                     )}
                     <img
