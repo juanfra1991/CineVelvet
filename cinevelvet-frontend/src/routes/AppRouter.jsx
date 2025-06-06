@@ -4,12 +4,14 @@ import Home from '../pages/Home';
 import Reservas from '../pages/Reservas';
 import Sala from '../pages/Sala';
 import Administrador from '../pages/administrador/Administrador';
-import Dashboard from '../pages/administrador/Dashboard';
+import Dashboard from '../pages/administrador/InicioAdministrador';
 import Peliculas from '../pages/administrador/Peliculas';
 import EditarPelicula from '../pages/administrador/EditarPelicula';
 import CrearPelicula from '../pages/administrador/CrearPelicula';
 import Sesiones from '../pages/administrador/Sesiones';
 import EditarSesion from '../pages/administrador/EditarSesion';
+import Informacion from '../pages/Informacion';
+
 
 export default function AppRouter() {
   return (
@@ -24,6 +26,7 @@ export default function AppRouter() {
       <Route path="/crear-pelicula" element={<CrearPelicula />} />
       <Route path="/sesiones" element={<Sesiones />} />
       <Route path="/editar-sesion/:id" element={<EditarSesion />} />
+      <Route path="/informacion" element={<Informacion />} />
     </Routes>
   );
 }
