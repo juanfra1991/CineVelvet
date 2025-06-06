@@ -343,6 +343,8 @@
 }
 
 .loader {
+    top: 50%;
+    left: 48.5%;
     border: 8px solid #f3f3f3;
     border-top: 8px solid #800000;
     border-radius: 50%;

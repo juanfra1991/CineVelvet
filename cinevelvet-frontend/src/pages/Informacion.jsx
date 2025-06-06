@@ -28,18 +28,27 @@ const Informacion = () => {
             <div className="info-cards">
               <div className="info-card">
                 <FiMapPin size={24} />
-                <p>Avda. Velvet<br />30880 Águilas, Murcia</p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=30880+Águilas,+Murcia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-clean">
+                  <p>Avda. Velvet<br />30880 Águilas, Murcia</p>
+                </a>
               </div>
               <div className="info-card">
                 <FiPhone size={24} />
-                <p>968 00 00 00</p>
+                <a
+                  href="tel:968000000"
+                  className="link-clean">
+                  <p>968 00 00 00</p>
+                </a>
               </div>
               <div className="info-card">
                 <FiVideo size={24} />
                 <p>6 Salas<br />1340 Asientos</p>
               </div>
             </div>
-
             <div className="info-descripcion">
               <p>
                 Explora la cartelera de Velvet Cinema. Descubre las últimas películas en proyección y horarios.

@@ -57,7 +57,7 @@ const Home = () => {
         } finally {
             setTimeout(() => {
                 setMostrandoLoader(false);
-            }, 1500); // Puedes ajustar el tiempo si quieres
+            }, 1500);
         }
     };
 
