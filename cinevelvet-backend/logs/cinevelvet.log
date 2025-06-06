@@ -197,3 +197,8 @@ Consider defining a bean of type 'com.cinevelvet.service.PDFService' in your con
 2025-06-06T11:54:08.862+02:00  INFO 18328 --- [cinevelvet] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-06-06T11:54:08.863+02:00  INFO 18328 --- [cinevelvet] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-06-06T11:54:08.867+02:00  INFO 18328 --- [cinevelvet] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-06-06T12:17:41.361+02:00  INFO 18328 --- [cinevelvet] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-06T12:17:41.378+02:00  INFO 18328 --- [cinevelvet] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-06T12:17:41.378+02:00  INFO 18328 --- [cinevelvet] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-06T12:17:41.378+02:00  INFO 18328 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-06-06T12:17:41.378+02:00  INFO 18328 --- [cinevelvet] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
