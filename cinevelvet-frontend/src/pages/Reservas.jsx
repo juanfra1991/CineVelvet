@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Sala.css';
@@ -23,7 +23,7 @@ const Reservas = () => {
   const [mostrandoLoader, setMostrandoLoader] = useState(false);
   const [tiempoRestante, setTiempoRestante] = useState(240);
   const [mostrarPopupTiempo, setMostrarPopupTiempo] = useState(false);
-
+  const finTimestamp = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,11 +33,8 @@ const Reservas = () => {
       try {
         const res = await axios.get(`${Config.urlBackend}/sesiones/${sesionId}`);
         setSesiones(res.data);
-        console.log("Sesión cargada:", res.data);
-
         const resButacas = await axios.get(`${Config.urlBackend}/butacas/lista?ids=${butacasSeleccionadas}`);
         setButacas(resButacas.data);
-        console.log("butacas: ", resButacas.data);
       } catch (err) {
         console.error('Error al cargar la sesión y butacas:', err);
       }
@@ -49,15 +46,12 @@ const Reservas = () => {
   useEffect(() => {
     if (contador !== 5) return;
 
-    // Mostrar mensaje inmediatamente
     setMensajeGuardado("Compra realizada correctamente. Serás redirigido en unos segundos...");
 
-    // Mostrar loader después de 3 segundos
     const mostrarLoaderTimer = setTimeout(() => {
       setMostrandoLoader(true);
     }, 3000);
 
-    // Redirigir después de 8 segundos (3 + 5)
     const redirigirTimer = setTimeout(() => {
       navigate('/');
     }, 8000);
@@ -71,18 +65,26 @@ const Reservas = () => {
   useEffect(() => {
     if (contador === 5) return;
 
-    const timer = setInterval(() => {
-      setTiempoRestante(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setMostrarPopupTiempo(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // Establecemos la marca de tiempo final con la duración inicial
+    finTimestamp.current = Date.now() + tiempoRestante * 1000;
 
-    return () => clearInterval(timer);
+    const actualizarTiempo = () => {
+      const ahora = Date.now();
+      const diffSegundos = Math.max(0, Math.round((finTimestamp.current - ahora) / 1000));
+
+      setTiempoRestante(diffSegundos);
+
+      if (diffSegundos <= 0) {
+        setMostrarPopupTiempo(true);
+        clearInterval(intervalo);
+      }
+    };
+
+    actualizarTiempo();
+
+    const intervalo = setInterval(actualizarTiempo, 1000);
+
+    return () => clearInterval(intervalo);
   }, [contador]);
 
   useEffect(() => {

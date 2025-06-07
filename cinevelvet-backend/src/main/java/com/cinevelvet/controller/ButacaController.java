@@ -6,7 +6,6 @@ import com.cinevelvet.model.*;
 import com.cinevelvet.repository.ButacaRepository;
 import com.cinevelvet.repository.EntradaRepository;
 import com.cinevelvet.repository.SalaRepository;
-import com.cinevelvet.repository.SesionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +19,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/butacas")
 @CrossOrigin
 public class ButacaController {
-
-    @Autowired
-    private SesionRepository sesionRepository;
 
     @Autowired
     private SalaRepository salaRepository;
@@ -98,7 +94,8 @@ public class ButacaController {
     @PutMapping("/bloquear")
     public ResponseEntity<String> bloquearButacas(@RequestParam("usuarioId") String usuarioId, @RequestBody List<Long> butacaIds) {
         LocalDateTime ahora = LocalDateTime.now();
-        LocalDateTime bloqueadaHasta = ahora.plusMinutes(5);
+        // Bloqueamos las butacas 4 minutos
+        LocalDateTime bloqueadaHasta = ahora.plusMinutes(4);
 
         List<Butaca> butacas = butacaRepository.findAllById(butacaIds);
 
@@ -107,13 +104,11 @@ public class ButacaController {
             if (butaca.getBloqueadaHasta() != null && butaca.getBloqueadaHasta().isAfter(ahora) && !butaca.getUsuarioId().equals(usuarioId)) {
                 return ResponseEntity.status(403).body("La butaca está bloqueada por otro usuario.");
             }
-
             // Bloqueamos la butaca y asociamos al usuario que la bloquea
             butaca.setUsuarioId(usuarioId);
             butaca.setBloqueadaHasta(bloqueadaHasta);
             butacaRepository.save(butaca);
         }
-
         return ResponseEntity.ok("Butacas bloqueadas por 5 minutos.");
     }
 
