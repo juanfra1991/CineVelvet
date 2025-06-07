@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import { Config } from '../api/Config';
+import axios from 'axios';
 import HeaderConTabs from '../components/HeaderConTabs';
 import { FiMapPin, FiPhone, FiVideo } from 'react-icons/fi';
 
 const Informacion = () => {
   const [cargando, setCargando] = useState(true);
+  const [totalSalas, setTotalSalas] = useState(0);
+  const [totalAsientos, setTotalAsientos] = useState(0);
 
   useEffect(() => {
-    // Simula un tiempo de carga de 1.5s
-    const timeout = setTimeout(() => {
-      setCargando(false);
-    }, 1500);
+    const fetchSalas = async () => {
+      try {
+        const res = await axios.get(`${Config.urlBackend}/salas`);
+        const salas = res.data;
+        setTotalSalas(salas.length);
+        const sumaAsientos = salas.reduce((acc, sala) => acc + (sala.capacidad || 0), 0);
+        setTotalAsientos(sumaAsientos);
+      } catch (err) {
+        console.error('Error al cargar las salas:', err);
+        setTotalSalas(0);
+        setTotalAsientos(0);
+      } finally {
+        // Para simular tiempo de carga, espera 1.5s antes de quitar el loader
+        setTimeout(() => setCargando(false), 1500);
+      }
+    };
 
-    return () => clearTimeout(timeout);
+    fetchSalas();
   }, []);
 
   return (
@@ -33,20 +49,26 @@ const Informacion = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link-clean">
-                  <p>Avda. Velvet<br />30880 Águilas, Murcia</p>
+                  <p>
+                    Avda. Velvet
+                    <br />
+                    30880 Águilas, Murcia
+                  </p>
                 </a>
               </div>
               <div className="info-card">
                 <FiPhone size={24} />
-                <a
-                  href="tel:968000000"
-                  className="link-clean">
+                <a href="tel:968000000" className="link-clean">
                   <p>968 00 00 00</p>
                 </a>
               </div>
               <div className="info-card">
                 <FiVideo size={24} />
-                <p>6 Salas<br />1340 Asientos</p>
+                <p>
+                  {totalSalas} Sala{totalSalas !== 1 ? 's' : ''}
+                  <br />
+                  {totalAsientos} Asiento{totalAsientos !== 1 ? 's' : ''}
+                </p>
               </div>
             </div>
             <div className="info-descripcion">
