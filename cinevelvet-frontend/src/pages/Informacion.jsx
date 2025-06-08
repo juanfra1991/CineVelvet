@@ -15,14 +15,13 @@ const Informacion = () => {
         const res = await axios.get(`${Config.urlBackend}/salas`);
         const salas = res.data;
         setTotalSalas(salas.length);
-        const sumaAsientos = salas.reduce((acc, sala) => acc + (sala.capacidad || 0), 0);
+        const sumaAsientos = salas.reduce((butacas, sala) => butacas + (sala.capacidad || 0), 0);
         setTotalAsientos(sumaAsientos);
       } catch (err) {
         console.error('Error al cargar las salas:', err);
         setTotalSalas(0);
         setTotalAsientos(0);
       } finally {
-        // Para simular tiempo de carga, espera 1.5s antes de quitar el loader
         setTimeout(() => setCargando(false), 1500);
       }
     };

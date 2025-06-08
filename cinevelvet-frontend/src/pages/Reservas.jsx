@@ -10,6 +10,7 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import { FiClock } from 'react-icons/fi';
 
 const Reservas = () => {
+  //Constantes utilizadas
   const location = useLocation();
   const { sesionId, butacasSeleccionadas } = location.state || {};
   const [butacasSeleccionadasState] = useState(butacasSeleccionadas || []);
@@ -26,6 +27,7 @@ const Reservas = () => {
   const finTimestamp = useRef(null);
   const navigate = useNavigate();
 
+  //Carga la sesión y las butacas seleccionadas
   useEffect(() => {
     const fetchSesion = async () => {
       if (!sesionId) return;
@@ -43,6 +45,7 @@ const Reservas = () => {
     fetchSesion();
   }, [sesionId]);
 
+  //Método para redirigir al inicio despues de la compra
   useEffect(() => {
     if (contador !== 5) return;
 
@@ -62,11 +65,14 @@ const Reservas = () => {
     };
   }, [contador, navigate]);
 
+
+  //Método para el temporizador de la compra
   useEffect(() => {
     if (contador === 5) return;
 
-    // Establecemos la marca de tiempo final con la duración inicial
+    // Establecemos la marca de tiempo final con la duración inicial para el temporizador
     finTimestamp.current = Date.now() + tiempoRestante * 1000;
+
 
     const actualizarTiempo = () => {
       const ahora = Date.now();
@@ -87,6 +93,7 @@ const Reservas = () => {
     return () => clearInterval(intervalo);
   }, [contador]);
 
+  //Método para ocultar los mensajes de error despues de 3 segundos
   useEffect(() => {
     if (!mensajeError) return;
 
@@ -97,6 +104,7 @@ const Reservas = () => {
     return () => clearTimeout(timer);
   }, [mensajeError]);
 
+  //Método para generar la reserva y actualizar el backend
   const crearReserva = async (data) => {
     setComprando(true);
     try {
@@ -108,6 +116,7 @@ const Reservas = () => {
     }
   };
 
+  //Método para descargar el PDF
   const descargarPDF = async (reservaId) => {
     try {
       const response = await axios.get(`${Config.urlBackend}/reservas/${reservaId}/pdf`, {
@@ -132,6 +141,7 @@ const Reservas = () => {
     }
   };
 
+  //Método para validar los campos y las butacas seleccionadas
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMensajeError("");
@@ -153,6 +163,7 @@ const Reservas = () => {
       return;
     }
 
+    //Datos que se le envian al backend para actualizar la base de datos
     const data = {
       cliente,
       sesionId,

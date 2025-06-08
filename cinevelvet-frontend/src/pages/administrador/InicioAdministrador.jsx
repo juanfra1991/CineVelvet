@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { FiLogOut } from "react-icons/fi";
-import '../../css/Dashboard.css';
+import '../../css/InicioAdministrador.css';
 import '../../css/Home.css';
 import logoCinema from '../../assets/logoCine.jpg';
 

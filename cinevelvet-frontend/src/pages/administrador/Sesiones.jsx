@@ -9,7 +9,7 @@ import { FiArrowLeftCircle, FiX } from "react-icons/fi";
 import { es } from 'date-fns/locale';
 import '../../css/Sesiones.css';
 import '../../css/Home.css';
-import '../../css/Dashboard.css';
+import '../../css/InicioAdministrador.css';
 import '../../css/Sala.css';
 import butacaImg from '../../assets/butaca.svg';
 import iconoCheck from '../../assets/iconoCheck.svg';
@@ -17,6 +17,7 @@ import iconoNocheck from '../../assets/iconoNocheck.svg';
 import { setHours, setMinutes } from 'date-fns';
 
 const Sesiones = () => {
+  // Constantes utilizadas
   const [peliculas, setPeliculas] = useState([]);
   const [salas, setSalas] = useState([]);
   const [sesiones, setSesiones] = useState([]);
@@ -47,6 +48,7 @@ const Sesiones = () => {
     fetchSesiones();
   }, []);
 
+  // Recuperamos las peliculas disponibles
   const fetchPeliculas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/peliculas`);
@@ -56,6 +58,7 @@ const Sesiones = () => {
     }
   };
 
+  // Recuperamos las salas
   const fetchSalas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/salas/sin-sesiones-sin-butacas`);
@@ -65,6 +68,7 @@ const Sesiones = () => {
     }
   };
 
+  // Recuperamos las sesiones
   const fetchSesiones = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/sesiones/futuras`);
@@ -79,6 +83,7 @@ const Sesiones = () => {
     setSalaId('');
   };
 
+  // Método para crear una nueva sesión con datos válidos
   const handleCrearSesion = async () => {
     if (!fecha || !peliculaId || !salaId) {
       setMensajeGuardado("Debes completar todos los campos.");
@@ -86,17 +91,18 @@ const Sesiones = () => {
       return;
     }
 
-    // Verifica si ya existe una sesión con los mismos datos
+    // Verificamos si ya existe una sesión con los mismos datos
     const sesionExistente = sesiones.find(s =>
       s.salaId === Number(salaId) &&
       normalizarFecha(s.fecha) === normalizarFecha(fecha)
     );
 
+    //Si la sesión ya existe en otra película no puedes crearla y te aparece este modal
     if (sesionExistente) {
       setModalMensajeTexto("Ya hay una película programada para esta hora.");
       setModalMensajeVisible(true);
 
-      // Ocultar el mensaje después de 3 segundos (3000 ms)
+      // Oculta el mensaje después de 3 segundos 
       setTimeout(() => {
         setModalMensajeVisible(false);
       }, 3000);
@@ -104,9 +110,11 @@ const Sesiones = () => {
       return;
     }
 
+    //Actualizamos la base de datos con la nueva sesión
     try {
       await axios.post(`${Config.urlBackend}/sesiones`, { fecha, peliculaId, salaId });
 
+      // Reseteamos el formulario
       resetFormulario();
       fetchSesiones();
 
@@ -125,6 +133,7 @@ const Sesiones = () => {
     }
   };
 
+  // Métodos para confirmar el borrado de la sesión que has seleccionado
   const confirmarEliminarSesion = (id) => {
     setSesionAEliminar(id);
     setModalEliminarVisible(true);
@@ -145,6 +154,7 @@ const Sesiones = () => {
     }
   };
 
+  // Métodos para formatear las fechas
   const formatDate = (date) => {
     return date.toLocaleString('es-ES', {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
@@ -158,6 +168,8 @@ const Sesiones = () => {
     return f.getTime();
   };
 
+
+  // Métodos para filtrar las salas con una sesión y le pasamos el ID de la película
   const salasConSesionesDePelicula = salas.filter(sala =>
     sesiones.some(s => s.peliculaId === Number(peliculaFiltroId) && s.salaId === sala.id)
   );
@@ -166,6 +178,7 @@ const Sesiones = () => {
     s.peliculaId === Number(peliculaFiltroId) && s.salaId === Number(salaFiltroId)
   );
 
+  // Método para liberar una butaca en la parte del administrador
   const toggleOcupacionButaca = async (butacaId, ocupada, reservaId) => {
     if (!ocupada) return;
 
@@ -180,6 +193,7 @@ const Sesiones = () => {
     }
   };
 
+  // Método para confirmar/cancelar la liberación de la butaca
   const handleEliminarButacaConfirmado = async () => {
     if (!butacaAEliminar) return;
 
@@ -203,7 +217,6 @@ const Sesiones = () => {
 
   return (
     <div className="sesiones-admin-container home-container">
-      {/* HEADER */}
       <header className="home-header">
         <div className="header-background header-content">
           <button className="admin-icon" onClick={() => window.history.back()} title="Atrás">

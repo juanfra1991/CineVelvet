@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import '../../css/Peliculas.css';
 import '../../css/Home.css';
-import '../../css/Dashboard.css';
+import '../../css/InicioAdministrador.css';
 import logoCinema from '../../assets/logoCine.jpg';
 import { FiArrowLeftCircle } from "react-icons/fi";
 
 const Peliculas = () => {
+  // Constantes utilizadas
   const navigate = useNavigate();
   const [peliculas, setPeliculas] = useState([]);
   const [selectedPelicula, setSelectedPelicula] = useState(null);
@@ -86,6 +87,7 @@ const Peliculas = () => {
     }
   };
 
+  // Cambiamos el estado de publicada y ocultada
   const handleTogglePublicar = async (id) => {
     try {
       const res = await axios.patch(`${Config.urlBackend}/peliculas/${id}/publicar`);

@@ -8,6 +8,7 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import logoCinema from '../../assets/logoCine.jpg';
 
 export default function EditarPelicula() {
+  // Constantes utilizadas
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -22,6 +23,7 @@ export default function EditarPelicula() {
   });
   const [mensajeGuardado, setMensajeGuardado] = useState("");
 
+  // Método para cargar los datos de la película
   useEffect(() => {
     axios.get(`${Config.urlBackend}/peliculas/${id}`)
       .then(res => setForm(res.data))
@@ -35,6 +37,7 @@ export default function EditarPelicula() {
 
   const isFormValid = Object.values(form).every(value => String(value).trim() !== '');
 
+  // Actualizamos el formulario con los datos actuales
   const handleSubmit = async (e) => {
     e.preventDefault();
 

@@ -12,6 +12,7 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import { Config } from '../api/Config';
 
 const Sala = () => {
+    //Constantes utilizadas
     const { salaId, sesionId } = useParams();
     const navigate = useNavigate();
     const [sala, setSala] = useState(null);
@@ -27,6 +28,7 @@ const Sala = () => {
     const [maximoButacasSuperado, setMaximoButacasSuperado] = useState(false);
 
     useEffect(() => {
+        //Método para mostrar la información completa de la sala
         const fetchData = async () => {
             try {
                 const salaResponse = await axios.get(`${Config.urlBackend}/butacas/sala/${salaId}`);
@@ -52,6 +54,7 @@ const Sala = () => {
         fetchData();
     }, [salaId, sesionId]);
 
+
     useEffect(() => {
         let usuarioID = localStorage.getItem('usuarioId');
 
@@ -65,6 +68,7 @@ const Sala = () => {
     if (loading) return <p>Cargando sala...</p>;
     if (!sala || !sesion) return <p>No se encontró la sala o la sesión.</p>;
 
+    //Método para seleccionar o deseleccionar las butacas, máximo 10
     const toggleSeleccion = (fila, columna) => {
         const yaSeleccionada = butacasSeleccionadas.some(b => b.fila === fila && b.columna === columna);
 
@@ -81,10 +85,13 @@ const Sala = () => {
         }
     };
 
+    //Método para mostrar en la información las butacas seleccionadas.
     const mostrarButacasSeleccionadas = butacasSeleccionadas.length
         ? `${butacasSeleccionadas.length} butacas, (${butacasSeleccionadas.map(b => `Fila ${b.fila}, Butaca ${b.columna}`).join(' | ')})`
         : 'por favor, selecciona las butacas deseadas';
 
+
+    //Método para comprar las butacas seleccionadas
     const handleComprarClick = async () => {
         const usuarioID = localStorage.getItem('usuarioId');
 
@@ -127,11 +134,12 @@ const Sala = () => {
         }
     };
 
-    const mitadColumnas = Math.floor(sala.columnas / 2);
+    //Realizamos la partición de la sala en dos para mostrar un pasillo
+    const pasilloSala = Math.floor(sala.columnas / 2);
 
     return (
         <div className="home-container">
-                       <HeaderTabs/>
+            <HeaderTabs />
 
             <p><strong>Velvet Cinema</strong></p>
             <div className="info-pelicula">
@@ -149,14 +157,14 @@ const Sala = () => {
                 {butacasSeleccionadas.length > 0 && (
                     <div style={{ marginTop: '0.5em' }}>
                         {butacasSeleccionadas
-                            .reduce((acc, curr, i) => {
-                                const groupIndex = Math.floor(i / 8);
-                                if (!acc[groupIndex]) acc[groupIndex] = [];
-                                acc[groupIndex].push(`Fila ${curr.fila}, Butaca ${curr.columna}`);
-                                return acc;
+                            .reduce((grupoButacas, butacaSelect, indice) => {
+                                const grupoButacasInfo = Math.floor(indice / 8);
+                                if (!grupoButacas[grupoButacasInfo]) grupoButacas[grupoButacasInfo] = [];
+                                grupoButacas[grupoButacasInfo].push(`Fila ${butacaSelect.fila}, Butaca ${butacaSelect.columna}`);
+                                return grupoButacas;
                             }, [])
-                            .map((grupo, idx) => (
-                                <div key={idx}>{grupo.join(' | ')}</div>
+                            .map((grupo, indiceButacas) => (
+                                <div key={indiceButacas}>{grupo.join(' | ')}</div>
                             ))}
                     </div>
                 )}
@@ -199,7 +207,7 @@ const Sala = () => {
                         const seleccionada = butacasSeleccionadas.some(b => b.fila === fila && b.columna === columna);
                         const isBlockedByCurrentUser = butaca.bloqueada && butaca.usuarioId === usuarioID;
 
-                        if (colIndex === mitadColumnas) {
+                        if (colIndex === pasilloSala) {
                             rowElements.push(<div className="pasillo" key={`pasillo-${filaIndex}`} />);
                         }
 

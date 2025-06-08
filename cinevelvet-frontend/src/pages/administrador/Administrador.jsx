@@ -8,13 +8,14 @@ import { FiXCircle } from "react-icons/fi";
 import '../../css/Administrador.css';
 
 const Administrador = () => {
+    //Constantes utilizadas
     const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [error, setError] = useState('');
     const [recordar, setRecordar] = useState(false);
     const navigate = useNavigate();
 
-    // Verifica si el usuario y la contraseña están guardados en el localStorage
+    // Verificamos si el usuario y la contraseña están guardados en el localStorage
     useEffect(() => {
         const storedUsuario = localStorage.getItem('usuario');
         const storedContrasena = localStorage.getItem('contrasena');
@@ -25,6 +26,7 @@ const Administrador = () => {
         }
     }, []);
 
+    // Iniciamos la sesión
     const handleLogin = async () => {
         try {
             const response = await axios.post(`${Config.urlBackend}/administrador/login`, {
@@ -41,7 +43,7 @@ const Administrador = () => {
                     localStorage.removeItem('usuario');
                     localStorage.removeItem('contrasena');
                 }
-                navigate('/dashboard');
+                navigate('/inicioAdministrador');
             } else {
                 setError('Usuario o contraseña incorrectos');
             }
