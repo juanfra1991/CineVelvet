@@ -1,3 +1,4 @@
+/* HeaderConTabs.css */
 .tabs-full-container {
   display: flex;
   width: 100%;
@@ -23,7 +24,6 @@
 
 .tab-full.activo {
   border-bottom: 3px solid #970000c2;
-  /* o el color que prefieras */
   color: #000;
 }
 

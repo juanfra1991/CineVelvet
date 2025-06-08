@@ -1,5 +1,4 @@
 /* Sesiones.css */
-
 .sesiones-admin-container {
   padding: 20px;
   padding-top: calc(20px + env(safe-area-inset-top));
@@ -82,7 +81,6 @@ select:focus {
   text-align: center;
 }
 
-/* Estilos para react-datepicker */
 .react-datepicker-wrapper,
 .react-datepicker__input-container,
 .react-datepicker__input {
@@ -127,7 +125,6 @@ select:focus {
     opacity: 0;
     transform: translateY(-5px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);

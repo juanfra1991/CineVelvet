@@ -1,3 +1,4 @@
+/* Home.css */
 .home-container {
   padding: 20px;
   padding-top: calc(20px + env(safe-area-inset-top));
@@ -101,7 +102,6 @@ body {
   color: #ffcc00;
 }
 
-/* ==== Estilo para el fondo del modal ==== */
 .custom-overlay {
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
@@ -112,7 +112,6 @@ body {
   z-index: 1000;
 }
 
-/* ==== Contenedor del modal estilo mensaje ==== */
 .popup-mensaje {
   background-color: #800000;
   color: white;
@@ -126,7 +125,6 @@ body {
   width: 90%;
 }
 
-/* ==== Animación de aparición ==== */
 @keyframes fadein {
   from {
     opacity: 0;
@@ -139,7 +137,6 @@ body {
   }
 }
 
-/* ==== Botón de cierre del modal ==== */
 .popup-mensaje button {
   margin-top: 15px;
   padding: 10px 16px;
@@ -352,11 +349,9 @@ body {
     z-index: 2;
   }
 
-  /* En tu CSS (por ejemplo, Sesiones.css o Home.css) */
   .video-container {
     position: relative;
     padding-bottom: 56.25%;
-    /* 16:9 aspect ratio */
     padding-top: 25px;
     height: 0;
   }
@@ -387,7 +382,6 @@ body {
   z-index: 1;
 }
 
-/* Estilo para el fondo del modal */
 .custom-overlay {
   position: fixed;
   top: 0;
@@ -398,7 +392,6 @@ body {
   z-index: 1000;
 }
 
-/* Estilo para el contenido del modal */
 .popup-mensaje-modal {
   position: absolute;
   top: 50%;
@@ -503,7 +496,6 @@ body {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
