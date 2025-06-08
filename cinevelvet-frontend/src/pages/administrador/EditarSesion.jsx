@@ -24,6 +24,7 @@ const EditarSesion = () => {
   const peliculaSeleccionada = peliculas.find(p => p.id === Number(peliculaId));
   const salaSeleccionada = salas.find(s => s.id === Number(salaId));
 
+  // Método para obtener las sesiones
   const fetchSesion = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/sesiones/${id}`);
@@ -37,6 +38,7 @@ const EditarSesion = () => {
     }
   };
 
+  // Obtenemos las peliculas publicadas
   const fetchPeliculas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/peliculas/publicadas`);
@@ -46,6 +48,7 @@ const EditarSesion = () => {
     }
   };
 
+  // Obtenemos las salas disponibles
   const fetchSalas = async () => {
     try {
       const res = await axios.get(`${Config.urlBackend}/salas/sin-sesiones-sin-butacas`);
@@ -73,6 +76,7 @@ const EditarSesion = () => {
     fetchSesionesExistentes();
   }, []);
 
+  // Método para actualizar la sesión
   const handleActualizarSesion = async () => {
     console.log({ fecha, salaId, peliculaId });
 
@@ -82,7 +86,7 @@ const EditarSesion = () => {
       return;
     }
 
-    // Verifica si ya hay otra sesión en esa sala a la misma hora
+    // Verificamos si ya hay otra sesión en esa sala a la misma hora
     const conflicto = otrasSesiones.some(s =>
       s.salaId === Number(salaId) &&
       new Date(s.fecha).getTime() === new Date(fecha).getTime()

@@ -10,6 +10,8 @@ import '../css/Home.css';
 import '../css/Sesiones.css';
 
 const Home = () => {
+
+    //Constantes utilizadas
     const navigate = useNavigate();
     const [peliculas, setPeliculas] = useState([]);
     const [sesionesPorPelicula, setSesionesPorPelicula] = useState({});
@@ -47,6 +49,7 @@ const Home = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [cargando, indicePeliculas, peliculas.length]);
 
+    //Método para buscar la lista de peliculas
     const fetchPeliculas = async () => {
         setMostrandoLoader(true);
         try {
@@ -61,6 +64,7 @@ const Home = () => {
         }
     };
 
+    //Método para cargar las peliculas de la programación cuando deslizas hacia abajo
     const cargarMasPeliculas = () => {
         setCargando(true);
         setTimeout(() => {
@@ -69,6 +73,7 @@ const Home = () => {
         }, 1000);
     };
 
+    //Método para cargar las sesiones disponibles para cada pelicula según su ID
     const fetchSesionesPorPelicula = async (peliculaId) => {
         try {
             const response = await axios.get(`${Config.urlBackend}/sesiones/pelicula/${peliculaId}/futuras`);
@@ -81,6 +86,7 @@ const Home = () => {
         }
     };
 
+    //Métodos para abrir o cerrar los modales
     const abrirModal = (pelicula) => {
         setPeliculaSeleccionada(pelicula);
         setModalAbierto(true);
@@ -91,6 +97,8 @@ const Home = () => {
         setModalAbierto(false);
     };
 
+
+    //Método para transformar una URL de youtube para insertarlo en el iframe
     const transformarEnlaceEmbed = (url) => {
         if (!url) return null;
         const videoIdMatch = url.match(/(?:\?v=|\.be\/)([^&]+)/);
@@ -102,7 +110,6 @@ const Home = () => {
 
     return (
         <div className="home-container">
-
             <HeaderConTabs />
 
             {mostrandoLoader ? (
@@ -139,8 +146,8 @@ const Home = () => {
                                                     <div key={index} className="sesion-item">
                                                         <span className="sesion-fecha">{strFecha}</span>
                                                         <div className="sesion-horas">
-                                                            {sesiones.map((sesion, i) => (
-                                                                <button key={i} onClick={() => navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`)}>
+                                                            {sesiones.map((sesion, sesiones) => (
+                                                                <button key={sesiones} onClick={() => navigate(`/salas/${sesion.salaId}/sesion/${sesion.id}`)}>
                                                                     {sesion.strHora}
                                                                 </button>
                                                             ))}
