@@ -15,19 +15,27 @@ Una aplicación desarrollada con **React y Java** para la venta de entradas de c
 
 ## 🛠️ Requisitos previos
 Asegúrate de tener instalado:
+
 **Frontend**
+
 - Node.js >= 20
 - npm >= 8
 - React (con TypeScript)
 👉 Se instala automáticamente con el proyecto (npx create-react-app my-app --template typescript)
+
 **Backend**
   - Java 17 o superior
+  - Spring Boot 3.2.x
   - Maven 3.8+
+    
 **Base de datos**
-- MySQL 8.0+
+
+  - MySQL 8.0+
+    
 **Herramientas recomendadas**
+
   - VS Code
-  - IntelliJ IDEA4
+  - IntelliJ IDEA
   - MySQL Workbench
   - Postman
 
