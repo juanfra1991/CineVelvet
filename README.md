@@ -20,8 +20,7 @@ Asegúrate de tener instalado:
 
 - Node.js >= 20
 - npm >= 8
-- React (con TypeScript)
-👉 Se instala automáticamente con el proyecto (npx create-react-app my-app --template typescript)
+- React >= 19 (con TypeScript)
 
 **Backend**
   - Java 17 o superior
@@ -44,7 +43,7 @@ Asegúrate de tener instalado:
 ## ⚙️ Instalación
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/MariaJose192/VelvetCinema
+   git clone https://github.com/juanfra1991/CineVelvet.git
    cd cineVelvet
 2. Instala las dependencias:
    ```bash
